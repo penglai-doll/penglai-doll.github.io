@@ -23,7 +23,7 @@
   <meta name="description" content="这是新建博客的二次尝试！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="test">
-<meta property="og:url" content="http://penglaidoll.xyz/uncategorized/test">
+<meta property="og:url" content="http://penglaidoll.xyz/uncategorized/Python">
 <meta property="og:site_name" content="PengLaiDoll网安学习心得">
 <meta property="og:description" content="这是新建博客的二次尝试！">
 <meta property="og:locale" content="zh_CN">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="none">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://penglaidoll.xyz/uncategorized/test">
+<link rel="canonical" href="http://penglaidoll.xyz/uncategorized/Python">
 
 
 <script id="page-configurations">
@@ -151,7 +151,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/uncategorized/test">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/uncategorized/Python">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
