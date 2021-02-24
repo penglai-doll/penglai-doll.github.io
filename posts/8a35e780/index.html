@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"penglaidoll.xyz","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="在计蒜客中学习Python时，遇到了一个很有趣的排序问题： 输入一行 kk 个用空格分隔开的整数，依次为 n_1, n_2 … n_kn 1    ,n 2…n k。请将所有下标不能被 3 但可以被 2 整除的数在这些数字原有的位置上进行升序排列，此外，将余下下标能被 3 整除的数在这些数字原有的位置上进行降序排列。输出包括一行，与输入相对应的若干个整数，为排序后的结果，整数之间用空格分隔。 自己">
+  <meta name="description" content="类：Python被设计为一门面向对象的编程语言，同其他面向对象的编程语言一样，它也有类这个概念：类可以认为是一个集合，用来容纳众多的相近的属性和方法，方便随时调用其中的变量和函数；对象则是类的实例化(把类赋值到一个变量中)，一个对象(也可以说一个类)有其对应的属性和方法；属性可以认为是类中定义的变量，分为类的属性和实例对象的属性；方法则是在类中定义的函数；一个简单的类实例： 12345678910">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python中的交叉排序问题">
-<meta property="og:url" content="http://penglaidoll.xyz/posts/51641b53/index.html">
+<meta property="og:title" content="Python中的类，模块，包">
+<meta property="og:url" content="http://penglaidoll.xyz/posts/8a35e780/index.html">
 <meta property="og:site_name" content="PengLaiDoll网安学习心得">
-<meta property="og:description" content="在计蒜客中学习Python时，遇到了一个很有趣的排序问题： 输入一行 kk 个用空格分隔开的整数，依次为 n_1, n_2 … n_kn 1    ,n 2…n k。请将所有下标不能被 3 但可以被 2 整除的数在这些数字原有的位置上进行升序排列，此外，将余下下标能被 3 整除的数在这些数字原有的位置上进行降序排列。输出包括一行，与输入相对应的若干个整数，为排序后的结果，整数之间用空格分隔。 自己">
+<meta property="og:description" content="类：Python被设计为一门面向对象的编程语言，同其他面向对象的编程语言一样，它也有类这个概念：类可以认为是一个集合，用来容纳众多的相近的属性和方法，方便随时调用其中的变量和函数；对象则是类的实例化(把类赋值到一个变量中)，一个对象(也可以说一个类)有其对应的属性和方法；属性可以认为是类中定义的变量，分为类的属性和实例对象的属性；方法则是在类中定义的函数；一个简单的类实例： 12345678910">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-02-22T03:12:17.000Z">
-<meta property="article:modified_time" content="2021-02-22T03:54:45.382Z">
+<meta property="article:published_time" content="2021-02-24T07:38:16.000Z">
+<meta property="article:modified_time" content="2021-02-24T07:42:22.144Z">
 <meta property="article:author" content="PengLaiDoll">
 <meta property="article:tag" content="基础扫盲">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://penglaidoll.xyz/posts/51641b53/">
+<link rel="canonical" href="http://penglaidoll.xyz/posts/8a35e780/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Python中的交叉排序问题 | PengLaiDoll网安学习心得</title>
+  <title>Python中的类，模块，包 | PengLaiDoll网安学习心得</title>
   
 
 
@@ -161,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/51641b53/">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/8a35e780/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -174,7 +174,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Python中的交叉排序问题
+          Python中的类，模块，包
         </h1>
 
         <div class="post-meta">
@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-02-22 11:12:17 / 修改时间：11:54:45" itemprop="dateCreated datePublished" datetime="2021-02-22T11:12:17+08:00">2021-02-22</time>
+              <time title="创建时间：2021-02-24 15:38:16 / 修改时间：15:42:22" itemprop="dateCreated datePublished" datetime="2021-02-24T15:38:16+08:00">2021-02-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,17 +208,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在计蒜客中学习Python时，遇到了一个很有趣的排序问题：</p>
-<p>输入一行 kk 个用空格分隔开的整数，依次为 n_1, n_2 … n_kn 1    ,n 2…n k。<br>请将所有下标不能被 3 但可以被 2 整除的数在这些数字原有的位置上进行升序排列，此外，将余下下标能被 3 整除的数在这些数字原有的位置上进行降序排列。<br>输出包括一行，与输入相对应的若干个整数，为排序后的结果，整数之间用空格分隔。</p>
-<p>自己琢磨了很长时间，其中也发现了各种各样的问题，下面分享一下：</p>
-<p>输入例：<br>1 5 4 3 10 7 19<br>输出例：<br>1 3 7 5 10 4 19</p>
-<h2 id="程序样例"><a href="#程序样例" class="headerlink" title="程序样例"></a>程序样例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">n = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().split(<span class="string">&#x27; &#x27;</span>)]</span><br><span class="line">n1 = []</span><br><span class="line">n2 = []</span><br><span class="line">n3 = []</span><br><span class="line">nc= []</span><br><span class="line"><span class="comment"># 将满足下标不同条件的列表中的数放入不同的空列表中</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="keyword">if</span> ((index+1) % 3 != 0) and ((index+1) % 2 == 0):</span><br><span class="line">        n1.append(n[index])</span><br><span class="line">    <span class="keyword">elif</span> ((index+1) % 3 ==0):</span><br><span class="line">        n2.append(n[index])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        n3.append(n[index])</span><br><span class="line"><span class="comment"># 列表排序</span></span><br><span class="line">n1.sort()</span><br><span class="line">n2.sort(reverse = True)</span><br><span class="line"><span class="comment"># 再将列表元素按照原序依次放回</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="keyword">if</span> ((index+1) % 3 != 0) and ((index+1) % 2 == 0) and n1:</span><br><span class="line">        nc.append(n1.pop(0))</span><br><span class="line">    <span class="keyword">elif</span> ((index+1) % 3 ==0) and n2:</span><br><span class="line">        nc.append(n2.pop(0))</span><br><span class="line">    <span class="keyword">elif</span> n3:</span><br><span class="line">        nc.append(n3.pop(0))</span><br><span class="line"><span class="comment"># 按照格式输出</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="built_in">print</span>(nc[i],end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-<h3 id="格式化输入"><a href="#格式化输入" class="headerlink" title="格式化输入"></a>格式化输入</h3><p>比如以空格相间隔的数据的输入：100 200 300<br>可以用下面的方式读取</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># example 1</span></span><br><span class="line"></span><br><span class="line">x = [int(i) <span class="keyword">for</span> i <span class="keyword">in</span> input().split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># exapmle 2</span></span><br><span class="line"></span><br><span class="line">x = map(int,input().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>其中，input().split(‘ ‘)是将输入的数据以split函数传入的参数为标志进行分割并返回分割后的列表<br>(注：split函数返回的列表为字符串列表！！！）<br>example 2是一种比较巧妙的方法</p>
-<h3 id="判断列表是否为空"><a href="#判断列表是否为空" class="headerlink" title="判断列表是否为空"></a>判断列表是否为空</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">if</span> a:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;YES&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;NO&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>以上只是个例子，是为了说明若一个列表为空，则其对应布尔值为False<br>可以利用这个来判断一个列表是否为空<br>程序例子中使用这个判断来防止列表空时pop()函数对空列表使用报错</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u011501388/article/details/101788381">点这里</a><br>      [点这里](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43113241/article/details/109965485%EF%BC%89">https://blog.csdn.net/weixin_43113241/article/details/109965485）</a></p>
+        <h2 id="类："><a href="#类：" class="headerlink" title="类："></a>类：</h2><p>Python被设计为一门面向对象的编程语言，<br>同其他面向对象的编程语言一样，它也有类这个概念：<br>类可以认为是一个集合，用来容纳众多的相近的属性和方法，方便随时调用其中的变量和函数；<br>对象则是类的实例化(把类赋值到一个变量中)，<br>一个对象(也可以说一个类)有其对应的属性和方法；<br>属性可以认为是类中定义的变量，<br>分为类的属性和实例对象的属性；<br>方法则是在类中定义的函数；<br>一个简单的类实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Pp:</span><br><span class="line">    def __init__(self,a,b):</span><br><span class="line">        self.a &#x3D; a</span><br><span class="line">        self.b &#x3D; b</span><br><span class="line">        self.c &#x3D; a + b</span><br><span class="line">        print(&quot;初始化完毕！&quot;)</span><br><span class="line">    def outsc(self):</span><br><span class="line">        print(self.c)</span><br><span class="line">X &#x3D; Pp(2,3)</span><br><span class="line">x.outsc()</span><br></pre></td></tr></table></figure>
+<h3 id="关于init"><a href="#关于init" class="headerlink" title="关于init:"></a>关于<strong>init</strong>:</h3><p>在把对象实例化之后会默认执行__init__方法，结合对__init__方法的定义，通常用来对对象初始化。<br>除此之外，若想在对象实例化时就传入参数，必须调用__init__方法，不带__init__方法的类默认无法传入参数。</p>
+<h3 id="对于self的解释："><a href="#对于self的解释：" class="headerlink" title="对于self的解释："></a>对于self的解释：</h3><p>类在定义方法时，传入的参数第一个必须是self，即使没有参数时，也要传入self，<br>这里有一种解释，比如上例，Pp类实例化为x，这里self的作用实际上是把变量x在类内以self指代，所以类不管实例化为什么，self总是能把变量的名称传入类内以便调用。</p>
+<h2 id="模块："><a href="#模块：" class="headerlink" title="模块："></a>模块：</h2><p>在Python中，一个模块可以认为是一个.py文件，它可以被其他.py文件用import函数引入，以便使用之前定义好的函数，类，变量什么的。</p>
+<h2 id="包："><a href="#包：" class="headerlink" title="包："></a>包：</h2><p>当多个用处相近的模块组合在一起，放在同一个文件夹这样的文件夹可以称为一个包。多个这样的文件夹合成一个大文件夹也可以称为一个包，则小文件夹又称为子包。包同样可以用import引入，其往往是一些制作者为了提供一系列的模块所制成，以方便调用。<br>包内必须要有<strong>init</strong>.py文件、<br>一个包的组成往往如下：<br>Package1:<br>|-<strong>init</strong>.py<br>|-Module1.py<br>|-Module2.py<br>|-……<br>调用方法为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From package1 import module1:</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Import package1.module1:</span><br></pre></td></tr></table></figure>
+<p>若包中一个模块需调用其他目录的模块，可在当前包目录下的<strong>init</strong>.py文件中添加sys.path.append(‘调用模块位置’)，然后再import __init__就可以了。</p>
 
     </div>
 
@@ -237,13 +236,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/e599f77d/" rel="prev" title="Python中的_name_属性">
-      <i class="fa fa-chevron-left"></i> Python中的_name_属性
+    <a href="/posts/6d69b5ea/" rel="prev" title="格式化字符串的三种方法">
+      <i class="fa fa-chevron-left"></i> 格式化字符串的三种方法
     </a></div>
-      <div class="post-nav-item">
-    <a href="/posts/6d69b5ea/" rel="next" title="格式化字符串的三种方法">
-      格式化字符串的三种方法 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -302,7 +298,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%A0%B7%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">程序样例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">格式化输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%88%97%E8%A1%A8%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA"><span class="nav-number">1.2.</span> <span class="nav-text">判断列表是否为空</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">类：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Einit"><span class="nav-number">1.1.</span> <span class="nav-text">关于init:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8Eself%E7%9A%84%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">对于self的解释：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">模块：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">包：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
