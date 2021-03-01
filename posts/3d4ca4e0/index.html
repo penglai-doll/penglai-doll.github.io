@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"penglaidoll.xyz","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="在计蒜客中学习Python时，遇到了一个很有趣的排序问题： 输入一行 kk 个用空格分隔开的整数，依次为 n_1, n_2 … n_kn 1    ,n 2…n k。请将所有下标不能被 3 但可以被 2 整除的数在这些数字原有的位置上进行升序排列，此外，将余下下标能被 3 整除的数在这些数字原有的位置上进行降序排列。输出包括一行，与输入相对应的若干个整数，为排序后的结果，整数之间用空格分隔。 自己">
+  <meta name="description" content="列表生成式：当我们在用for循环来输出列表时，会很麻烦，特别是生成一些复杂的列表，除此之外，我们可以利用列表生成式如：要生成 1[1&#x3D;1,2&#x3D;2,3&#x3D;3.....] 可以用 1[x&#x3D;x for x in range(1,...)] 这样的式子我们称之为列表生成式还可以在第一个for后面跟上更多的循环来生成更复杂的全排列灵活运用列表生成式可以简化代码列表生成式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python中的交叉排序问题">
-<meta property="og:url" content="http://penglaidoll.xyz/posts/51641b53/index.html">
+<meta property="og:title" content="生成器与迭代器基础">
+<meta property="og:url" content="http://penglaidoll.xyz/posts/3d4ca4e0/index.html">
 <meta property="og:site_name" content="PengLaiDoll网安学习心得">
-<meta property="og:description" content="在计蒜客中学习Python时，遇到了一个很有趣的排序问题： 输入一行 kk 个用空格分隔开的整数，依次为 n_1, n_2 … n_kn 1    ,n 2…n k。请将所有下标不能被 3 但可以被 2 整除的数在这些数字原有的位置上进行升序排列，此外，将余下下标能被 3 整除的数在这些数字原有的位置上进行降序排列。输出包括一行，与输入相对应的若干个整数，为排序后的结果，整数之间用空格分隔。 自己">
+<meta property="og:description" content="列表生成式：当我们在用for循环来输出列表时，会很麻烦，特别是生成一些复杂的列表，除此之外，我们可以利用列表生成式如：要生成 1[1&#x3D;1,2&#x3D;2,3&#x3D;3.....] 可以用 1[x&#x3D;x for x in range(1,...)] 这样的式子我们称之为列表生成式还可以在第一个for后面跟上更多的循环来生成更复杂的全排列灵活运用列表生成式可以简化代码列表生成式">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-02-22T03:12:17.000Z">
-<meta property="article:modified_time" content="2021-02-22T03:54:45.382Z">
+<meta property="article:published_time" content="2021-03-01T14:25:20.000Z">
+<meta property="article:modified_time" content="2021-03-01T14:35:06.074Z">
 <meta property="article:author" content="PengLaiDoll">
 <meta property="article:tag" content="基础扫盲">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://penglaidoll.xyz/posts/51641b53/">
+<link rel="canonical" href="http://penglaidoll.xyz/posts/3d4ca4e0/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Python中的交叉排序问题 | PengLaiDoll网安学习心得</title>
+  <title>生成器与迭代器基础 | PengLaiDoll网安学习心得</title>
   
 
 
@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/51641b53/">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/3d4ca4e0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -207,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Python中的交叉排序问题
+          生成器与迭代器基础
         </h1>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-02-22 11:12:17 / 修改时间：11:54:45" itemprop="dateCreated datePublished" datetime="2021-02-22T11:12:17+08:00">2021-02-22</time>
+              <time title="创建时间：2021-03-01 22:25:20 / 修改时间：22:35:06" itemprop="dateCreated datePublished" datetime="2021-03-01T22:25:20+08:00">2021-03-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,17 +241,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在计蒜客中学习Python时，遇到了一个很有趣的排序问题：</p>
-<p>输入一行 kk 个用空格分隔开的整数，依次为 n_1, n_2 … n_kn 1    ,n 2…n k。<br>请将所有下标不能被 3 但可以被 2 整除的数在这些数字原有的位置上进行升序排列，此外，将余下下标能被 3 整除的数在这些数字原有的位置上进行降序排列。<br>输出包括一行，与输入相对应的若干个整数，为排序后的结果，整数之间用空格分隔。</p>
-<p>自己琢磨了很长时间，其中也发现了各种各样的问题，下面分享一下：</p>
-<p>输入例：<br>1 5 4 3 10 7 19<br>输出例：<br>1 3 7 5 10 4 19</p>
-<h2 id="程序样例"><a href="#程序样例" class="headerlink" title="程序样例"></a>程序样例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">n = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().split(<span class="string">&#x27; &#x27;</span>)]</span><br><span class="line">n1 = []</span><br><span class="line">n2 = []</span><br><span class="line">n3 = []</span><br><span class="line">nc= []</span><br><span class="line"><span class="comment"># 将满足下标不同条件的列表中的数放入不同的空列表中</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="keyword">if</span> ((index+1) % 3 != 0) and ((index+1) % 2 == 0):</span><br><span class="line">        n1.append(n[index])</span><br><span class="line">    <span class="keyword">elif</span> ((index+1) % 3 ==0):</span><br><span class="line">        n2.append(n[index])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        n3.append(n[index])</span><br><span class="line"><span class="comment"># 列表排序</span></span><br><span class="line">n1.sort()</span><br><span class="line">n2.sort(reverse = True)</span><br><span class="line"><span class="comment"># 再将列表元素按照原序依次放回</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="keyword">if</span> ((index+1) % 3 != 0) and ((index+1) % 2 == 0) and n1:</span><br><span class="line">        nc.append(n1.pop(0))</span><br><span class="line">    <span class="keyword">elif</span> ((index+1) % 3 ==0) and n2:</span><br><span class="line">        nc.append(n2.pop(0))</span><br><span class="line">    <span class="keyword">elif</span> n3:</span><br><span class="line">        nc.append(n3.pop(0))</span><br><span class="line"><span class="comment"># 按照格式输出</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="built_in">print</span>(nc[i],end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-<h3 id="格式化输入"><a href="#格式化输入" class="headerlink" title="格式化输入"></a>格式化输入</h3><p>比如以空格相间隔的数据的输入：100 200 300<br>可以用下面的方式读取</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># example 1</span></span><br><span class="line"></span><br><span class="line">x = [int(i) <span class="keyword">for</span> i <span class="keyword">in</span> input().split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># exapmle 2</span></span><br><span class="line"></span><br><span class="line">x = map(int,input().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>其中，input().split(‘ ‘)是将输入的数据以split函数传入的参数为标志进行分割并返回分割后的列表<br>(注：split函数返回的列表为字符串列表！！！）<br>example 2是一种比较巧妙的方法</p>
-<h3 id="判断列表是否为空"><a href="#判断列表是否为空" class="headerlink" title="判断列表是否为空"></a>判断列表是否为空</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">if</span> a:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;YES&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;NO&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>以上只是个例子，是为了说明若一个列表为空，则其对应布尔值为False<br>可以利用这个来判断一个列表是否为空<br>程序例子中使用这个判断来防止列表空时pop()函数对空列表使用报错</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u011501388/article/details/101788381">点这里</a><br>      [点这里](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43113241/article/details/109965485%EF%BC%89">https://blog.csdn.net/weixin_43113241/article/details/109965485）</a></p>
+        <h2 id="列表生成式："><a href="#列表生成式：" class="headerlink" title="列表生成式："></a>列表生成式：</h2><p>当我们在用for循环来输出列表时，会很麻烦，特别是生成一些复杂的列表，除此之外，我们可以利用列表生成式<br>如：要生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1&#x3D;1,2&#x3D;2,3&#x3D;3.....]</span><br></pre></td></tr></table></figure>
+<p>可以用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[x&#x3D;x for x in range(1,...)]</span><br></pre></td></tr></table></figure>
+<p>这样的式子我们称之为列表生成式<br>还可以在第一个for后面跟上更多的循环来生成更复杂的全排列<br>灵活运用列表生成式可以简化代码<br>列表生成式的if：<br>如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[x for x in range(1,11) if x%2&#x3D;&#x3D;0]</span><br></pre></td></tr></table></figure>
+<p>可以输出1到11的偶数<br>这里if起的是筛选作用<br>注意后面不可跟else，否则会报错<br>如果在for前面放if则必须跟else<br>表示条件不同，就一以不同的形式输出</p>
+<h2 id="生成器："><a href="#生成器：" class="headerlink" title="生成器："></a>生成器：</h2><p>上面我们解释了列表生成式，是把for循环放在列表标识符中的([]),<br>如果我们把列表标识符改成()并且讲其赋值到一个变量中去，像是生成了一个元组一样，但实际上是创建了一个生成器(generator)并将其赋值到了变量之中<br>生成器，顾名思义，可以将一种算法赋值到一个变量之中，根据算法来取到所需要的值。<br>与列表生成器不同，不需要将所有元素都计算出来，而只在需要的时候才算出对应的元素，省去不必要的元素以节省空间<br>使用next(generator)函数来求出下一个元素<br>最好使用for循环来求出所需的元素<br>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g &#x3D; (x for x in range(1,10000))</span><br><span class="line">for i in g:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<p>在这里，刚刚生成1到10000时，并不是直接占用了所有的内存，二十后面一步一步推算出来的<br>这里之所以能用for，是因为生成器也是可迭代对象<br>生成器的作用非常强大，可以实现算法的迭代<br>当一个算法过于复杂而for列表生成器无法应对的时候<br>比如生成斐波那契数列<br>常规写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def fib(max):</span><br><span class="line">    n,a,b&#x3D;0,0,1</span><br><span class="line">    while n&lt;max:</span><br><span class="line">        print(a)</span><br><span class="line">        a,b &#x3D; b,a+b</span><br><span class="line">        n&#x3D;n+1</span><br><span class="line">return &#39;done&#39;</span><br></pre></td></tr></table></figure>
+<p>由此观察a,b=b,a+b逻辑和生成器相近，都是走一步算一步（雾<br>生成器写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def fib(max):</span><br><span class="line">    n,a,b&#x3D;0,0,1</span><br><span class="line">    while n&lt;max:</span><br><span class="line">        yield b</span><br><span class="line">        a,b&#x3D;b,a+b</span><br><span class="line">        n&#x3D;n+1</span><br><span class="line">return &#39;done&#39;</span><br></pre></td></tr></table></figure>
+<p>解释：在函数定义过程中，只要加上了yield，就可以将函数变成生成器，正常函数为顺序执行，<br>而生成器则会一直执行到首次遇见yield语句，并输出yield语句后面的参数，<br>使用next()语句使其从当前的yield语句执行到下一条yield语句<br>举个简单栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def odd():</span><br><span class="line">    print &#39;step1&#39;</span><br><span class="line">    yield 1</span><br><span class="line">    print &#39;step2&#39;</span><br><span class="line">    yield(3)</span><br></pre></td></tr></table></figure>
+<p>调用时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;o &#x3D; odd()</span><br><span class="line">&gt;&gt;next(o)</span><br><span class="line">step1</span><br><span class="line">1</span><br><span class="line">&gt;&gt;next(o)</span><br><span class="line">step2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<p>如上</p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>调用一个生成器时，会返回一个generate对象<br>就像map一样，生成的是迭代器<br>迭代器和可迭代对象：<br>能被for循环直接作用的，我们称为可迭代对象<br>而像生成器那样的，可以用next()函数调用并返回下一个值的我们称为迭代器，如map,generator。(迭代器也是可迭代对象)<br>可以利用isinstance()来判断一个变量是否为迭代器<br>迭代器对象表示的是一个数据流，我们不知道其有多长，知道数据全部输出完毕就会报错，而不是迭代器的可迭代对象我们往往知道其长度</p>
 
     </div>
 
@@ -270,13 +278,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/e599f77d/" rel="prev" title="Python中的_name_属性">
-      <i class="fa fa-chevron-left"></i> Python中的_name_属性
+    <a href="/posts/34311c5c/" rel="prev" title="C语言指针相关">
+      <i class="fa fa-chevron-left"></i> C语言指针相关
     </a></div>
-      <div class="post-nav-item">
-    <a href="/posts/6d69b5ea/" rel="next" title="格式化字符串的三种方法">
-      格式化字符串的三种方法 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -335,7 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%A0%B7%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">程序样例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">格式化输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%88%97%E8%A1%A8%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA"><span class="nav-number">1.2.</span> <span class="nav-text">判断列表是否为空</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">列表生成式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">生成器：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">注意：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
