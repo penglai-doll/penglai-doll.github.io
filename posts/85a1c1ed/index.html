@@ -20,15 +20,20 @@
     var CONFIG = {"hostname":"penglaidoll.xyz","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="PengLaiDoll网安学习心得">
-<meta property="og:url" content="http://penglaidoll.xyz/tags/%E5%9F%BA%E7%A1%80%E6%89%AB%E7%9B%B2/index.html">
+  <meta name="description" content="size_t全称为size type,属于一种整型类型，能够保存一个整数，这个整数往往是一个大小(size)，也就是说，size_t是用来记录大小的数据类型类似的还有wchar_t,ptrdiff_t wchar_t即wide char type,是一种记录一个宽字符的数据类型 ptrdiff_t即pointer difference type,用来记录两个指针之间的距离的数据类型 补充：一般来说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几种特殊的数据类型">
+<meta property="og:url" content="http://penglaidoll.xyz/posts/85a1c1ed/index.html">
 <meta property="og:site_name" content="PengLaiDoll网安学习心得">
+<meta property="og:description" content="size_t全称为size type,属于一种整型类型，能够保存一个整数，这个整数往往是一个大小(size)，也就是说，size_t是用来记录大小的数据类型类似的还有wchar_t,ptrdiff_t wchar_t即wide char type,是一种记录一个宽字符的数据类型 ptrdiff_t即pointer difference type,用来记录两个指针之间的距离的数据类型 补充：一般来说">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-08T02:52:23.000Z">
+<meta property="article:modified_time" content="2021-03-08T02:57:42.782Z">
 <meta property="article:author" content="PengLaiDoll">
+<meta property="article:tag" content="C语言学习 | C++学习">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://penglaidoll.xyz/tags/%E5%9F%BA%E7%A1%80%E6%89%AB%E7%9B%B2/">
+<link rel="canonical" href="http://penglaidoll.xyz/posts/85a1c1ed/">
 
 
 <script id="page-configurations">
@@ -36,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: 基础扫盲 | PengLaiDoll网安学习心得</title>
+  <title>几种特殊的数据类型 | PengLaiDoll网安学习心得</title>
   
 
 
@@ -182,191 +187,92 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">基础扫盲
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/85a1c1ed/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          几种特殊的数据类型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-08 10:52:23 / 修改时间：10:57:42" itemprop="dateCreated datePublished" datetime="2021-03-08T10:52:23+08:00">2021-03-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80%E6%89%AB%E7%9B%B2/" itemprop="url" rel="index"><span itemprop="name">基础扫盲</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-04T09:08:21+08:00"
-              content="2021-03-04">
-          03-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/cf4bdb1c/" itemprop="url">
-            <span itemprop="name">Python内置函数总结</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-03T23:00:05+08:00"
-              content="2021-03-03">
-          03-03
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/e4b558a/" itemprop="url">
-            <span itemprop="name">Python面向对象编程进阶①</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-01T22:25:20+08:00"
-              content="2021-03-01">
-          03-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/3d4ca4e0/" itemprop="url">
-            <span itemprop="name">生成器与迭代器基础</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-28T17:01:18+08:00"
-              content="2021-02-28">
-          02-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/34311c5c/" itemprop="url">
-            <span itemprop="name">C语言指针相关</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-24T15:38:16+08:00"
-              content="2021-02-24">
-          02-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/8a35e780/" itemprop="url">
-            <span itemprop="name">Python中的类，模块，包</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-24T15:26:07+08:00"
-              content="2021-02-24">
-          02-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/6d69b5ea/" itemprop="url">
-            <span itemprop="name">格式化字符串的三种方法</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-22T11:12:17+08:00"
-              content="2021-02-22">
-          02-22
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/51641b53/" itemprop="url">
-            <span itemprop="name">Python中的交叉排序问题</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-19T19:36:03+08:00"
-              content="2021-02-19">
-          02-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/e599f77d/" itemprop="url">
-            <span itemprop="name">Python中的_name_属性</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+        <h2 id="size-t"><a href="#size-t" class="headerlink" title="size_t"></a>size_t</h2><p>全称为size type,属于一种整型类型，能够保存一个整数，这个整数往往是一个大小(size)，也就是说，size_t是用来记录大小的数据类型<br>类似的还有wchar_t,ptrdiff_t</p>
+<h2 id="wchar-t"><a href="#wchar-t" class="headerlink" title="wchar_t"></a>wchar_t</h2><p>即wide char type,是一种记录一个宽字符的数据类型</p>
+<h2 id="ptrdiff-t"><a href="#ptrdiff-t" class="headerlink" title="ptrdiff_t"></a>ptrdiff_t</h2><p>即pointer difference type,用来记录两个指针之间的距离的数据类型</p>
+<h2 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h2><p>一般来说，以上三种数据类型均需要typedef来实现，而程序员们为了方便使用和记忆而人为规定了这么几种，但在较新的C/C++标准中，wchar_t已经被涵盖在数据类型中了<br>可以直接使用了，其他的数据类型可以在其他常见的头文件的代码中看到定义</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0-C-%E5%AD%A6%E4%B9%A0/" rel="tag"># C语言学习 | C++学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/cf4bdb1c/" rel="prev" title="Python内置函数总结">
+      <i class="fa fa-chevron-left"></i> Python内置函数总结
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -419,6 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#size-t"><span class="nav-number">1.</span> <span class="nav-text">size_t</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wchar-t"><span class="nav-number">2.</span> <span class="nav-text">wchar_t</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ptrdiff-t"><span class="nav-number">3.</span> <span class="nav-text">ptrdiff_t</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">补充：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -432,7 +339,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -445,7 +352,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
