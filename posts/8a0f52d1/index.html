@@ -20,21 +20,20 @@
     var CONFIG = {"hostname":"penglaidoll.xyz","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="C指针：指针是一类储存地址的变量 指针数组：如果想让一个数组存储一组指向某一特定数据类型的地址，那么就能定义一个指针数组如：int *ptr[3];int var[]&#x3D;{10,100,200};for (i&#x3D;0;i&lt;3;i++) {    ptr[i] &#x3D; var[i];}通过以上这段代码，var数组的每个值的每个地址都被存储在指针数组ptr中了 补充：“指针数组”和“数组指针”的区别：“指">
+  <meta name="description" content="再补充一下关于list和dict的一些基础知识 不可变对象与可变对象：Str,dict的key等都是不可变对象比如我们调用replace函数 123&gt;&gt;A &#x3D; &#39;abc&#39;&gt;&gt;A.replace(&#39;a&#39;,&#39;A&#39;)&#39;Abc&#39; 看上去是变了，但当我们再次输入A时，我们发现： 12&gt;&gt;A&#39;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言指针相关">
-<meta property="og:url" content="http://penglaidoll.xyz/posts/34311c5c/index.html">
+<meta property="og:title" content="Python基础进阶——list与dict">
+<meta property="og:url" content="http://penglaidoll.xyz/posts/8a0f52d1/index.html">
 <meta property="og:site_name" content="PengLaiDoll网安学习心得">
-<meta property="og:description" content="C指针：指针是一类储存地址的变量 指针数组：如果想让一个数组存储一组指向某一特定数据类型的地址，那么就能定义一个指针数组如：int *ptr[3];int var[]&#x3D;{10,100,200};for (i&#x3D;0;i&lt;3;i++) {    ptr[i] &#x3D; var[i];}通过以上这段代码，var数组的每个值的每个地址都被存储在指针数组ptr中了 补充：“指针数组”和“数组指针”的区别：“指">
+<meta property="og:description" content="再补充一下关于list和dict的一些基础知识 不可变对象与可变对象：Str,dict的key等都是不可变对象比如我们调用replace函数 123&gt;&gt;A &#x3D; &#39;abc&#39;&gt;&gt;A.replace(&#39;a&#39;,&#39;A&#39;)&#39;Abc&#39; 看上去是变了，但当我们再次输入A时，我们发现： 12&gt;&gt;A&#39;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-02-28T09:01:18.000Z">
-<meta property="article:modified_time" content="2021-03-08T03:09:19.756Z">
+<meta property="article:published_time" content="2021-03-10T03:21:16.876Z">
+<meta property="article:modified_time" content="2021-03-10T03:23:07.366Z">
 <meta property="article:author" content="PengLaiDoll">
-<meta property="article:tag" content="C语言学习">
-<meta property="article:tag" content="C++学习">
+<meta property="article:tag" content="Python学习">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://penglaidoll.xyz/posts/34311c5c/">
+<link rel="canonical" href="http://penglaidoll.xyz/posts/8a0f52d1/">
 
 
 <script id="page-configurations">
@@ -47,7 +46,7 @@
   };
 </script>
 
-  <title>C语言指针相关 | PengLaiDoll网安学习心得</title>
+  <title>Python基础进阶——list与dict | PengLaiDoll网安学习心得</title>
   
 
 
@@ -195,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/34311c5c/">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/8a0f52d1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -208,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          C语言指针相关
+          Python基础进阶——list与dict
         </h1>
 
         <div class="post-meta">
@@ -217,16 +216,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-02-28 17:01:18" itemprop="dateCreated datePublished" datetime="2021-02-28T17:01:18+08:00">2021-02-28</time>
+              <time title="创建时间：2021-03-10 11:21:16 / 修改时间：11:23:07" itemprop="dateCreated datePublished" datetime="2021-03-10T11:21:16+08:00">2021-03-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:09:19" itemprop="dateModified" datetime="2021-03-08T11:09:19+08:00">2021-03-08</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -248,18 +241,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="C指针："><a href="#C指针：" class="headerlink" title="C指针："></a>C指针：</h2><p>指针是一类储存地址的变量</p>
-<h2 id="指针数组："><a href="#指针数组：" class="headerlink" title="指针数组："></a>指针数组：</h2><p>如果想让一个数组存储一组指向某一特定数据类型的地址，那么就能定义一个指针数组<br>如：<br>int *ptr[3];<br>int var[]={10,100,200};<br>for (i=0;i&lt;3;i++) {<br>    ptr[i] = var[i];<br>}<br>通过以上这段代码，var数组的每个值的每个地址都被存储在指针数组ptr中了</p>
-<h3 id="补充：“指针数组”和“数组指针”的区别："><a href="#补充：“指针数组”和“数组指针”的区别：" class="headerlink" title="补充：“指针数组”和“数组指针”的区别："></a>补充：“指针数组”和“数组指针”的区别：</h3><p>“指针数组”顾名思义，是指针的数组，他是元素均为指针的一个数组变量<br>“数组指针”，则是指一个指向数组的指针变量，通常地址为数组第一个元素的地址。</p>
-<h2 id="指针函数："><a href="#指针函数：" class="headerlink" title="指针函数："></a>指针函数：</h2><p>一个返回值为指针的函数<br>C语言默认在调用函数时不可返回地址，除非讲局部变量定义为static变量<br>具体的使用过程为——在函数定义声明返回值为指针，然后return一个相同类型的指针(具体的<br>返回值为地址)<br>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">int * fhptr(int i) &#123;</span><br><span class="line">    static int *s;</span><br><span class="line">    s &#x3D; &amp;i;</span><br><span class="line">    </span><br><span class="line">    return s;</span><br><span class="line">&#125;</span><br><span class="line">void main() &#123;</span><br><span class="line">    int *p;</span><br><span class="line">    p &#x3D; fhptr(5);</span><br><span class="line">    printf(&quot;%d %p&quot;,*p,p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>至于为什么要求局部变量要定义为static变量则是因为局部变量存储在内存的栈区，函数调用结束后，内存释放，函数内的变量便不再拥有那个内存地址，故指针无法返回。而static变量值存放在静态栈区，静态区只会在最初时初始化一回，之后便不会改变。</p>
-<h2 id="函数指针："><a href="#函数指针：" class="headerlink" title="函数指针："></a>函数指针：</h2><p>指向函数的指针<br>函数在编译后会占一部分内存，函数名则是函数的首地址(类似于数组)<br>将一个指针赋以函数名的值则能让这个特殊的指针指向函数<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">void func(int a) &#123;</span><br><span class="line">    printf(&quot;%d&quot;,a);</span><br><span class="line">&#125;</span><br><span class="line">void main() &#123;</span><br><span class="line">    int (*funcpointer)(int);</span><br><span class="line">    funcpointer &#x3D; &amp;func;</span><br><span class="line">    funcpointer(6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：指向函数的指针不可自增运算<br>也就是说，你能在此处通过调用函数指针来获得和调用该函数一样的效果(脱了裤子放屁)<br>还记得当函数作为参数传入函数时需要将其转换为指针的形式吗，函数指针的真正作用则是用在这里</p>
-<p>完善一下上面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">&#x2F;&#x2F;定义一个 指向 返回类型为void，传入参数为一个Int类型的函数类型 的指针类型</span><br><span class="line">typedef void (*hhh) (int);</span><br><span class="line">void func(int a) &#123;</span><br><span class="line">    printf(&quot;%d&quot;,a);</span><br><span class="line">&#125;</span><br><span class="line">void main() &#123;</span><br><span class="line">    hhh p;</span><br><span class="line">    p &#x3D; func;</span><br><span class="line">    p(6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="函数指针数组："><a href="#函数指针数组：" class="headerlink" title="函数指针数组："></a>函数指针数组：</h2><p>例子如下：<br>int (*function_pointer)<a href="int,int">N</a>;<br>这个是其通用形式，分开来看<br>Int (*function_pointer) [n] (int,int)<br>首先它是一个指针，指向的是一个数组，什么数组呢，存了n个 参数为两个int类型，返回值为int的函数 的地址 </p>
+        <p>再补充一下关于list和dict的一些基础知识</p>
+<h2 id="不可变对象与可变对象："><a href="#不可变对象与可变对象：" class="headerlink" title="不可变对象与可变对象："></a>不可变对象与可变对象：</h2><p>Str,dict的key等都是不可变对象<br>比如我们调用replace函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;A &#x3D; &#39;abc&#39;</span><br><span class="line">&gt;&gt;A.replace(&#39;a&#39;,&#39;A&#39;)</span><br><span class="line">&#39;Abc&#39;</span><br></pre></td></tr></table></figure>
+<p>看上去是变了，但当我们再次输入A时，我们发现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;A</span><br><span class="line">&#39;abc&#39;</span><br></pre></td></tr></table></figure>
+<p>换种方式来看看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;B &#x3D; A.replace(&#39;a&#39;,&#39;A&#39;)</span><br><span class="line">&gt;&gt;B</span><br><span class="line">&#39;Abc&#39;</span><br></pre></td></tr></table></figure>
+<p>为什么呢，因为str是不可变对象，当我们对一个str对象调用任何方法时，都不会改变这个不可变对象，而是创建新的不同的对象并返回<br>现在我们去理解dict的key为什么时不可变对象</p>
+<h2 id="list和dict的优缺点："><a href="#list和dict的优缺点：" class="headerlink" title="list和dict的优缺点："></a>list和dict的优缺点：</h2><p>在理解key为不可变对象之前，我们先看一下list与dict的优缺点<br>和list相比，dict查找和插入对象的速度更快，但消耗的内存更高，更浪费内存，也就是说,dict牺牲了内存来换取速度，之所以这个样子，就要谈到dict的原理了</p>
+<h2 id="关于list与链表"><a href="#关于list与链表" class="headerlink" title="关于list与链表"></a>关于list与链表</h2><p>以下的内容是我在网上查阅大佬资料时找到的<br>list其实是用链表的方式存储的。假如我们有一个列表a =[1,2,3]，我们知道，链表的名称存储第一个元素的地址，也就是相当于名称是指向第一个元素的指针，第一个元素的指针再指向第二个元素，以此类推，我们便实现了元素的顺序排列。<br>当我们想插入或删除一个元素，比如我们想在第一个和第二个元素之间插入一个5，我们可以直接通过链表的形式来实现。先通过添加一个链节5，让第一个元素的指针指向该链节，再让该链节的指针指向原来的第二个元素，这样便实现了插入，也就是说，在内存中，这些元素不一定是顺序排列的，但也可以实现顺序访问<br>当我们想要查找某个元素时，因为是链表，所以我们不得不从头开始遍历，这也就是为什么list查找这么慢的原因</p>
+<h2 id="关于dict与哈希表"><a href="#关于dict与哈希表" class="headerlink" title="关于dict与哈希表"></a>关于dict与哈希表</h2><p>dict的存储方式与list截然不同，dict采用了一种哈希算法，将key值利用哈希算法转换为一个数，再利用这个数找到相对应的值，不同的key通过哈希算法得到的值有很大概率不同，所以不同的key存储的地方不同，这才有了一一对应的原则。<br>举个栗子：有一个字典{‘a’:1,’b’:2,’c’:3},我们想利用key’c’来查找，首先利用哈希算法将key’c’算出一个值，咱假设为233，再在内存空间开辟一个大空间0-1000出来，然后根据算出来的值将’c’的value存进对应的内存空间中去，所有的键值对都是这样存储的，因此，当我们想要取一个key的value时，没必要全部遍历，直接用哈希算法去算，然后找到对应的就可以了，所以dict的查找速度很快,但我们不得不得提前开辟一个大空间，所以dict又很消耗内存<br>由上，我们可以推知为什么key为不可变对象了,dict通过key来存储值，假如key变了，那么下一次寻找时寻到的地址不同了，整个dict不就乱了吗<br>补充一点：不同的key通过哈希算法得到的值有很大概率不同，也就是说，有小概率是相同的，这就要求设计哈希表时要尽量减少冲突，这个就是设计编译器的事情了。</p>
 
     </div>
 
@@ -269,8 +261,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" rel="tag"># C语言学习</a>
-              <a href="/tags/C-%E5%AD%A6%E4%B9%A0/" rel="tag"># C++学习</a>
+              <a href="/tags/Python%E5%AD%A6%E4%B9%A0/" rel="tag"># Python学习</a>
           </div>
 
         
@@ -279,13 +270,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/8a35e780/" rel="prev" title="Python中的类，模块，包">
-      <i class="fa fa-chevron-left"></i> Python中的类，模块，包
+    <a href="/posts/794c651c/" rel="prev" title="Python面向对象编程进阶②">
+      <i class="fa fa-chevron-left"></i> Python面向对象编程进阶②
     </a></div>
-      <div class="post-nav-item">
-    <a href="/posts/3d4ca4e0/" rel="next" title="生成器与迭代器基础">
-      生成器与迭代器基础 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -344,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C%E6%8C%87%E9%92%88%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">C指针：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">指针数组：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A%E2%80%9C%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84%E2%80%9D%E5%92%8C%E2%80%9C%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E2%80%9D%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">补充：“指针数组”和“数组指针”的区别：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">指针函数：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">函数指针：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">函数指针数组：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">不可变对象与可变对象：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list%E5%92%8Cdict%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">list和dict的优缺点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Elist%E4%B8%8E%E9%93%BE%E8%A1%A8"><span class="nav-number">3.</span> <span class="nav-text">关于list与链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Edict%E4%B8%8E%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">4.</span> <span class="nav-text">关于dict与哈希表</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -188,6 +188,176 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/8a0f52d1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/8a0f52d1/" class="post-title-link" itemprop="url">Python基础进阶——list与dict</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-10 11:21:16 / 修改时间：11:23:07" itemprop="dateCreated datePublished" datetime="2021-03-10T11:21:16+08:00">2021-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>再补充一下关于list和dict的一些基础知识</p>
+<h2 id="不可变对象与可变对象："><a href="#不可变对象与可变对象：" class="headerlink" title="不可变对象与可变对象："></a>不可变对象与可变对象：</h2><p>Str,dict的key等都是不可变对象<br>比如我们调用replace函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;A &#x3D; &#39;abc&#39;</span><br><span class="line">&gt;&gt;A.replace(&#39;a&#39;,&#39;A&#39;)</span><br><span class="line">&#39;Abc&#39;</span><br></pre></td></tr></table></figure>
+<p>看上去是变了，但当我们再次输入A时，我们发现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;A</span><br><span class="line">&#39;abc&#39;</span><br></pre></td></tr></table></figure>
+<p>换种方式来看看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;B &#x3D; A.replace(&#39;a&#39;,&#39;A&#39;)</span><br><span class="line">&gt;&gt;B</span><br><span class="line">&#39;Abc&#39;</span><br></pre></td></tr></table></figure>
+<p>为什么呢，因为str是不可变对象，当我们对一个str对象调用任何方法时，都不会改变这个不可变对象，而是创建新的不同的对象并返回<br>现在我们去理解dict的key为什么时不可变对象</p>
+<h2 id="list和dict的优缺点："><a href="#list和dict的优缺点：" class="headerlink" title="list和dict的优缺点："></a>list和dict的优缺点：</h2><p>在理解key为不可变对象之前，我们先看一下list与dict的优缺点<br>和list相比，dict查找和插入对象的速度更快，但消耗的内存更高，更浪费内存，也就是说,dict牺牲了内存来换取速度，之所以这个样子，就要谈到dict的原理了</p>
+<h2 id="关于list与链表"><a href="#关于list与链表" class="headerlink" title="关于list与链表"></a>关于list与链表</h2><p>以下的内容是我在网上查阅大佬资料时找到的<br>list其实是用链表的方式存储的。假如我们有一个列表a =[1,2,3]，我们知道，链表的名称存储第一个元素的地址，也就是相当于名称是指向第一个元素的指针，第一个元素的指针再指向第二个元素，以此类推，我们便实现了元素的顺序排列。<br>当我们想插入或删除一个元素，比如我们想在第一个和第二个元素之间插入一个5，我们可以直接通过链表的形式来实现。先通过添加一个链节5，让第一个元素的指针指向该链节，再让该链节的指针指向原来的第二个元素，这样便实现了插入，也就是说，在内存中，这些元素不一定是顺序排列的，但也可以实现顺序访问<br>当我们想要查找某个元素时，因为是链表，所以我们不得不从头开始遍历，这也就是为什么list查找这么慢的原因</p>
+<h2 id="关于dict与哈希表"><a href="#关于dict与哈希表" class="headerlink" title="关于dict与哈希表"></a>关于dict与哈希表</h2><p>dict的存储方式与list截然不同，dict采用了一种哈希算法，将key值利用哈希算法转换为一个数，再利用这个数找到相对应的值，不同的key通过哈希算法得到的值有很大概率不同，所以不同的key存储的地方不同，这才有了一一对应的原则。<br>举个栗子：有一个字典{‘a’:1,’b’:2,’c’:3},我们想利用key’c’来查找，首先利用哈希算法将key’c’算出一个值，咱假设为233，再在内存空间开辟一个大空间0-1000出来，然后根据算出来的值将’c’的value存进对应的内存空间中去，所有的键值对都是这样存储的，因此，当我们想要取一个key的value时，没必要全部遍历，直接用哈希算法去算，然后找到对应的就可以了，所以dict的查找速度很快,但我们不得不得提前开辟一个大空间，所以dict又很消耗内存<br>由上，我们可以推知为什么key为不可变对象了,dict通过key来存储值，假如key变了，那么下一次寻找时寻到的地址不同了，整个dict不就乱了吗<br>补充一点：不同的key通过哈希算法得到的值有很大概率不同，也就是说，有小概率是相同的，这就要求设计哈希表时要尽量减少冲突，这个就是设计编译器的事情了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/794c651c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/794c651c/" class="post-title-link" itemprop="url">Python面向对象编程进阶②</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-10 11:17:27 / 修改时间：11:21:05" itemprop="dateCreated datePublished" datetime="2021-03-10T11:17:27+08:00">2021-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="对于类的定制："><a href="#对于类的定制：" class="headerlink" title="对于类的定制："></a>对于类的定制：</h2><p><strong>str</strong>:用于返回当前类的自定义名称<br>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class pp():</span><br><span class="line">    name &#x3D; &#39;ff&#39;</span><br><span class="line">    pass</span><br><span class="line">print(pp())</span><br></pre></td></tr></table></figure>
+<p>这样的话，会输出以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;__main__.pp object at 0x0000023A8A958E50&gt;</span><br></pre></td></tr></table></figure>
+<p>假如说，我们加入__str__方法：<br>class pp():</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    name &#x3D; &#39;ff&#39;</span><br><span class="line">    def __str__(self):</span><br><span class="line">        return &#39;pp(name:%s)&#39; % &#39;ff&#39;</span><br><span class="line">print(pp())</span><br></pre></td></tr></table></figure>
+<p>这样我们返回的就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pp(name:ff)</span><br></pre></td></tr></table></figure>
+<p>也就是说，我们通过定义__str__方法，并返回我们想要输出的内容，那么当我们想要直接访问这个类时，系统会主动调用__str__方法，返回的不是类类型的标志语，而是我们自定义的内容</p>
+<h2 id="对于可迭代对象和迭代器的补充："><a href="#对于可迭代对象和迭代器的补充：" class="headerlink" title="对于可迭代对象和迭代器的补充："></a>对于可迭代对象和迭代器的补充：</h2><p>之前我们说过，能被for直接作用的是可迭代对象，能使用next()方法的是迭代器，这里我们完善一下<br>我们知道，一个对象中往往含有许多方法和属性，而dir函数可以帮助我们查看这些方法和属性。当我们对一个迭代器使用dir函数查看时，我们能看到其中有<strong>iter</strong>()和<strong>next</strong>()方法，这个很关键。在python中，若一个对象含有<strong>iter</strong>()方法，那么这个方法会返回一个可迭代对象，而若再含有__next__方法，那么这个对象就可以被调用next()方法，那么该对象就是迭代器<br>由此，可迭代对象和迭代器都有__iter__方法，都可被for循环调用，迭代器中多了__next__方法，可用next()方法迭代<br>由此，我们可以创建自己的可迭代对象了：<br>以斐波那契数列为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Fib(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.a, self.b &#x3D; 0, 1 # 初始化两个计数器a，b</span><br><span class="line">def __iter__(self):</span><br><span class="line">        return self # 实例本身就是迭代对象，故返回自己</span><br><span class="line">def __next__(self):</span><br><span class="line">        self.a, self.b &#x3D; self.b, self.a + self.b # 计算下一个值</span><br><span class="line">        if self.a &gt; 100: # 退出循环的条件</span><br><span class="line">            raise StopIteration()</span><br><span class="line">        return self.a # 返回下一个值</span><br></pre></td></tr></table></figure>
+<p>栗子中，我们定义了<strong>iter__方法使类实例化过程中返回一个可迭代对象，用__next__（）方法定义发生迭代的过程<br>对于这个例子进行简单分析：<br>__iter__使得一个对象成为可迭代对象<br>__next__定义了该迭代器发生一次迭代的过程和结果<br>StopIteration(终止异常):让一个迭代器终止迭代发生异常<br>比如for循环自带异常处理，所以我们在遍历列表时不会因索引过大报错导致的程序终止,while循环则没有异常处理，所以我们在自定义可迭代对象时，为了防止无休止的迭代，要加上stopiteration异常，使之迭代到一定程度时触发异常，转而让异常处理来处理，从而终止迭代。在此处，并不是真的发生错误了，而是相当于换了一种方式告诉调用者已经迭代完毕。<br>以上，我们发现自己所定义的迭代器并不支持索引调用其中的元素，这时，我们加入__getitem</strong>()方法的定义，这样，我们就可以通过访问下标索引的方式来访问可迭代对象中的元素</p>
+<h2 id="getitem-方法"><a href="#getitem-方法" class="headerlink" title="__getitem__方法"></a>__getitem__方法</h2><p>当实例对象使用[]运算符取值时，会自动调用调用内建函数（方法）<strong>getitem</strong>()，并将[]中的内容作为一个参数传入__getitem__方法中。由此看出，当我们想通过访问下标的方式让自定义实例对象返回对应列表等可迭代对象或字典中的目标内容时，只需定义__getitem__对象使其返回就可<br>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class DataBase:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        &#39;&#39;&#39;初始化方法&#39;&#39;&#39;</span><br><span class="line">        self.lt &#x3D; [3,6,9]</span><br><span class="line">    def __getitem__(self, key):</span><br><span class="line">        return self.lt[key]</span><br><span class="line">       </span><br><span class="line">data &#x3D; DataBase()</span><br><span class="line">print(data[1])</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;6</span><br></pre></td></tr></table></figure>
+<p>不难想到，列表的实现方式与这个如出一辙</p>
+<h2 id="dict-属性"><a href="#dict-属性" class="headerlink" title="__dict__属性"></a>__dict__属性</h2><p>之前我们用dir函数查看对象所含有或继承的方法和属性，现在我们介绍一个内置的__dict__属性，用它来查看某一对象自己的属性和方法，(当然，其作为对象的一个属性，它的作用之一也是存储这些信息)在这里，与dir有几点不同：<br>1.dir函数生成的是list结构，其中只包括属性和方法的名称<br>__dict__则展示了其作为dict的结构，key对应名称，value对应具体的值或方法定义<br>2.dir函数生成全部的属性和方法(包括继承的)<br>__dict__属性只展示部分属性或方法(不包括继承的)<br>3.利用__dict__可以更改对象的属性，而dir不可<br>栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Classname.__dict__[key] &#x3D; value</span><br></pre></td></tr></table></figure>
+<p>和正常的字典赋值差不多，就是多了一个类或实例访问<br>另外，实例对象和类的__dict__属性有所不同<br>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class DataBase:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        &#39;&#39;&#39;初始化方法&#39;&#39;&#39;</span><br><span class="line">        self.lt &#x3D; [3,6,9]</span><br><span class="line">    def __getitem__(self, key):</span><br><span class="line">        return self.lt[key]</span><br><span class="line">    def ff(self):</span><br><span class="line">        return self.lt[2]</span><br><span class="line">data &#x3D; DataBase()</span><br><span class="line">print(data.__dict__)</span><br><span class="line">print(DataBase.__dict__)</span><br></pre></td></tr></table></figure>
+<p>返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#39;lt&#39;: [3, 6, 9]&#125;</span><br><span class="line">&#123;&#39;__module__&#39;: &#39;__main__&#39;, &#39;__init__&#39;: &lt;function DataBase.__init__ at 0x0000018994282040&gt;, &#39;__getitem__&#39;: &lt;function DataBase.__getitem__ at 0x00000189942820D0&gt;, &#39;ff&#39;: &lt;function DataBase.ff at 0x0000018994282160&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;DataBase&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;DataBase&#39; objects&gt;, &#39;__doc__&#39;: None&#125;</span><br></pre></td></tr></table></figure>
+<p>可见实例对象的__dict__属性仅包含self.xxx等的实例化属性，而类则相对包括更多的属性方法等(包括类函数，静态函数，全局变量等)</p>
+<p>注意：<br>如int,list,dict等的内置数据类型无__dict__属性</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/85a1c1ed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -902,87 +1072,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/e599f77d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/e599f77d/" class="post-title-link" itemprop="url">Python中的_name_属性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-19 19:36:03" itemprop="dateCreated datePublished" datetime="2021-02-19T19:36:03+08:00">2021-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:00:28" itemprop="dateModified" datetime="2021-03-08T11:00:28+08:00">2021-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p> 刚开始学习python，接触到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If _name_ == <span class="string">&#x27;_main_&#x27;</span>:</span><br></pre></td></tr></table></figure>
-<p> 这句话并不是很了解，以下是解答：</p>
-<h2 id="Python中的模块与C-C-的头文件"><a href="#Python中的模块与C-C-的头文件" class="headerlink" title="Python中的模块与C,C++的头文件"></a>Python中的模块与C,C++的头文件</h2><p>python如同C，C++等其他编程语言相似，可以引入(import)外部文件，在python中，引入的每个文件，以及自身的代码文件又叫模块，不同于C和C++，python中的模块可以独立运行，而C和C++中的头文件会首先执行</p>
-<h2 id="name-属性"><a href="#name-属性" class="headerlink" title="_name_属性"></a>_name_属性</h2><p>1.<em>name_是一个系统定义的变量，用来存储模块的名字或状态，假如一个模块为主函数(通常为引入其他模块的模块)则其模块内包含的_name_变量被赋值为“_main_”；若该模块是被引入的模块，则其_name_变量被赋值为(模块名无后缀)<br>2.通过判断_name_所被赋的值的方式，可以判断该模块是否被引入或为主函数<br>3.通常与if _name</em> ==’<em>main</em>‘结合使用减少bug</p>
-<p>总结自：<a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-25324849-id-3087527.html">点这里</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1047,7 +1141,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
