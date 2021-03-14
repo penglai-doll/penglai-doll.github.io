@@ -188,6 +188,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/51641b53/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/51641b53/" class="post-title-link" itemprop="url">Python中的交叉排序问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-22 11:12:17" itemprop="dateCreated datePublished" datetime="2021-02-22T11:12:17+08:00">2021-02-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-08 11:01:23" itemprop="dateModified" datetime="2021-03-08T11:01:23+08:00">2021-03-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在计蒜客中学习Python时，遇到了一个很有趣的排序问题：</p>
+<p>输入一行 kk 个用空格分隔开的整数，依次为 n_1, n_2 … n_kn 1    ,n 2…n k。<br>请将所有下标不能被 3 但可以被 2 整除的数在这些数字原有的位置上进行升序排列，此外，将余下下标能被 3 整除的数在这些数字原有的位置上进行降序排列。<br>输出包括一行，与输入相对应的若干个整数，为排序后的结果，整数之间用空格分隔。</p>
+<p>自己琢磨了很长时间，其中也发现了各种各样的问题，下面分享一下：</p>
+<p>输入例：<br>1 5 4 3 10 7 19<br>输出例：<br>1 3 7 5 10 4 19</p>
+<h2 id="程序样例"><a href="#程序样例" class="headerlink" title="程序样例"></a>程序样例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">n = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().split(<span class="string">&#x27; &#x27;</span>)]</span><br><span class="line">n1 = []</span><br><span class="line">n2 = []</span><br><span class="line">n3 = []</span><br><span class="line">nc= []</span><br><span class="line"><span class="comment"># 将满足下标不同条件的列表中的数放入不同的空列表中</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="keyword">if</span> ((index+1) % 3 != 0) and ((index+1) % 2 == 0):</span><br><span class="line">        n1.append(n[index])</span><br><span class="line">    <span class="keyword">elif</span> ((index+1) % 3 ==0):</span><br><span class="line">        n2.append(n[index])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        n3.append(n[index])</span><br><span class="line"><span class="comment"># 列表排序</span></span><br><span class="line">n1.sort()</span><br><span class="line">n2.sort(reverse = True)</span><br><span class="line"><span class="comment"># 再将列表元素按照原序依次放回</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="keyword">if</span> ((index+1) % 3 != 0) and ((index+1) % 2 == 0) and n1:</span><br><span class="line">        nc.append(n1.pop(0))</span><br><span class="line">    <span class="keyword">elif</span> ((index+1) % 3 ==0) and n2:</span><br><span class="line">        nc.append(n2.pop(0))</span><br><span class="line">    <span class="keyword">elif</span> n3:</span><br><span class="line">        nc.append(n3.pop(0))</span><br><span class="line"><span class="comment"># 按照格式输出</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="built_in">print</span>(nc[i],end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+<h3 id="格式化输入"><a href="#格式化输入" class="headerlink" title="格式化输入"></a>格式化输入</h3><p>比如以空格相间隔的数据的输入：100 200 300<br>可以用下面的方式读取</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># example 1</span></span><br><span class="line"></span><br><span class="line">x = [int(i) <span class="keyword">for</span> i <span class="keyword">in</span> input().split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># exapmle 2</span></span><br><span class="line"></span><br><span class="line">x = map(int,input().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其中，input().split(‘ ‘)是将输入的数据以split函数传入的参数为标志进行分割并返回分割后的列表<br>(注：split函数返回的列表为字符串列表！！！）<br>example 2是一种比较巧妙的方法</p>
+<h3 id="判断列表是否为空"><a href="#判断列表是否为空" class="headerlink" title="判断列表是否为空"></a>判断列表是否为空</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">if</span> a:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;YES&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;NO&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以上只是个例子，是为了说明若一个列表为空，则其对应布尔值为False<br>可以利用这个来判断一个列表是否为空<br>程序例子中使用这个判断来防止列表空时pop()函数对空列表使用报错</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u011501388/article/details/101788381">点这里</a><br>      [点这里](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43113241/article/details/109965485%EF%BC%89">https://blog.csdn.net/weixin_43113241/article/details/109965485）</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/e599f77d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -332,7 +416,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
