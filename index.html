@@ -188,6 +188,229 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/3cbd2c1d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/3cbd2c1d/" class="post-title-link" itemprop="url">typedef与#define</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-18 16:52:33 / 修改时间：16:55:16" itemprop="dateCreated datePublished" datetime="2021-03-18T16:52:33+08:00">2021-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Typedef与-define"><a href="#Typedef与-define" class="headerlink" title="Typedef与#define"></a>Typedef与#define</h2><p>几个区别：</p>
+<p>1.typeof只能为类型定义一个别的符号名称，(#define)不仅能为类型定义别名，还能为数值定义别名<br>2.typedef由编译器执行解释，(#define)由预编译器处理<br>3.(#define)可以用其他类型说明符进行补充，而typeof不行</p>
+<p>栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#define p int;</span><br><span class="line">unsigned p n;&#x2F;&#x2F;可以</span><br><span class="line">typedef int p;</span><br><span class="line">unsigned p n;&#x2F;&#x2F;不可以</span><br></pre></td></tr></table></figure>
+<p>（这里可以看出，#define实际上起的是等量代换作用，而typedef不是）<br>4.连续定义变量中#define的弱点<br>栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define a char *;</span><br><span class="line">a b,c;</span><br></pre></td></tr></table></figure>
+<p>等效于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char *b,c;</span><br></pre></td></tr></table></figure>
+<p>也就是说，只有b被定义为了指针，c仍为字符变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">typedef char* a;</span><br><span class="line">a b,c;</span><br></pre></td></tr></table></figure>
+<p>这里，可以将b,c都定义为字符变量指针</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/994d2d1d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/994d2d1d/" class="post-title-link" itemprop="url">巧用异或交换数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-18 16:46:46 / 修改时间：16:50:56" itemprop="dateCreated datePublished" datetime="2021-03-18T16:46:46+08:00">2021-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="利用异或交换两个变量中存储的数"><a href="#利用异或交换两个变量中存储的数" class="headerlink" title="利用异或交换两个变量中存储的数"></a>利用异或交换两个变量中存储的数</h2><p>正常情况下，我们通常定义swap利用地址交换两个变量中的值<br>但如果我们只是交换两个整型变量的值呐？<br>这里可以用到异或的小性质了</p>
+<p>假设两个整形8bit的2进制数a,b<br>交换的原理为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a&#96;&#x3D;(a^b)^b</span><br><span class="line">b&#96;&#x3D;(a^b)^a&#96;</span><br></pre></td></tr></table></figure>
+<p>说说第一个的原理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a b a^b a&#96;</span><br><span class="line">1 1 0     1</span><br><span class="line">1 0 1     1</span><br><span class="line">0 1 1     0</span><br><span class="line">0 0 0     0</span><br></pre></td></tr></table></figure>
+<p>由上推出，一个数，被同一个数异或两遍，数的大小不变</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/d11843d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/d11843d/" class="post-title-link" itemprop="url">逻辑运算的短路性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-18 16:44:30 / 修改时间：16:50:56" itemprop="dateCreated datePublished" datetime="2021-03-18T16:44:30+08:00">2021-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="逻辑运算的短路性"><a href="#逻辑运算的短路性" class="headerlink" title="逻辑运算的短路性"></a>逻辑运算的短路性</h2><p>（表达式1）&amp;&amp;（表达式2）<br>若表达式1为假，总式子一定为假，表达式2被短路<br>（表达式1）||（表达式2）<br>若表达式1为真，总式子一定为真，表达式2被短路</p>
+<p>补充一下应用<br>在网络上看到一个微软的面试题：<br>求 1 + 2 + 3 + … + n<br>要求：不能用乘除法，不能用if,while, switch,case, 不能用(a &lt; b ? a : b)三目运算符<br>程序如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int fun(int n) &#123;</span><br><span class="line">    int p&#x3D;0;</span><br><span class="line">    int sum&#x3D;0;</span><br><span class="line">    p &#x3D; n &amp;&amp; (sum&#x3D;n+fun(n-1));</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int a&#x3D;3,b;</span><br><span class="line">    b &#x3D; fun(a);</span><br><span class="line">    printf(&quot;%d&quot;,b);</span><br><span class="line">    return 0;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里面非常巧妙地用到了逻辑运算的短路原理，当n为0时，便不再执行后续语句，这上面的p只起到存储过程量的作用，可以忽略不看</p>
+<p>原帖<a target="_blank" rel="noopener" href="https://blog.csdn.net/yhj110911119/article/details/52436085">点这里</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/4729e793/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -286,10 +509,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-15 07:26:54 / 修改时间：07:48:07" itemprop="dateCreated datePublished" datetime="2021-03-15T07:26:54+08:00">2021-03-15</time>
+              <time title="创建时间：2021-03-15 07:26:54" itemprop="dateCreated datePublished" datetime="2021-03-15T07:26:54+08:00">2021-03-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-18 15:24:05" itemprop="dateModified" datetime="2021-03-18T15:24:05+08:00">2021-03-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -322,7 +551,9 @@
 <h2 id="判断字符数组的长度"><a href="#判断字符数组的长度" class="headerlink" title="判断字符数组的长度"></a>判断字符数组的长度</h2><p>我也不知道怎么回事，我试着将字符数组a作为参数传入strlen函数却发现编译器报错，后来查了一下,strlen函数的声明是这样的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unsigned int strlen(char *s);</span><br></pre></td></tr></table></figure>
 <p>其传入的参数是指针，但理应传入数组应该也不会报错，最终我又加了一个指针来防止它报错</p>
-<h3 id="strlen函数和sizeof函数的区别"><a href="#strlen函数和sizeof函数的区别" class="headerlink" title="strlen函数和sizeof函数的区别"></a>strlen函数和sizeof函数的区别</h3><p>sizeof函数和strlen函数一样，传入的参数类型须是指针，<br>当然，当一个字符串被赋值进入一个指针后，该指针就指向了一个字符串，也可以说，字符串就相当于了一个指针的地位，所以可以直接作为参数传入这两个函数中去。<br>strlen读取并返回字符串实际长度,而sizeof返回包括0/在内的所有字符细节，也就是在内存中的长度</p>
+<h3 id="strlen函数和sizeof函数的区别"><a href="#strlen函数和sizeof函数的区别" class="headerlink" title="strlen函数和sizeof函数的区别"></a>strlen函数和sizeof函数的区别</h3><p>sizeof函数和strlen函数一样，传入的参数类型须是指针，<br>当然，当一个字符串被赋值进入一个指针后，该指针就指向了一个字符串，也可以说，字符串就相当于了一个指针的地位，所以可以直接作为参数传入这两个函数中去。<br>strlen读取并返回字符串实际长度,而sizeof返回包括0/在内的所有字符细节，也就是在内存中的长度<br>——————————————————<br>对于上面的后续补充：<br>get()函数有一个大缺点，他会无限读取stdin中的字符串直到遇见/0或换行符，也就是说，如果读取的字符串长度大于字符数组的长度，就会发生内存越界的坏情况<br>为了防止这种情况，我们最好使用fget函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式</span><br><span class="line">fget(char* char,int n,FILE* stream)</span><br><span class="line">栗子</span><br><span class="line">fget(strlist,sizeof(strlist),stdin)</span><br></pre></td></tr></table></figure>
+<p>传入的第一个参数为指向字符串存储的变量的指针，第二个参数为读取字符串的长度，通常用sizeof来限制，传入的第三个参数为文件指针，以stdin使其读取输入缓冲区</p>
 
       
     </div>
@@ -784,266 +1015,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/3d4ca4e0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/3d4ca4e0/" class="post-title-link" itemprop="url">生成器与迭代器基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-01 22:25:20" itemprop="dateCreated datePublished" datetime="2021-03-01T22:25:20+08:00">2021-03-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:02:25" itemprop="dateModified" datetime="2021-03-08T11:02:25+08:00">2021-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="列表生成式："><a href="#列表生成式：" class="headerlink" title="列表生成式："></a>列表生成式：</h2><p>当我们在用for循环来输出列表时，会很麻烦，特别是生成一些复杂的列表，除此之外，我们可以利用列表生成式<br>如：要生成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1&#x3D;1,2&#x3D;2,3&#x3D;3.....]</span><br></pre></td></tr></table></figure>
-<p>可以用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[x&#x3D;x for x in range(1,...)]</span><br></pre></td></tr></table></figure>
-<p>这样的式子我们称之为列表生成式<br>还可以在第一个for后面跟上更多的循环来生成更复杂的全排列<br>灵活运用列表生成式可以简化代码<br>列表生成式的if：<br>如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[x for x in range(1,11) if x%2&#x3D;&#x3D;0]</span><br></pre></td></tr></table></figure>
-<p>可以输出1到11的偶数<br>这里if起的是筛选作用<br>注意后面不可跟else，否则会报错<br>如果在for前面放if则必须跟else<br>表示条件不同，就一以不同的形式输出</p>
-<h2 id="生成器："><a href="#生成器：" class="headerlink" title="生成器："></a>生成器：</h2><p>上面我们解释了列表生成式，是把for循环放在列表标识符中的([]),<br>如果我们把列表标识符改成()并且讲其赋值到一个变量中去，像是生成了一个元组一样，但实际上是创建了一个生成器(generator)并将其赋值到了变量之中<br>生成器，顾名思义，可以将一种算法赋值到一个变量之中，根据算法来取到所需要的值。<br>与列表生成器不同，不需要将所有元素都计算出来，而只在需要的时候才算出对应的元素，省去不必要的元素以节省空间<br>使用next(generator)函数来求出下一个元素<br>最好使用for循环来求出所需的元素<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g &#x3D; (x for x in range(1,10000))</span><br><span class="line">for i in g:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
-<p>在这里，刚刚生成1到10000时，并不是直接占用了所有的内存，二十后面一步一步推算出来的<br>这里之所以能用for，是因为生成器也是可迭代对象<br>生成器的作用非常强大，可以实现算法的迭代<br>当一个算法过于复杂而for列表生成器无法应对的时候<br>比如生成斐波那契数列<br>常规写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def fib(max):</span><br><span class="line">    n,a,b&#x3D;0,0,1</span><br><span class="line">    while n&lt;max:</span><br><span class="line">        print(a)</span><br><span class="line">        a,b &#x3D; b,a+b</span><br><span class="line">        n&#x3D;n+1</span><br><span class="line">return &#39;done&#39;</span><br></pre></td></tr></table></figure>
-<p>由此观察a,b=b,a+b逻辑和生成器相近，都是走一步算一步（雾<br>生成器写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def fib(max):</span><br><span class="line">    n,a,b&#x3D;0,0,1</span><br><span class="line">    while n&lt;max:</span><br><span class="line">        yield b</span><br><span class="line">        a,b&#x3D;b,a+b</span><br><span class="line">        n&#x3D;n+1</span><br><span class="line">return &#39;done&#39;</span><br></pre></td></tr></table></figure>
-<p>解释：在函数定义过程中，只要加上了yield，就可以将函数变成生成器，正常函数为顺序执行，<br>而生成器则会一直执行到首次遇见yield语句，并输出yield语句后面的参数，<br>使用next()语句使其从当前的yield语句执行到下一条yield语句<br>举个简单栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def odd():</span><br><span class="line">    print &#39;step1&#39;</span><br><span class="line">    yield 1</span><br><span class="line">    print &#39;step2&#39;</span><br><span class="line">    yield(3)</span><br></pre></td></tr></table></figure>
-<p>调用时：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;o &#x3D; odd()</span><br><span class="line">&gt;&gt;next(o)</span><br><span class="line">step1</span><br><span class="line">1</span><br><span class="line">&gt;&gt;next(o)</span><br><span class="line">step2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
-<p>如上</p>
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>调用一个生成器时，会返回一个generate对象<br>就像map一样，生成的是迭代器<br>迭代器和可迭代对象：<br>能被for循环直接作用的，我们称为可迭代对象<br>而像生成器那样的，可以用next()函数调用并返回下一个值的我们称为迭代器，如map,generator。(迭代器也是可迭代对象)<br>可以利用isinstance()来判断一个变量是否为迭代器<br>迭代器对象表示的是一个数据流，我们不知道其有多长，知道数据全部输出完毕就会报错，而不是迭代器的可迭代对象我们往往知道其长度</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/34311c5c/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/34311c5c/" class="post-title-link" itemprop="url">C语言指针相关</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-28 17:01:18" itemprop="dateCreated datePublished" datetime="2021-02-28T17:01:18+08:00">2021-02-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:09:19" itemprop="dateModified" datetime="2021-03-08T11:09:19+08:00">2021-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="C指针："><a href="#C指针：" class="headerlink" title="C指针："></a>C指针：</h2><p>指针是一类储存地址的变量</p>
-<h2 id="指针数组："><a href="#指针数组：" class="headerlink" title="指针数组："></a>指针数组：</h2><p>如果想让一个数组存储一组指向某一特定数据类型的地址，那么就能定义一个指针数组<br>如：<br>int *ptr[3];<br>int var[]={10,100,200};<br>for (i=0;i&lt;3;i++) {<br>    ptr[i] = var[i];<br>}<br>通过以上这段代码，var数组的每个值的每个地址都被存储在指针数组ptr中了</p>
-<h3 id="补充：“指针数组”和“数组指针”的区别："><a href="#补充：“指针数组”和“数组指针”的区别：" class="headerlink" title="补充：“指针数组”和“数组指针”的区别："></a>补充：“指针数组”和“数组指针”的区别：</h3><p>“指针数组”顾名思义，是指针的数组，他是元素均为指针的一个数组变量<br>“数组指针”，则是指一个指向数组的指针变量，通常地址为数组第一个元素的地址。</p>
-<h2 id="指针函数："><a href="#指针函数：" class="headerlink" title="指针函数："></a>指针函数：</h2><p>一个返回值为指针的函数<br>C语言默认在调用函数时不可返回地址，除非讲局部变量定义为static变量<br>具体的使用过程为——在函数定义声明返回值为指针，然后return一个相同类型的指针(具体的<br>返回值为地址)<br>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">int * fhptr(int i) &#123;</span><br><span class="line">    static int *s;</span><br><span class="line">    s &#x3D; &amp;i;</span><br><span class="line">    </span><br><span class="line">    return s;</span><br><span class="line">&#125;</span><br><span class="line">void main() &#123;</span><br><span class="line">    int *p;</span><br><span class="line">    p &#x3D; fhptr(5);</span><br><span class="line">    printf(&quot;%d %p&quot;,*p,p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>至于为什么要求局部变量要定义为static变量则是因为局部变量存储在内存的栈区，函数调用结束后，内存释放，函数内的变量便不再拥有那个内存地址，故指针无法返回。而static变量值存放在静态栈区，静态区只会在最初时初始化一回，之后便不会改变。</p>
-<h2 id="函数指针："><a href="#函数指针：" class="headerlink" title="函数指针："></a>函数指针：</h2><p>指向函数的指针<br>函数在编译后会占一部分内存，函数名则是函数的首地址(类似于数组)<br>将一个指针赋以函数名的值则能让这个特殊的指针指向函数<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">void func(int a) &#123;</span><br><span class="line">    printf(&quot;%d&quot;,a);</span><br><span class="line">&#125;</span><br><span class="line">void main() &#123;</span><br><span class="line">    int (*funcpointer)(int);</span><br><span class="line">    funcpointer &#x3D; &amp;func;</span><br><span class="line">    funcpointer(6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：指向函数的指针不可自增运算<br>也就是说，你能在此处通过调用函数指针来获得和调用该函数一样的效果(脱了裤子放屁)<br>还记得当函数作为参数传入函数时需要将其转换为指针的形式吗，函数指针的真正作用则是用在这里</p>
-<p>完善一下上面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">&#x2F;&#x2F;定义一个 指向 返回类型为void，传入参数为一个Int类型的函数类型 的指针类型</span><br><span class="line">typedef void (*hhh) (int);</span><br><span class="line">void func(int a) &#123;</span><br><span class="line">    printf(&quot;%d&quot;,a);</span><br><span class="line">&#125;</span><br><span class="line">void main() &#123;</span><br><span class="line">    hhh p;</span><br><span class="line">    p &#x3D; func;</span><br><span class="line">    p(6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="函数指针数组："><a href="#函数指针数组：" class="headerlink" title="函数指针数组："></a>函数指针数组：</h2><p>例子如下：<br>int (*function_pointer)<a href="int,int">N</a>;<br>这个是其通用形式，分开来看<br>Int (*function_pointer) [n] (int,int)<br>首先它是一个指针，指向的是一个数组，什么数组呢，存了n个 参数为两个int类型，返回值为int的函数 的地址 </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/8a35e780/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/8a35e780/" class="post-title-link" itemprop="url">Python中的类，模块，包</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-24 15:38:16" itemprop="dateCreated datePublished" datetime="2021-02-24T15:38:16+08:00">2021-02-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:02:01" itemprop="dateModified" datetime="2021-03-08T11:02:01+08:00">2021-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="类："><a href="#类：" class="headerlink" title="类："></a>类：</h2><p>Python被设计为一门面向对象的编程语言，<br>同其他面向对象的编程语言一样，它也有类这个概念：<br>类可以认为是一个集合，用来容纳众多的相近的属性和方法，方便随时调用其中的变量和函数；<br>对象则是类的实例化(把类赋值到一个变量中)，<br>一个对象(也可以说一个类)有其对应的属性和方法；<br>属性可以认为是类中定义的变量，<br>分为类的属性和实例对象的属性；<br>方法则是在类中定义的函数；<br>一个简单的类实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Pp:</span><br><span class="line">    def __init__(self,a,b):</span><br><span class="line">        self.a &#x3D; a</span><br><span class="line">        self.b &#x3D; b</span><br><span class="line">        self.c &#x3D; a + b</span><br><span class="line">        print(&quot;初始化完毕！&quot;)</span><br><span class="line">    def outsc(self):</span><br><span class="line">        print(self.c)</span><br><span class="line">X &#x3D; Pp(2,3)</span><br><span class="line">x.outsc()</span><br></pre></td></tr></table></figure>
-<h3 id="关于init"><a href="#关于init" class="headerlink" title="关于init:"></a>关于<strong>init</strong>:</h3><p>在把对象实例化之后会默认执行__init__方法，结合对__init__方法的定义，通常用来对对象初始化。<br>除此之外，若想在对象实例化时就传入参数，必须调用__init__方法，不带__init__方法的类默认无法传入参数。</p>
-<h3 id="对于self的解释："><a href="#对于self的解释：" class="headerlink" title="对于self的解释："></a>对于self的解释：</h3><p>类在定义方法时，传入的参数第一个必须是self，即使没有参数时，也要传入self，<br>这里有一种解释，比如上例，Pp类实例化为x，这里self的作用实际上是把变量x在类内以self指代，所以类不管实例化为什么，self总是能把变量的名称传入类内以便调用。</p>
-<h2 id="模块："><a href="#模块：" class="headerlink" title="模块："></a>模块：</h2><p>在Python中，一个模块可以认为是一个.py文件，它可以被其他.py文件用import函数引入，以便使用之前定义好的函数，类，变量什么的。</p>
-<h2 id="包："><a href="#包：" class="headerlink" title="包："></a>包：</h2><p>当多个用处相近的模块组合在一起，放在同一个文件夹这样的文件夹可以称为一个包。多个这样的文件夹合成一个大文件夹也可以称为一个包，则小文件夹又称为子包。包同样可以用import引入，其往往是一些制作者为了提供一系列的模块所制成，以方便调用。<br>包内必须要有<strong>init</strong>.py文件、<br>一个包的组成往往如下：<br>Package1:<br>|-<strong>init</strong>.py<br>|-Module1.py<br>|-Module2.py<br>|-……<br>调用方法为:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From package1 import module1:</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Import package1.module1:</span><br></pre></td></tr></table></figure>
-<p>若包中一个模块需调用其他目录的模块，可在当前包目录下的<strong>init</strong>.py文件中添加sys.path.append(‘调用模块位置’)，然后再import __init__就可以了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1113,7 +1084,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -28,7 +28,7 @@
 <meta property="og:description" content="学校开了C语言课，老师布置了一个简单的小程序，输入一个三位整数，然后分别输出这个数的个位，十位，百位，为了写出一个比较完善的代码，花了不少心思，也学了不少东西，在此记录一下： 1234567891011121314151617181920212223242526272829303132#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;void mai">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-14T23:26:54.000Z">
-<meta property="article:modified_time" content="2021-03-14T23:48:07.241Z">
+<meta property="article:modified_time" content="2021-03-18T07:24:05.241Z">
 <meta property="article:author" content="PengLaiDoll">
 <meta property="article:tag" content="C语言学习">
 <meta property="article:tag" content="C++学习">
@@ -217,10 +217,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-15 07:26:54 / 修改时间：07:48:07" itemprop="dateCreated datePublished" datetime="2021-03-15T07:26:54+08:00">2021-03-15</time>
+              <time title="创建时间：2021-03-15 07:26:54" itemprop="dateCreated datePublished" datetime="2021-03-15T07:26:54+08:00">2021-03-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-18 15:24:05" itemprop="dateModified" datetime="2021-03-18T15:24:05+08:00">2021-03-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -253,7 +259,9 @@
 <h2 id="判断字符数组的长度"><a href="#判断字符数组的长度" class="headerlink" title="判断字符数组的长度"></a>判断字符数组的长度</h2><p>我也不知道怎么回事，我试着将字符数组a作为参数传入strlen函数却发现编译器报错，后来查了一下,strlen函数的声明是这样的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unsigned int strlen(char *s);</span><br></pre></td></tr></table></figure>
 <p>其传入的参数是指针，但理应传入数组应该也不会报错，最终我又加了一个指针来防止它报错</p>
-<h3 id="strlen函数和sizeof函数的区别"><a href="#strlen函数和sizeof函数的区别" class="headerlink" title="strlen函数和sizeof函数的区别"></a>strlen函数和sizeof函数的区别</h3><p>sizeof函数和strlen函数一样，传入的参数类型须是指针，<br>当然，当一个字符串被赋值进入一个指针后，该指针就指向了一个字符串，也可以说，字符串就相当于了一个指针的地位，所以可以直接作为参数传入这两个函数中去。<br>strlen读取并返回字符串实际长度,而sizeof返回包括0/在内的所有字符细节，也就是在内存中的长度</p>
+<h3 id="strlen函数和sizeof函数的区别"><a href="#strlen函数和sizeof函数的区别" class="headerlink" title="strlen函数和sizeof函数的区别"></a>strlen函数和sizeof函数的区别</h3><p>sizeof函数和strlen函数一样，传入的参数类型须是指针，<br>当然，当一个字符串被赋值进入一个指针后，该指针就指向了一个字符串，也可以说，字符串就相当于了一个指针的地位，所以可以直接作为参数传入这两个函数中去。<br>strlen读取并返回字符串实际长度,而sizeof返回包括0/在内的所有字符细节，也就是在内存中的长度<br>——————————————————<br>对于上面的后续补充：<br>get()函数有一个大缺点，他会无限读取stdin中的字符串直到遇见/0或换行符，也就是说，如果读取的字符串长度大于字符数组的长度，就会发生内存越界的坏情况<br>为了防止这种情况，我们最好使用fget函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式</span><br><span class="line">fget(char* char,int n,FILE* stream)</span><br><span class="line">栗子</span><br><span class="line">fget(strlist,sizeof(strlist),stdin)</span><br></pre></td></tr></table></figure>
+<p>传入的第一个参数为指向字符串存储的变量的指针，第二个参数为读取字符串的长度，通常用sizeof来限制，传入的第三个参数为文件指针，以stdin使其读取输入缓冲区</p>
 
     </div>
 
@@ -352,7 +360,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

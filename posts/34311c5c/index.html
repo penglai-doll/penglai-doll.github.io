@@ -28,7 +28,7 @@
 <meta property="og:description" content="C指针：指针是一类储存地址的变量 指针数组：如果想让一个数组存储一组指向某一特定数据类型的地址，那么就能定义一个指针数组如：int *ptr[3];int var[]&#x3D;{10,100,200};for (i&#x3D;0;i&lt;3;i++) {    ptr[i] &#x3D; var[i];}通过以上这段代码，var数组的每个值的每个地址都被存储在指针数组ptr中了 补充：“指针数组”和“数组指针”的区别：“指">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-28T09:01:18.000Z">
-<meta property="article:modified_time" content="2021-03-08T03:09:19.756Z">
+<meta property="article:modified_time" content="2021-03-18T07:45:08.117Z">
 <meta property="article:author" content="PengLaiDoll">
 <meta property="article:tag" content="C语言学习">
 <meta property="article:tag" content="C++学习">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:09:19" itemprop="dateModified" datetime="2021-03-08T11:09:19+08:00">2021-03-08</time>
+                <time title="修改时间：2021-03-18 15:45:08" itemprop="dateModified" datetime="2021-03-18T15:45:08+08:00">2021-03-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,7 +259,11 @@
 <p>注意：指向函数的指针不可自增运算<br>也就是说，你能在此处通过调用函数指针来获得和调用该函数一样的效果(脱了裤子放屁)<br>还记得当函数作为参数传入函数时需要将其转换为指针的形式吗，函数指针的真正作用则是用在这里</p>
 <p>完善一下上面的例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">&#x2F;&#x2F;定义一个 指向 返回类型为void，传入参数为一个Int类型的函数类型 的指针类型</span><br><span class="line">typedef void (*hhh) (int);</span><br><span class="line">void func(int a) &#123;</span><br><span class="line">    printf(&quot;%d&quot;,a);</span><br><span class="line">&#125;</span><br><span class="line">void main() &#123;</span><br><span class="line">    hhh p;</span><br><span class="line">    p &#x3D; func;</span><br><span class="line">    p(6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="函数指针数组："><a href="#函数指针数组：" class="headerlink" title="函数指针数组："></a>函数指针数组：</h2><p>例子如下：<br>int (*function_pointer)<a href="int,int">N</a>;<br>这个是其通用形式，分开来看<br>Int (*function_pointer) [n] (int,int)<br>首先它是一个指针，指向的是一个数组，什么数组呢，存了n个 参数为两个int类型，返回值为int的函数 的地址 </p>
+<h2 id="函数指针数组："><a href="#函数指针数组：" class="headerlink" title="函数指针数组："></a>函数指针数组：</h2><p>例子如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int (*function_pointer)[N](int,int);</span><br></pre></td></tr></table></figure>
+<p>这个是其通用形式，分开来看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Int (*function_pointer) [n] (int,int);</span><br></pre></td></tr></table></figure>
+<p>首先它是一个指针，指向的是一个数组，什么数组呢，存了n个 参数为两个int类型，返回值为int的函数 的地址 </p>
 
     </div>
 
@@ -358,7 +362,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
