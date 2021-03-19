@@ -188,6 +188,137 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/140ab620/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/140ab620/" class="post-title-link" itemprop="url">page</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-19 23:57:01" itemprop="dateCreated datePublished" datetime="2021-03-19T23:57:01+08:00">2021-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/e04534a6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/e04534a6/" class="post-title-link" itemprop="url">Python面向对象编程进阶③</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-19 22:47:37 / 修改时间：22:49:45" itemprop="dateCreated datePublished" datetime="2021-03-19T22:47:37+08:00">2021-03-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="静态方法与类方法"><a href="#静态方法与类方法" class="headerlink" title="静态方法与类方法"></a>静态方法与类方法</h2><h3 id="静态方法："><a href="#静态方法：" class="headerlink" title="静态方法："></a>静态方法：</h3><p>使用@staticmethod装饰器进行装饰<br>可以直接被类调用而不用实例化<br>假如我们要判定一个三角形是不是三角形</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class San():</span><br><span class="line">    def __init__(self,a,b,c):</span><br><span class="line">        self.__a &#x3D; a</span><br><span class="line">        self.__b &#x3D; b</span><br><span class="line">        self.__c &#x3D; c</span><br><span class="line">    @staticmethod</span><br><span class="line">    def is_right(a,b,c):</span><br><span class="line">        if ((a+b&gt;c)&amp;(a+c&gt;b)&amp;(b+c&gt;a)):</span><br><span class="line">            return True</span><br><span class="line">        else:</span><br><span class="line">            return False</span><br><span class="line">s &#x3D; San(3,4,5)</span><br><span class="line">s.is_right()</span><br></pre></td></tr></table></figure>
+<p>这样我们会发现报错，显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">is_right() missing 3 required positional arguments: &#39;a&#39;, &#39;b&#39;, and &#39;c&#39;</span><br></pre></td></tr></table></figure>
+<p>这里我们就能看出，静态方法是不传入实例化参数的<br>这样一来，我们可以在三角形S实例化之前用该方法判断S的三个边能否组成一个三角形<br>静态方法的调用与实例化无关，只与该类和其定义有关</p>
+<h3 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h3><p>使用@classmethod装饰器进行装饰<br>传入的参数第一个必须为cls(表示传入类它自己)<br>别的和普通方法差不多</p>
+<h3 id="三种方法的主要区别："><a href="#三种方法的主要区别：" class="headerlink" title="三种方法的主要区别："></a>三种方法的主要区别：</h3><p>普通方法第一个传入的参数是self，表示该方法引用的的有可能是类属性/方法，也有可能是实例属性/方法，实例的优先级大于类的<br>类方法第一个传入的参数为cls，表示该方法引用的是类属性/方法<br>静态方法类似于函数定义，只传入定义的东西</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/3cbd2c1d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -811,210 +942,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/cf4bdb1c/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/cf4bdb1c/" class="post-title-link" itemprop="url">Python内置函数总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-04 09:08:21" itemprop="dateCreated datePublished" datetime="2021-03-04T09:08:21+08:00">2021-03-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 10:59:48" itemprop="dateModified" datetime="2021-03-08T10:59:48+08:00">2021-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Python内置的函数及其用法。</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>为了方便记忆，已经有很多开发者将这些内置函数进行了如下分类：</p>
-<p>数学运算(7个)<br>类型转换(24个)<br>序列操作(8个)<br>对象操作(7个)<br>反射操作(8个)<br>变量操作(2个)<br>交互操作(2个)<br>文件操作(1个)<br>编译执行(4个)<br>装饰器(3个)</p>
-<h2 id="汇总"><a href="#汇总" class="headerlink" title="汇总"></a>汇总</h2><h3 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h3><p>abs    求数值的绝对值<br>divmod    返回两个数值的商和余数<br>max    返回可迭代对象中的元素中的最大值或者所有参数的最大值<br>min    返回可迭代对象中的元素中的最小值或者所有参数的最小值<br>pow    返回两个数值的幂运算值或其与指定整数的模值<br>round    对浮点数进行四舍五入求值<br>sum    对元素类型是数值的可迭代对象中的每个元素求和</p>
-<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>bool    根据传入的参数逻辑值，创建一个新的布尔值<br>int    根据传入的参数，创建一个新的整数<br>float    根据传入的参数，创建一个新的浮点数<br>complex    根据传入参数，创建一个新的复数<br>str    返回一个对象的字符串表现形式(给用户)<br>bytearray    根据传入的参数，创建一个新的字节数组<br>bytes    根据传入的参数，创建一个新的不可变字节数组<br>memoryview    根据传入的参数，创建一个新的内存查看对象<br>ord    返回Unicode字符对应的整数<br>chr    返回整数所对应的Unicode字符<br>bin    将整数转换成2进制字符串<br>oct    将整数转化成8进制数字符串<br>hex    将整数转换成16进制字符串<br>tuple    根据传入的参数，创建一个新的元组<br>list    根据传入的参数，创建一个新的列表<br>dict    根据传入的参数，创建一个新的字典<br>set    根据传入的参数，创建一个新的集合<br>frozenset    根据传入的参数，创建一个新的不可变集合<br>enumerate    根据可迭代对象创建枚举对象<br>range    根据传入的参数，创建一个新的range对象<br>iter    根据传入的参数，创建一个新的可迭代对象<br>slice    根据传入的参数，创建一个新的切片对象<br>super    根据传入的参数，创建一个新的子类和父类关系的代理对象<br>object    创建一个新的object对象</p>
-<h3 id="序列操作"><a href="#序列操作" class="headerlink" title="序列操作"></a>序列操作</h3><p>all    判断可迭代对象的每个元素是否都为True值<br>any    判断可迭代对象的元素是否有为True值的元素<br>filter    使用指定方法过滤可迭代对象的元素<br>map    使用指定方法去作用传入的每个可迭代对象的元素，生成新的可迭代对象<br>next    返回可迭代对象中的下一个元素值<br>reversed    反转序列生成新的可迭代对象<br>sorted    对可迭代对象进行排序，返回一个新的列表<br>zip    聚合传入的每个迭代器中相同位置的元素，返回一个新的元组类型迭代器</p>
-<h3 id="对象操作"><a href="#对象操作" class="headerlink" title="对象操作"></a>对象操作</h3><p>help    返回对象的帮助信息<br>dir    返回对象或者当前作用域内的属性列表<br>id    返回对象的唯一标识符<br>hash    获取对象的哈希值<br>type    返回对象的类型，或者根据传入的参数，创建一个新的类型<br>len    返回对象的长度<br>ascii    返回对象的可打印表字符串表现方式<br>format    格式化显示值</p>
-<h3 id="反射操作"><a href="#反射操作" class="headerlink" title="反射操作"></a>反射操作</h3><p>vars    返回当前作用域内的局部变量，和其值组成的字典，或者返回对象的属性列表<br>isinstance    判断对象是否是类或者类型元组中任意类元素的实例<br>issubclass    判断类是否是另外一个类或者类型元组中任意类元素的子类<br>hasattr    检查对象是否含有属性<br>getattr    获取对象的属性值<br>setattr    设置对象的属性值<br>delattr    删除对象的属性<br>callable    检测对象是否可被调用</p>
-<h3 id="变量操作"><a href="#变量操作" class="headerlink" title="变量操作"></a>变量操作</h3><p>globals    返回当前作用域内的全局变量，和其值组成的字典<br>locals    返回当前作用域内的局部变量，和其值组成的字典</p>
-<h3 id="交互操作"><a href="#交互操作" class="headerlink" title="交互操作"></a>交互操作</h3><p>print    向标准输出对象打印输出<br>input    读取用户输入值</p>
-<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><p>open    使用指定的模式和编码打开文件，返回文件读写对象</p>
-<h3 id="编译执行"><a href="#编译执行" class="headerlink" title="编译执行"></a>编译执行</h3><p>compile    将字符串编译为代码或者AST对象，使之能够通过exec语句来执行或者eval进行求值<br>eval    执行动态表达式求值<br>exec    执行动态语句块<br>repr    返回一个对象的字符串表现形式(给解释器)</p>
-<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p>property    标示属性的装饰器<br>classmethod    标示方法为类方法的装饰器<br>staticmethod    标示方法为静态方法的装饰器<br>具体每个函数的解析如下： </p>
-<h3 id="数学运算-1"><a href="#数学运算-1" class="headerlink" title="数学运算"></a>数学运算</h3><p>abs：求数值的绝对值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; abs(-1)</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; abs(1)</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
-<p>divmod：返回两个数值的商和余数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; divmod(5,2)</span><br><span class="line">(2, 1)</span><br><span class="line">&gt;&gt; divmod(5.5,2)</span><br><span class="line">(2.0, 1.5)</span><br></pre></td></tr></table></figure>
-<p>max：返回可迭代对象中的元素中的最大值或者所有参数的最大值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; max(1,2) # 传入参数 取较大者</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; max(&#39;123&#39;) # 传入1个可迭代对象，取其最大元素值</span><br><span class="line">&#39;3&#39;</span><br><span class="line">&gt;&gt;&gt; max(-1,0) # 数值默认取数值较大者</span><br><span class="line">0</span><br><span class="line">&gt;&gt;&gt; max(-1,0,key &#x3D; abs) # 传入了求绝对值函数，则参数都会进行求绝对值后再取较大者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure><br>min：返回可迭代对象中的元素中的最小值或者所有参数的最小值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; min(1,2) # 传入3个参数 取3个中较小者</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; min(&#39;123&#39;) # 传入1个可迭代对象，取其最小元素值</span><br><span class="line">&#39;1&#39;</span><br><span class="line">&gt;&gt;&gt; min(-1,-2) # 数值默认去数值较小者</span><br><span class="line">-2</span><br><span class="line">&gt;&gt;&gt; min(-1,-2,key &#x3D; abs)  # 传入了求绝对值函数，则参数都会进行求绝对值后再取较小者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure><br>pow：返回两个数值的幂运算值或其与指定整数的模值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; pow(2,3)</span><br><span class="line">&gt;&gt;&gt; 2**3</span><br><span class="line"> </span><br><span class="line">&gt;&gt;&gt; pow(2,3,4)</span><br><span class="line">&gt;&gt;&gt; pow(2,3)%4</span><br></pre></td></tr></table></figure>
-<p>round：对浮点数进行四舍五入求值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; round(1.16,1)</span><br><span class="line">1.1</span><br></pre></td></tr></table></figure>
-<p>sum：对元素类型是数值的可迭代对象中的每个元素求和<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 传入可迭代对象，要求是数字</span><br><span class="line">&gt;&gt;&gt; sum((1,2,3))</span><br><span class="line">6</span><br></pre></td></tr></table></figure><br>————————————————<br>本文转载自CSDN大佬「Holidaylovesam」的博客<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/alice_tl/article/details/80867196">点这里</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/e4b558a/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/e4b558a/" class="post-title-link" itemprop="url">Python面向对象编程进阶①</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-03 23:00:05" itemprop="dateCreated datePublished" datetime="2021-03-03T23:00:05+08:00">2021-03-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:11:50" itemprop="dateModified" datetime="2021-03-08T11:11:50+08:00">2021-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="鸭子类型："><a href="#鸭子类型：" class="headerlink" title="鸭子类型："></a>鸭子类型：</h2><p>存在于动态语言的一种现象，不用严格遵循继承体系<br>也就是说，只要调用的对象中含有对应的方法，不用继承也可以实现多态的现象：<br>如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Person():</span><br><span class="line">    def wang(self):</span><br><span class="line">        print(&#39;wang wang wang!&#39;)</span><br><span class="line">    pass</span><br><span class="line">class Dog():</span><br><span class="line">    def wang(self):</span><br><span class="line">        print(&#39;wang wang wang&#39;)</span><br><span class="line">    pass</span><br><span class="line">def jiao(thing):</span><br><span class="line">    thing.wang()</span><br><span class="line">p &#x3D; Dog()</span><br><span class="line">r &#x3D; Person()</span><br><span class="line">jiao(p)</span><br><span class="line">jiao(r)</span><br></pre></td></tr></table></figure>
-<p>其中，一个带感叹号，一个不带<br>输出可以发现，二者均输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wang wang wang</span><br><span class="line">wang wang wang!</span><br></pre></td></tr></table></figure>
-<p>由此可知，python这样的动态语言注重的是方法，而不是繁杂的继承，有对应的方法就可以调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。”</span><br></pre></td></tr></table></figure>
-<p>这就是鸭子测试</p>
-<h2 id="dir-函数"><a href="#dir-函数" class="headerlink" title="dir()函数"></a>dir()函数</h2><p>——获得传入类内所有的属性和方法</p>
-<h2 id="实例属性和类属性："><a href="#实例属性和类属性：" class="headerlink" title="实例属性和类属性："></a>实例属性和类属性：</h2><p>在类定义时定义的属性为类属性<br>实例化时称为实例属性<br>类属性归类所有，所有的实例均可访问<br>若实例化时没有赋值那么默认属性则被赋值为类属性的值<br>如有定义那么就赋值为实例属性的值</p>
-<h2 id="slots-变量："><a href="#slots-变量：" class="headerlink" title="__slots__变量："></a>__slots__变量：</h2><h3 id="给类绑定方法和属性："><a href="#给类绑定方法和属性：" class="headerlink" title="给类绑定方法和属性："></a>给类绑定方法和属性：</h3><p>例子如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class pp():</span><br><span class="line">    pass</span><br><span class="line">pp.name &#x3D; &#39;pp&#39;</span><br><span class="line">o1 &#x3D; pp()</span><br><span class="line">print(o1.name)</span><br><span class="line">o1.tall &#x3D; 114514</span><br><span class="line">print(o1.tall)</span><br><span class="line">o2 &#x3D; pp()</span><br><span class="line">print(o2.tall)</span><br></pre></td></tr></table></figure>
-<p>如果我们将上面的代码输入，就可以观察到最后一行报错<br>原因是tall实际上绑定到的是o1的实例而不是o类，所以实例化的o2没有tall属性，而name属性就是绑定到类上，所有实例化都可用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def f(self,x,y):</span><br><span class="line">    print(x+y)</span><br><span class="line">from types import MethodType #从types包中引入methodtype函数，利用这个函数来绑定</span><br><span class="line">o1.f &#x3D; MethodType(f,o1) #函数的具体使用</span><br><span class="line">o1.f(3,5)</span><br></pre></td></tr></table></figure>
-<p>之后，我们再输入以上代码，向o1动态绑定f方法，同上面一样，这个是实例方法，无法在同类变量中使用，除非另行绑定<br>加入我们想让一个类只能绑定我们规定好的属性或方法而无法绑定其他的属性或方法，该怎么办呢</p>
-<h3 id="slots-变量：-1"><a href="#slots-变量：-1" class="headerlink" title="__slots__变量："></a>__slots__变量：</h3><p>这个属于系统变量，用来限制该类能绑定的属性或方法<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class pp():</span><br><span class="line">    __slots__ &#x3D; (&#39;name&#39;)</span><br><span class="line">    pass</span><br><span class="line">pp.name &#x3D; &#39;pp&#39;</span><br><span class="line">def f(self,x,y):</span><br><span class="line">    print(x+y)</span><br><span class="line">o1 &#x3D; pp()</span><br><span class="line">print(o1.name)</span><br><span class="line">o1.sound &#x3D; 114514 #(恶臭)</span><br></pre></td></tr></table></figure>
-<p>还是上面的代码，只不过我们加入了__slots__变量并规定了一个元组，其中包括了pp类可以绑定的name属性，<br>当我们执行到o1.sound语句时，编译器报错，因为我们规定了除了name属性，其他都无法动态绑定<br>再补充一点:__slots__变量只对当前类有用，对其子类无法起作用，除非子类再定义一个__slots__。<br>如果子类再定义了，那么作为其父类中的__slots__也会得到继承，那么子类可以规定的属性和方法就是它及其父类__slots__变量中的和了</p>
-<h2 id="输入参数的检查："><a href="#输入参数的检查：" class="headerlink" title="输入参数的检查："></a>输入参数的检查：</h2><p>我们刚刚得知了给类绑定方法和属性的方法，可如果我们要求绑定的属性有个范围该怎么办呢。<br>举个检查输入参数是否为int类型的例子吧</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if not isinstance(value,int)</span><br><span class="line">    printf(&#39;error&#39;)</span><br></pre></td></tr></table></figure>
-<p>isinstance函数可以帮助我们检验一个值是否为某一个类型，并返回true或false</p>
-<h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><p>@property是python中的装饰器，可以用来创建只读属性，将一个方法转换为相同名称的只读属性</p>
-<h3 id="1-修饰方法，将其转换可以像属性一样访问"><a href="#1-修饰方法，将其转换可以像属性一样访问" class="headerlink" title="1.修饰方法，将其转换可以像属性一样访问"></a>1.修饰方法，将其转换可以像属性一样访问</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class pp():</span><br><span class="line">    @property</span><br><span class="line">    def ppff(self):</span><br><span class="line">        return &#39;pp&#39;</span><br></pre></td></tr></table></figure>
-<p>假如没有@property,我们要想输出pp，则需输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pp().ppff()</span><br></pre></td></tr></table></figure>
-<p>但是有了@property，可以简化为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pp().ppff</span><br></pre></td></tr></table></figure>
-<p>注意，用装饰器修改完之后，ppff函数将变成只读状态，无法再传入任何参数，如输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pp().ppff()</span><br></pre></td></tr></table></figure>
-<p>将会报错</p>
-<h3 id="2-与私有属性连用，防止私有属性被修改"><a href="#2-与私有属性连用，防止私有属性被修改" class="headerlink" title="2.与私有属性连用，防止私有属性被修改"></a>2.与私有属性连用，防止私有属性被修改</h3><p>在之前我们先看一下私有属性的特点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class pp():</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.__name &#x3D; name</span><br><span class="line">    pass</span><br><span class="line">p &#x3D; pp(&#39;p&#39;)</span><br><span class="line">print(p.__name)</span><br></pre></td></tr></table></figure>
-<p>以上，我们定义了一个私有属性__name在后面执行print语句时报错，说明我们无法访问__name这个私有属性，只能另行通过定义函数来返回__name属性的值，<br>但如果我们在print语句前，pp类实例化语句之后加上这么一句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p.__name &#x3D; &#39;pp&#39;</span><br></pre></td></tr></table></figure>
-<p>再执行后面的print语句，你会惊奇的发现，print语句正常执行了，我个人猜测，这个赋值语句改变了__name的私有属性状态而变成了普通的类属性<br>为了防止其私有属性状态的改变和其值被更改，我们可以用@property</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class DataSet(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self._images &#x3D; 1</span><br><span class="line">        self._labels &#x3D; 2 #定义属性的名称</span><br><span class="line">    @property</span><br><span class="line">    def images(self): #方法加入@property后，这个方法相当于一个属性，这个属性可以让用户进行使用，而且用户有没办法随意修改。</span><br><span class="line">        return self._images </span><br><span class="line">    @property</span><br><span class="line">    def labels(self):</span><br><span class="line">        return self._labels</span><br><span class="line">l &#x3D; DataSet()</span><br><span class="line">#用户进行属性调用的时候，直接调用images即可，而不用知道属性名_images，因此用户无法更改属性，从而保护了类的属性。</span><br><span class="line">print(l.images) # 加了@property后，可以用调用属性的形式来调用方法,后面不需要加（）</span><br></pre></td></tr></table></figure>
-<p>上面的例子我们可以将那两个方法改成其他的函数从而隐藏属性的名字而进行调用，让人以为是属性，而其实是方法变成的属性哒！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1084,7 +1011,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
