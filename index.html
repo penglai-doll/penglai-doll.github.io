@@ -188,6 +188,430 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/b3843843/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/b3843843/" class="post-title-link" itemprop="url">UPX壳与Aspack壳脱壳</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-27 23:32:00 / 修改时间：23:39:26" itemprop="dateCreated datePublished" datetime="2021-03-27T23:32:00+08:00">2021-03-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94OD%E8%84%B1%E5%A3%B3/" itemprop="url" rel="index"><span itemprop="name">逆向学习——OD脱壳</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="UPX壳："><a href="#UPX壳：" class="headerlink" title="UPX壳："></a>UPX壳：</h2><ol>
+<li><p>单步步进法</p>
+</li>
+<li><p>ESP定理</p>
+<p>全栈入栈，单步步进，发现只有ESP寄存器发生改变，跟随ESP寄存器到数据窗口，下硬件断点，执行文件，到断点处发现全栈出栈指令，应该是到oep了。</p>
+</li>
+<li><p>查找法（有限制）</p>
+<p>既然有pushad，肯定有popad，在当前块直接查找popad，说不定就找到了</p>
+</li>
+<li><p>二次内存镜像法</p>
+<p>在第一个.rsrc段下字节断点，运行，随后在00401000处下段点，运行，之后便接近oep了</p>
+</li>
+</ol>
+<h2 id="Aspack壳："><a href="#Aspack壳：" class="headerlink" title="Aspack壳："></a>Aspack壳：</h2><ol>
+<li><p>单步步进发</p>
+</li>
+<li><p>ESP定理</p>
+</li>
+<li><p>查找法</p>
+</li>
+<li><p>二次内存镜像法</p>
+</li>
+<li><p>模拟跟踪法</p>
+<p>找到内存中的sfx部分，输入指令tc eip&lt;(该段地址)执行到指定部分，便到了oep</p>
+</li>
+<li><p>SFX</p>
+<p>打开调试设置，找到SFX，利用OD自动找到oep</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/2a1f355e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/2a1f355e/" class="post-title-link" itemprop="url">常见OPE</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-27 23:32:00 / 修改时间：23:41:17" itemprop="dateCreated datePublished" datetime="2021-03-27T23:32:00+08:00">2021-03-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94OD/" itemprop="url" rel="index"><span itemprop="name">逆向学习——OD</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="五种常见语言的OEP特征："><a href="#五种常见语言的OEP特征：" class="headerlink" title="五种常见语言的OEP特征："></a>五种常见语言的OEP特征：</h2><h3 id="C-（Microsoft-Visual-C-6-0）"><a href="#C-（Microsoft-Visual-C-6-0）" class="headerlink" title="C++ （Microsoft Visual C++ 6.0）"></a>C++ （Microsoft Visual C++ 6.0）</h3><p>0040577C &gt;/$ 55        PUSH EBP          (C的入口)</p>
+<p>0040577D |. 8BEC      MOV EBP,ESP</p>
+<p>0040577F |. 6A FF      PUSH -1</p>
+<p>00405781 |. 68 30B24000  PUSH EasyClea.0040B230</p>
+<p>00405786 |. 68 84704000  PUSH EasyClea.00407084         ; SE 句柄安装</p>
+<p>0040578B |. 64:A1 0000000&gt;MOV EAX,DWORD PTR FS:[0]</p>
+<p>00405791 |. 50        PUSH EAX</p>
+<p>00405792 |. 64:8925 00000&gt;MOV DWORD PTR FS:[0],ESP</p>
+<p>00405799 |. 83EC 58    SUB ESP,58</p>
+<p>0040579C |. 53        PUSH EBX</p>
+<p>0040579D |. 56        PUSH ESI</p>
+<p>0040579E |. 57        PUSH EDI</p>
+<p>0040579F |. 8965 E8    MOV [LOCAL.6],ESP</p>
+<p>004057A2 |. FF15 ECB04000 CALL DWORD PTR DS:[&lt;&amp;KERNEL32.GetVersion&gt;; kernel32.GetVersion</p>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="E语言"><a href="#E语言" class="headerlink" title="E语言"></a>E语言</h3><p>这个和C极度像,要分清</p>
+<p>0040389F &gt;/$ 55        PUSH EBP</p>
+<p>004038A0 |. 8BEC      MOV EBP,ESP</p>
+<p>004038A2 |. 6A FF      PUSH -1</p>
+<p>004038A4 |. 68 F8724000  PUSH CrackMe.004072F8</p>
+<p>004038A9 |. 68 04554000  PUSH CrackMe.00405504            ; SE 处理程序安装</p>
+<p>004038AE |. 64:A1 0000000&gt;MOV EAX,DWORD PTR FS:[0]</p>
+<p>004038B4 |. 50        PUSH EAX</p>
+<p>004038B5 |. 64:8925 00000&gt;MOV DWORD PTR FS:[0],ESP</p>
+<p>004038BC |. 83EC 58    SUB ESP,58</p>
+<p>004038BF |. 53        PUSH EBX</p>
+<p>004038C0 |. 56        PUSH ESI</p>
+<p>004038C1 |. 57        PUSH EDI</p>
+<p>004038C2 |. 8965 E8    MOV DWORD PTR SS:[EBP-18],ESP</p>
+<p>004038C5 |. FF15 48704000 CALL DWORD PTR DS:[&lt;&amp;KERNEL32.GetVersion&gt;; kernel32.GetVersion</p>
+<p>004038CB |. 33D2      XOR EDX,EDX</p>
+<p>004038CD |. 8AD4      MOV DL,AH</p>
+<p>004038CF |. 8915 94BA4000 MOV DWORD PTR DS:[40BA94],EDX</p>
+<p>004038D5 |. 8BC8      MOV ECX,EAX</p>
+<p>004038D7 |. 81E1 FF000000 AND ECX,0FF</p>
+<p>004038DD |. 890D 90BA4000 MOV DWORD PTR DS:[40BA90],ECX</p>
+<p>004038E3 |. C1E1 08    SHL ECX,8</p>
+<p>004038E6 |. 03CA      ADD ECX,EDX</p>
+<p>004038E8 |. 890D 8CBA4000 MOV DWORD PTR DS:[40BA8C],ECX</p>
+<p>004038EE |. C1E8 10    SHR EAX,10</p>
+<p>004038F1 |. A3 88BA4000  MOV DWORD PTR DS:[40BA88],EAX</p>
+<p>004038F6 |. 33F6      XOR ESI,ESI</p>
+<p>004038F8 |. 56        PUSH ESI</p>
+<p>004038F9 |. E8 7A030000  CALL CrackMe.00403C78</p>
+<p>004038FE |. 59        POP ECX</p>
+<p>004038FF |. 85C0      TEST EAX,EAX</p>
+<p>00403901 |. 75 08      JNZ SHORT CrackMe.0040390B</p>
+<p>00403903 |. 6A 1C      PUSH 1C</p>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="Delphi-（Borland-Delphi-6-0-7-0）"><a href="#Delphi-（Borland-Delphi-6-0-7-0）" class="headerlink" title="Delphi （Borland Delphi 6.0 - 7.0）"></a>Delphi （Borland Delphi 6.0 - 7.0）</h3><p>004F2F68 &gt; $ 55        PUSH EBP</p>
+<p>004F2F69  . 8BEC      MOV EBP,ESP</p>
+<p>004F2F6B  . 83C4 F0    ADD ESP,-10</p>
+<p>004F2F6E  . 53        PUSH EBX</p>
+<p>004F2F6F  . B8 102B4F00  MOV EAX,Unpacked.004F2B10</p>
+<p>004F2F74  . E8 EF3BF1FF  CALL Unpacked.00406B68</p>
+<p>004F2F79  . 8B1D F4505000 MOV EBX,DWORD PTR DS:[5050F4]        ; Unpacked.00506C14</p>
+<p>004F2F7F  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</p>
+<p>004F2F81  . E8 56ACF8FF  CALL Unpacked.0047DBDC</p>
+<p>004F2F86  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</p>
+<p>004F2F88  . BA F42F4F00  MOV EDX,Unpacked.004F2FF4          ; ASCII “ Hide Private File Pro”</p>
+<p>004F2F8D  . E8 32A8F8FF  CALL Unpacked.0047D7C4</p>
+<p>004F2F92  . 8B0D 904E5000 MOV ECX,DWORD PTR DS:[504E90]        ; Unpacked.00509144</p>
+<p>004F2F98  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</p>
+<p>004F2F9A  . 8B15 70E44E00 MOV EDX,DWORD PTR DS:[4EE470]        ; Unpacked.004EE4BC</p>
+<p>004F2FA0  . E8 4FACF8FF  CALL Unpacked.0047DBF4</p>
+<p>004F2FA5  . 8B0D 3C525000 MOV ECX,DWORD PTR DS:[50523C]        ; Unpacked.0050909C</p>
+<p>004F2FAB  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</p>
+<p>004F2FAD  . 8B15 48B14E00 MOV EDX,DWORD PTR DS:[4EB148]        ; Unpacked.004EB194</p>
+<p>004F2FB3  . E8 3CACF8FF  CALL Unpacked.0047DBF4</p>
+<p>004F2FB8  . 8B0D 0C535000 MOV ECX,DWORD PTR DS:[50530C]        ; Unpacked.005090A4</p>
+<p>004F2FBE  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</p>
+<p>004F2FC0  . 8B15 7CB34E00 MOV EDX,DWORD PTR DS:[4EB37C]        ; Unpacked.004EB3C8</p>
+<p>004F2FC6  . E8 29ACF8FF  CALL Unpacked.0047DBF4</p>
+<p>004F2FCB  . 8B0D 30505000 MOV ECX,DWORD PTR DS:[505030]        ; Unpacked.005090D4</p>
+<p>004F2FD1  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</p>
+<p>004F2FD3  . 8B15 B0BF4E00 MOV EDX,DWORD PTR DS:[4EBFB0]        ; Unpacked.004EBFFC</p>
+<p>004F2FD9  . E8 16ACF8FF  CALL Unpacked.0047DBF4</p>
+<p>004F2FDE  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</p>
+<p>004F2FE0  . E8 8FACF8FF  CALL Unpacked.0047DC74</p>
+<p>004F2FE5  . 5B        POP EBX</p>
+<p>004F2FE6  . E8 7115F1FF  CALL Unpacked.0040455C</p>
+<p>004F2FEB  . 00FF      ADD BH,BH</p>
+<p>004F2FED    FF        DB FF</p>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="VB-（Microsoft-Visual-Basic-5-0-6-0）"><a href="#VB-（Microsoft-Visual-Basic-5-0-6-0）" class="headerlink" title="VB （Microsoft Visual Basic 5.0 / 6.0）"></a>VB （Microsoft Visual Basic 5.0 / 6.0）</h3><p>00410400 &gt; 68 4C744100   PUSH Unpack_.0041744C      ; ASCII “VB5!6&amp;*”</p>
+<p>00410405  E8 EEFFFFFF   CALL &lt;JMP.&amp;msvbvm60.ThunRTMain&gt;</p>
+<p>0041040A  16         PUSH SS</p>
+<p>0041040B  0000        ADD BYTE PTR DS:[EAX],AL</p>
+<p>0041040D  0000        ADD BYTE PTR DS:[EAX],AL</p>
+<p>0041040F  0030        ADD BYTE PTR DS:[EAX],DH</p>
+<p>00410411  0000        ADD BYTE PTR DS:[EAX],AL</p>
+<p>00410413  0038        ADD BYTE PTR DS:[EAX],BH</p>
+<p>00410415  0000        ADD BYTE PTR DS:[EAX],AL</p>
+<p>00410417  0000        ADD BYTE PTR DS:[EAX],AL</p>
+<p>00410419  0000        ADD BYTE PTR DS:[EAX],AL</p>
+<p>0041041B  0060 9C      ADD BYTE PTR DS:[EAX-64],AH</p>
+<p>0041041E  F0:E2 CF     LOCK LOOPD SHORT Unpack_.004103F0     ; 不允许锁定前缀</p>
+<p>00410421  BE 3D439505   MOV ESI,595433D</p>
+<p>00410426  E1 06       LOOPDE SHORT Unpack_.0041042E</p>
+<p>00410428  18A5 05D40000  SBB BYTE PTR SS:[EBP+D405],AH</p>
+<p>0041042E  0000        ADD BYTE PTR DS:[EAX],AL</p>
+<p>00410430  0000        ADD BYTE PTR DS:[EAX],AL</p>
+<p>00410432  0100        ADD DWORD PTR DS:[EAX],EAX</p>
+<p>00410434  0000        ADD BYTE PTR DS:[EAX],AL</p>
+<p>00410436  9E         SAHF</p>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="BC-（Borland-C-1999）"><a href="#BC-（Borland-C-1999）" class="headerlink" title="BC++ （Borland C++ 1999）"></a>BC++ （Borland C++ 1999）</h3><p>00401000 &gt; /EB 10       JMP SHORTXXXXXXX.00401012</p>
+<p>00401002  |66:623A      BOUND DI,DWORD PTR DS:[EDX]</p>
+<p>00401005  |43         INC EBX</p>
+<p>00401006  |2B2B        SUB EBP,DWORD PTR DS:[EBX]</p>
+<p>00401008  |48         DEC EAX</p>
+<p>00401009  |4F         DEC EDI</p>
+<p>0040100A  |4F         DEC EDI</p>
+<p>0040100B  |4B         DEC EBX</p>
+<p>0040100C  |90         NOP</p>
+<p>0040100D -|E9 AC334800   JMP 008843BE</p>
+<p>00401012  \A1 9F334800   MOV EAX,DWORD PTR DS:[48339F]</p>
+<p>00401017  C1E0 02      SHL EAX,2</p>
+<p>0040101A  A3 A3334800   MOV DWORD PTR DS:[4833A3],EAX</p>
+<p>0040101F  52         PUSH EDX</p>
+<p>00401020  6A 00       PUSH 0</p>
+<p>00401022  E8 11110800   CALL &lt;JMP.&amp;KERNEL32.GetModuleHandleA&gt;</p>
+<p>00401027  8BD0        MOV EDX,EAX</p>
+<p>00401029  E8 3A1B0600   CALLXXXXXXX.00462B68</p>
+<p>0040102E  5A         POP EDX</p>
+<p>0040102F  E8 981A0600   CALLXXXXXXX.00462ACC</p>
+<p>00401034  E8 6F1B0600   CALLXXXXXXX.00462BA8</p>
+<p>00401039  6A 00       PUSH 0</p>
+<p>0040103B  E8 782E0600   CALLXXXXXXX.00463EB8</p>
+<p>00401040  59         POP ECX</p>
+<p>00401041  68 48334800   PUSHXXXXXXX.00483348</p>
+<p>00401046  6A 00       PUSH 0</p>
+<p>00401048  E8 EB100800   CALL &lt;JMP.&amp;KERNEL32.GetModuleHandleA&gt;</p>
+<p>0040104D  A3 A7334800   MOV DWORD PTR DS:[4833A7],EAX</p>
+<p>00401052  6A 00       PUSH 0</p>
+<p>00401054  E9 6B900600   JMPXXXXXXX.0046A0C4</p>
+<p>00401059 &gt; E9 A62E0600   JMPXXXXXXX.00463F04</p>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="Dasm-汇编"><a href="#Dasm-汇编" class="headerlink" title="Dasm:汇编"></a>Dasm:汇编</h3><p>00401000 &gt;/$ 6A 00      PUSH 0                      ; /pModule = NULL</p>
+<p>00401002 |. E8 C50A0000  CALL &lt;JMP.&amp;KERNEL32.GetModuleHandleA&gt;  ; \GetModuleHandleA</p>
+<p>00401007 |. A3 0C354000  MOV DWORD PTR DS:[40350C],EAX</p>
+<p>0040100C |. E8 B50A0000  CALL &lt;JMP.&amp;KERNEL32.GetCommandLineA&gt;   ; [GetCommandLineA</p>
+<p>00401011 |. A3 10354000  MOV DWORD PTR DS:[403510],EAX</p>
+<p>00401016 |. 6A 0A      PUSH 0A                    ; /Arg4 = 0000000A</p>
+<p>00401018 |. FF35 10354000 PUSH DWORD PTR DS:[403510]         ; |Arg3 = 00000000</p>
+<p>0040101E |. 6A 00      PUSH 0                     ; |Arg2 = 00000000</p>
+<p>00401020 |. FF35 0C354000 PUSH DWORD PTR DS:[40350C]         ; |Arg1 = 00000000</p>
+<p>另一种：</p>
+<p>00401025 &gt;/$ 6A F6       PUSH -0A                    </p>
+<p>00401027 |. E8 A0000000   CALL &lt;JMP.&amp;kernel32.GetStdHandle&gt;     </p>
+<p>0040102C |. A3 00304000   MOV DWORD PTR DS:[403000],EAX</p>
+<p>00401031 |. 6A F5          PUSH -0B                    </p>
+<p>00401033 |. E8 94000000   CALL &lt;JMP.&amp;kernel32.GetStdHandle&gt;    </p>
+<p>00401038 |. A3 04304000   MOV DWORD PTR DS:[403004],EAX</p>
+<p>0040103D |. 6A 01          PUSH 1                      </p>
+<p>0040103F |. 68 00104000   PUSH EchoLine.00401000           </p>
+<p>00401044 |. E8 8F000000   CALL &lt;JMP.&amp;kernel32.SetConsoleCtrlHandle&gt;</p>
+<p>00401049 |. 6A 07          PUSH 7                      </p>
+<p>0040104B |. FF35 00304000 PUSH DWORD PTR DS:[403000] </p>
+<h3 id="Vc-8-0"><a href="#Vc-8-0" class="headerlink" title="Vc++8.0"></a>Vc++8.0</h3><p>00403A30 &gt; $ E8 6E270000  call VC8.004061A3</p>
+<p>00403A35  .^ E9 79FEFFFF  jmp VC8.004038B3</p>
+<p>00403A3A /$ 55      push ebp</p>
+<p>00403A3B |. 8BEC     mov ebp,esp</p>
+<p>00403A3D |. 83EC 08    sub esp,0x8</p>
+<p>00403A40 |. 897D FC    mov [local.1],edi            ; ntdll.7C930228</p>
+<p>00403A43 |. 8975 F8    mov [local.2],esi</p>
+<p>00403A46 |. 8B75 0C    mov esi,[arg.2]</p>
+<p>00403A49 |. 8B7D 08    mov edi,[arg.1]             ; VC8.<ModuleEntryPoint></p>
+<p>00403A4C |. 8B4D 10    mov ecx,[arg.3]</p>
+<p>00403A4F |. C1E9 07    shr ecx,0x7</p>
+<p>转载自52论坛<a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-139728-1-1.html">https://www.52pojie.cn/thread-139728-1-1.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/6d738442/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/6d738442/" class="post-title-link" itemprop="url">global和nonlocal的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-24 23:04:14" itemprop="dateCreated datePublished" datetime="2021-03-24T23:04:14+08:00">2021-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-27 23:33:12" itemprop="dateModified" datetime="2021-03-27T23:33:12+08:00">2021-03-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="global关键字"><a href="#global关键字" class="headerlink" title="global关键字"></a>global关键字</h2><p>如下一段代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">count = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    </span><br><span class="line">    count</span><br><span class="line">    </span><br><span class="line">    count+=<span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    print(count)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<p>我们会发现程序报错而无法正常执行，这是因为count变量是全局变量，而在局部中是无法修改全局变量的</p>
+<p>如果我们改成下面这样</p>
+<p>`</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">count = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">global</span> count</span><br><span class="line"></span><br><span class="line">  count+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">  print(count)</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<p>`</p>
+<p>程序可以正常执行了！</p>
+<p>这里global关键字可以让全局变量在局部中进行更改，只需要声明就行。</p>
+<p>假如不进行声明也不修改呐？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">count = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line"></span><br><span class="line">  count</span><br><span class="line"></span><br><span class="line">  count+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">  print(count)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<p>是可以正常运行的</p>
+<h2 id="nonlocal关键字"><a href="#nonlocal关键字" class="headerlink" title="nonlocal关键字"></a>nonlocal关键字</h2><p>假如我们在一段函数定义中再引入一个函数定义而形成嵌套</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line"></span><br><span class="line">  count = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pp</span>():</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">nonlocal</span> count</span><br><span class="line"></span><br><span class="line">    print(count)</span><br><span class="line"></span><br><span class="line">  pp()</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<p>这里可以看出，nonlocal声明是针对在嵌套函数的上一个函数的声明的使用</p>
+<p>输出为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/140ab620/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -726,252 +1150,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/8a0f52d1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/8a0f52d1/" class="post-title-link" itemprop="url">Python基础进阶——list与dict</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-03-10 11:21:16 / 修改时间：11:23:35" itemprop="dateCreated datePublished" datetime="2021-03-10T11:21:16+08:00">2021-03-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>再补充一下关于list和dict的一些基础知识</p>
-<h2 id="不可变对象与可变对象："><a href="#不可变对象与可变对象：" class="headerlink" title="不可变对象与可变对象："></a>不可变对象与可变对象：</h2><p>Str,dict的key等都是不可变对象<br>比如我们调用replace函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;A &#x3D; &#39;abc&#39;</span><br><span class="line">&gt;&gt;A.replace(&#39;a&#39;,&#39;A&#39;)</span><br><span class="line">&#39;Abc&#39;</span><br></pre></td></tr></table></figure>
-<p>看上去是变了，但当我们再次输入A时，我们发现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;A</span><br><span class="line">&#39;abc&#39;</span><br></pre></td></tr></table></figure>
-<p>换种方式来看看：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;B &#x3D; A.replace(&#39;a&#39;,&#39;A&#39;)</span><br><span class="line">&gt;&gt;B</span><br><span class="line">&#39;Abc&#39;</span><br></pre></td></tr></table></figure>
-<p>为什么呢，因为str是不可变对象，当我们对一个str对象调用任何方法时，都不会改变这个不可变对象，而是创建新的不同的对象并返回<br>现在我们去理解dict的key为什么时不可变对象</p>
-<h2 id="list和dict的优缺点："><a href="#list和dict的优缺点：" class="headerlink" title="list和dict的优缺点："></a>list和dict的优缺点：</h2><p>在理解key为不可变对象之前，我们先看一下list与dict的优缺点<br>和list相比，dict查找和插入对象的速度更快，但消耗的内存更高，更浪费内存，也就是说,dict牺牲了内存来换取速度，之所以这个样子，就要谈到dict的原理了</p>
-<h2 id="关于list与链表"><a href="#关于list与链表" class="headerlink" title="关于list与链表"></a>关于list与链表</h2><p>以下的内容是我在网上查阅大佬资料时找到的<br>list其实是用链表的方式存储的。假如我们有一个列表a =[1,2,3]，我们知道，链表的名称存储第一个元素的地址，也就是相当于名称是指向第一个元素的指针，第一个元素的指针再指向第二个元素，以此类推，我们便实现了元素的顺序排列。<br>当我们想插入或删除一个元素，比如我们想在第一个和第二个元素之间插入一个5，我们可以直接通过链表的形式来实现。先通过添加一个链节5，让第一个元素的指针指向该链节，再让该链节的指针指向原来的第二个元素，这样便实现了插入，也就是说，在内存中，这些元素不一定是顺序排列的，但也可以实现顺序访问<br>当我们想要查找某个元素时，因为是链表，所以我们不得不从头开始遍历，这也就是为什么list查找这么慢的原因</p>
-<h2 id="关于dict与哈希表"><a href="#关于dict与哈希表" class="headerlink" title="关于dict与哈希表"></a>关于dict与哈希表</h2><p>dict的存储方式与list截然不同，dict采用了一种哈希算法，将key值利用哈希算法转换为一个数，再利用这个数找到相对应的值，不同的key通过哈希算法得到的值有很大概率不同，所以不同的key存储的地方不同，这才有了一一对应的原则。<br>举个栗子：有一个字典{‘a’:1,’b’:2,’c’:3},我们想利用key’c’来查找，首先利用哈希算法将key’c’算出一个值，咱假设为233，再在内存空间开辟一个大空间0-1000出来，然后根据算出来的值将’c’的value存进对应的内存空间中去，所有的键值对都是这样存储的，因此，当我们想要取一个key的value时，没必要全部遍历，直接用哈希算法去算，然后找到对应的就可以了，所以dict的查找速度很快,但我们不得不得提前开辟一个大空间，所以dict又很消耗内存<br>由上，我们可以推知为什么key为不可变对象了,dict通过key来存储值，假如key变了，那么下一次寻找时寻到的地址不同了，整个dict不就乱了吗<br>补充一点：不同的key通过哈希算法得到的值有很大概率不同，也就是说，有小概率是相同的，这就要求设计哈希表时要尽量减少冲突，这个就是设计编译器的事情了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/794c651c/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/794c651c/" class="post-title-link" itemprop="url">Python面向对象编程进阶②</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-03-10 11:17:27 / 修改时间：14:52:52" itemprop="dateCreated datePublished" datetime="2021-03-10T11:17:27+08:00">2021-03-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="对于类的定制："><a href="#对于类的定制：" class="headerlink" title="对于类的定制："></a>对于类的定制：</h2><p><strong>str</strong>:用于返回当前类的自定义名称<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class pp():</span><br><span class="line">    name &#x3D; &#39;ff&#39;</span><br><span class="line">    pass</span><br><span class="line">print(pp())</span><br></pre></td></tr></table></figure>
-<p>这样的话，会输出以下内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;__main__.pp object at 0x0000023A8A958E50&gt;</span><br></pre></td></tr></table></figure>
-<p>假如说，我们加入__str__方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class pp():</span><br><span class="line">    name &#x3D; &#39;ff&#39;</span><br><span class="line">    def __str__(self):</span><br><span class="line">        return &#39;pp(name:%s)&#39; % &#39;ff&#39;</span><br><span class="line">print(pp())</span><br></pre></td></tr></table></figure>
-<p>这样我们返回的就是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pp(name:ff)</span><br></pre></td></tr></table></figure>
-<p>也就是说，我们通过定义__str__方法，并返回我们想要输出的内容，那么当我们想要直接访问这个类时，系统会主动调用__str__方法，返回的不是类类型的标志语，而是我们自定义的内容</p>
-<h2 id="对于可迭代对象和迭代器的补充："><a href="#对于可迭代对象和迭代器的补充：" class="headerlink" title="对于可迭代对象和迭代器的补充："></a>对于可迭代对象和迭代器的补充：</h2><p>之前我们说过，能被for直接作用的是可迭代对象，能使用next()方法的是迭代器，这里我们完善一下<br>我们知道，一个对象中往往含有许多方法和属性，而dir函数可以帮助我们查看这些方法和属性。当我们对一个迭代器使用dir函数查看时，我们能看到其中有<strong>iter</strong>()和<strong>next</strong>()方法，这个很关键。在python中，若一个对象含有<strong>iter</strong>()方法，那么这个方法会返回一个可迭代对象，而若再含有__next__方法，那么这个对象就可以被调用next()方法，那么该对象就是迭代器<br>由此，可迭代对象和迭代器都有__iter__方法，都可被for循环调用，迭代器中多了__next__方法，可用next()方法迭代<br>由此，我们可以创建自己的可迭代对象了：<br>以斐波那契数列为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Fib(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.a, self.b &#x3D; 0, 1 # 初始化两个计数器a，b</span><br><span class="line">def __iter__(self):</span><br><span class="line">        return self # 实例本身就是迭代对象，故返回自己</span><br><span class="line">def __next__(self):</span><br><span class="line">        self.a, self.b &#x3D; self.b, self.a + self.b # 计算下一个值</span><br><span class="line">        if self.a &gt; 100: # 退出循环的条件</span><br><span class="line">            raise StopIteration()</span><br><span class="line">        return self.a # 返回下一个值</span><br></pre></td></tr></table></figure>
-<p>栗子中，我们定义了<strong>iter__方法使类实例化过程中返回一个可迭代对象，用__next__（）方法定义发生迭代的过程<br>对于这个例子进行简单分析：<br>__iter__使得一个对象成为可迭代对象<br>__next__定义了该迭代器发生一次迭代的过程和结果<br>StopIteration(终止异常):让一个迭代器终止迭代发生异常<br>比如for循环自带异常处理，所以我们在遍历列表时不会因索引过大报错导致的程序终止,while循环则没有异常处理，所以我们在自定义可迭代对象时，为了防止无休止的迭代，要加上stopiteration异常，使之迭代到一定程度时触发异常，转而让异常处理来处理，从而终止迭代。在此处，并不是真的发生错误了，而是相当于换了一种方式告诉调用者已经迭代完毕。<br>以上，我们发现自己所定义的迭代器并不支持索引调用其中的元素，这时，我们加入__getitem</strong>()方法的定义，这样，我们就可以通过访问下标索引的方式来访问可迭代对象中的元素</p>
-<h2 id="getitem-方法"><a href="#getitem-方法" class="headerlink" title="__getitem__方法"></a>__getitem__方法</h2><p>当实例对象使用[]运算符取值时，会自动调用调用内建函数（方法）<strong>getitem</strong>()，并将[]中的内容作为一个参数传入__getitem__方法中。由此看出，当我们想通过访问下标的方式让自定义实例对象返回对应列表等可迭代对象或字典中的目标内容时，只需定义__getitem__对象使其返回就可<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class DataBase:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        &#39;&#39;&#39;初始化方法&#39;&#39;&#39;</span><br><span class="line">        self.lt &#x3D; [3,6,9]</span><br><span class="line">    def __getitem__(self, key):</span><br><span class="line">        return self.lt[key]</span><br><span class="line">       </span><br><span class="line">data &#x3D; DataBase()</span><br><span class="line">print(data[1])</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;6</span><br></pre></td></tr></table></figure>
-<p>不难想到，列表的实现方式与这个如出一辙</p>
-<h2 id="dict-属性"><a href="#dict-属性" class="headerlink" title="__dict__属性"></a>__dict__属性</h2><p>之前我们用dir函数查看对象所含有或继承的方法和属性，现在我们介绍一个内置的__dict__属性，用它来查看某一对象自己的属性和方法，(当然，其作为对象的一个属性，它的作用之一也是存储这些信息)在这里，与dir有几点不同：<br>1.dir函数生成的是list结构，其中只包括属性和方法的名称<br>__dict__则展示了其作为dict的结构，key对应名称，value对应具体的值或方法定义<br>2.dir函数生成全部的属性和方法(包括继承的)<br>__dict__属性只展示部分属性或方法(不包括继承的)<br>3.利用__dict__可以更改对象的属性，而dir不可<br>栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Classname.__dict__[key] &#x3D; value</span><br></pre></td></tr></table></figure>
-<p>和正常的字典赋值差不多，就是多了一个类或实例访问<br>另外，实例对象和类的__dict__属性有所不同<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class DataBase:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        &#39;&#39;&#39;初始化方法&#39;&#39;&#39;</span><br><span class="line">        self.lt &#x3D; [3,6,9]</span><br><span class="line">    def __getitem__(self, key):</span><br><span class="line">        return self.lt[key]</span><br><span class="line">    def ff(self):</span><br><span class="line">        return self.lt[2]</span><br><span class="line">data &#x3D; DataBase()</span><br><span class="line">print(data.__dict__)</span><br><span class="line">print(DataBase.__dict__)</span><br></pre></td></tr></table></figure>
-<p>返回</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#39;lt&#39;: [3, 6, 9]&#125;</span><br><span class="line">&#123;&#39;__module__&#39;: &#39;__main__&#39;, &#39;__init__&#39;: &lt;function DataBase.__init__ at 0x0000018994282040&gt;, &#39;__getitem__&#39;: &lt;function DataBase.__getitem__ at 0x00000189942820D0&gt;, &#39;ff&#39;: &lt;function DataBase.ff at 0x0000018994282160&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;DataBase&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;DataBase&#39; objects&gt;, &#39;__doc__&#39;: None&#125;</span><br></pre></td></tr></table></figure>
-<p>可见实例对象的__dict__属性仅包含self.xxx等的实例化属性，而类则相对包括更多的属性方法等(包括类函数，静态函数，全局变量等)</p>
-<p>注意：<br>如int,list,dict等的内置数据类型无__dict__属性</p>
-<p>部分总结自<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017104324028448#0">点这里</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/85a1c1ed/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/85a1c1ed/" class="post-title-link" itemprop="url">几种特殊的数据类型</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-03-08 10:52:23 / 修改时间：11:09:48" itemprop="dateCreated datePublished" datetime="2021-03-08T10:52:23+08:00">2021-03-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="size-t"><a href="#size-t" class="headerlink" title="size_t"></a>size_t</h2><p>全称为size type,属于一种整型类型，能够保存一个整数，这个整数往往是一个大小(size)，也就是说，size_t是用来记录大小的数据类型<br>类似的还有wchar_t,ptrdiff_t</p>
-<h2 id="wchar-t"><a href="#wchar-t" class="headerlink" title="wchar_t"></a>wchar_t</h2><p>即wide char type,是一种记录一个宽字符的数据类型</p>
-<h2 id="ptrdiff-t"><a href="#ptrdiff-t" class="headerlink" title="ptrdiff_t"></a>ptrdiff_t</h2><p>即pointer difference type,用来记录两个指针之间的距离的数据类型</p>
-<h2 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h2><p>一般来说，以上三种数据类型均需要typedef来实现，而程序员们为了方便使用和记忆而人为规定了这么几种，但在较新的C/C++标准中，wchar_t已经被涵盖在数据类型中了<br>可以直接使用了，其他的数据类型可以在其他常见的头文件的代码中看到定义</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1037,20 +1219,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
