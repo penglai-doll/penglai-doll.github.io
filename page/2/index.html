@@ -188,6 +188,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/f5d29790/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/f5d29790/" class="post-title-link" itemprop="url">记录一次作业</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-15 07:26:54" itemprop="dateCreated datePublished" datetime="2021-03-15T07:26:54+08:00">2021-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-28 14:00:21" itemprop="dateModified" datetime="2021-03-28T14:00:21+08:00">2021-03-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C-%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">C/C++语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>学校开了C语言课，老师布置了一个简单的小程序，输入一个三位整数，然后分别输出这个数的个位，十位，百位，<br>为了写出一个比较完善的代码，花了不少心思，也学了不少东西，在此记录一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">void main() &#123;</span><br><span class="line">    &#x2F;&#x2F;定义字符数组，以存储输入的数字</span><br><span class="line">    char strin[1024];</span><br><span class="line">    &#x2F;&#x2F;定义一个指针，以确保strlen函数的正常运行</span><br><span class="line">    char *strin_ptr;</span><br><span class="line">    &#x2F;&#x2F;将i初始化为零，以防初始化导致i的随机定义进而导致内存中混进莫名的东西</span><br><span class="line">    &#x2F;&#x2F;其实这里也可以不初始化，因为if的第一个判断条件已经避免这个问题了</span><br><span class="line">    int i&#x3D;0,p;</span><br><span class="line">    strin_ptr &#x3D; strin;</span><br><span class="line">    &#x2F;&#x2F;do while将先执行一遍传入需要的数字，然后进行判断，若符合要求，则不再执行循环</span><br><span class="line">    do</span><br><span class="line">    &#123;    &#x2F;&#x2F;清空缓冲区</span><br><span class="line">         fflush(stdin);</span><br><span class="line">         printf(&quot;Please input 3 integer:\n&quot;);</span><br><span class="line">         scanf(&quot;%d&quot;,&amp;i);</span><br><span class="line">         &#x2F;&#x2F;itoa将整形转换为字符，以便存储和计数</span><br><span class="line">         itoa(i,strin,10);</span><br><span class="line">         &#x2F;&#x2F;利用strlen判断输入数字的位数</span><br><span class="line">         p &#x3D; strlen(strin_ptr);</span><br><span class="line">         &#x2F;&#x2F;判断位数、类型是否符合</span><br><span class="line">         if ((t &#x3D;&#x3D; 0)|| (strin[0]&#x3D;&#x3D;&#39;0&#39;) || (p !&#x3D; 3)) &#123;</span><br><span class="line">             printf(&quot;This is ont a right integer,please input again!\n&quot;);</span><br><span class="line">         &#125;</span><br><span class="line">    &#125; while ((t &#x3D;&#x3D; 0)</span><br><span class="line"> || (strin[0]&#x3D;&#x3D;&#39;0&#39;) || (p !&#x3D; 3));</span><br><span class="line">    printf(&quot;Hundred position &#x3D; %c\n&quot;,strin[0]);</span><br><span class="line">    printf(&quot;Ten position &#x3D; %c\n&quot;,strin[1]);</span><br><span class="line">    printf(&quot;Individual position &#x3D; %c\n&quot;,strin[2]);</span><br><span class="line">    system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="缓冲区问题："><a href="#缓冲区问题：" class="headerlink" title="缓冲区问题："></a>缓冲区问题：</h2><h3 id="fflush-stdin"><a href="#fflush-stdin" class="headerlink" title="fflush(stdin)"></a>fflush(stdin)</h3><p>在此之前，我的代码是直接用的while循环且没有fflush(stdin)这一语句，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while (((int)i!&#x3D;i) || (strin[0]&#x3D;&#x3D;&#39;0&#39;) || (p !&#x3D; 3)) &#123;</span><br><span class="line">        printf(&quot;This is ont a right integer,please input again!\n&quot;);</span><br><span class="line">        scanf(&quot;%d,&amp;i&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>大概就是上面这个样子<br>造成的一个问题就是当第一次输入如abc这样不符合条件的字符类型的东西的时候，缓冲区存入‘abc’三个字符，<br>第一个scanf读入因不符合类型要求而无法读取缓冲区的内容，之后执行while循环语句，输出“请重新输入”并再次执行scanf语句，<br>我原本想着利用第二个scanf语句更改输入，结果scanf“不讲武德”，因为缓冲区已经有东西了(我们输入的不符合类型的内容)，所以scanf默认直接读取缓冲区的东西，导致进入了死循环<br>为了解决上面这个问题，我改用了do while并在第一句直接加上了fflush(stdin)语句来清空标准输入的缓冲区，这样，每一次执行循环的开始，都会清空输入的缓冲区，防止进入死循环</p>
+<h2 id="字符串与字符问题："><a href="#字符串与字符问题：" class="headerlink" title="字符串与字符问题："></a>字符串与字符问题：</h2><h3 id="Gets"><a href="#Gets" class="headerlink" title="Gets():"></a>Gets():</h3><p>C语言中，其实不存在字符串这个东西，只有char类型来存储字符，能勉强算上存储字符的变量只有字符数组了，一个字符数组的名称相当于指向其首字母元素的指针，<br>但很可惜，字符数组并不能作为变量传入scanf，会报错。<br>所以，为了将缓冲区的字符串传入，不能用scanf,要用gets(),并将要传入的字符数组作为参数传入</p>
+<h2 id="判断类型是否正确："><a href="#判断类型是否正确：" class="headerlink" title="判断类型是否正确："></a>判断类型是否正确：</h2><p>刚开始在while中我用了一个强制类型转换(int)i!=i来判断i是不是输入了正确类型，其实意义不大，因为在scanf中也有，只会读取缓冲区中的整型，<br>如果我们输入了错误的类型，scanf压根不会读取，这里我们就要用到scanf的返回值了</p>
+<h3 id="scanf的返回值："><a href="#scanf的返回值：" class="headerlink" title="scanf的返回值："></a>scanf的返回值：</h3><p>scanf函数其实是存在返回值的，他返回读取到的匹配字符数目，<br>比如我们输了3个%d,恰好缓冲区有三个整型的数与之匹配，那么就返回3，<br>如果没有匹配的类型，scanf就不会读取缓冲区的任何内容，并返回0.<br>在这里重新说一下scanf的作用，其读取缓冲区中的内容并将其赋值到传入的后续参数中去，读取的内容与传入的第一个参数中的%+字母有关，其决定了读取内容的类型</p>
+<h2 id="判断字符数组的长度"><a href="#判断字符数组的长度" class="headerlink" title="判断字符数组的长度"></a>判断字符数组的长度</h2><p>我也不知道怎么回事，我试着将字符数组a作为参数传入strlen函数却发现编译器报错，后来查了一下,strlen函数的声明是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unsigned int strlen(char *s);</span><br></pre></td></tr></table></figure>
+<p>其传入的参数是指针，但理应传入数组应该也不会报错，最终我又加了一个指针来防止它报错</p>
+<h3 id="strlen函数和sizeof函数的区别"><a href="#strlen函数和sizeof函数的区别" class="headerlink" title="strlen函数和sizeof函数的区别"></a>strlen函数和sizeof函数的区别</h3><p>sizeof函数和strlen函数一样，传入的参数类型须是指针，<br>当然，当一个字符串被赋值进入一个指针后，该指针就指向了一个字符串，也可以说，字符串就相当于了一个指针的地位，所以可以直接作为参数传入这两个函数中去。<br>strlen读取并返回字符串实际长度,而sizeof返回包括0/在内的所有字符细节，也就是在内存中的长度<br>——————————————————<br>对于上面的后续补充：<br>get()函数有一个大缺点，他会无限读取stdin中的字符串直到遇见/0或换行符，也就是说，如果读取的字符串长度大于字符数组的长度，就会发生内存越界的坏情况<br>为了防止这种情况，我们最好使用fget函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式</span><br><span class="line">fget(char* char,int n,FILE* stream)</span><br><span class="line">栗子</span><br><span class="line">fget(strlist,sizeof(strlist),stdin)</span><br></pre></td></tr></table></figure>
+<p>传入的第一个参数为指向字符串存储的变量的指针，第二个参数为读取字符串的长度，通常用sizeof来限制，传入的第三个参数为文件指针，以stdin使其读取输入缓冲区</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/8a0f52d1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -211,17 +298,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-10 11:21:16 / 修改时间：11:23:35" itemprop="dateCreated datePublished" datetime="2021-03-10T11:21:16+08:00">2021-03-10</time>
+              <time title="创建时间：2021-03-10 11:21:16" itemprop="dateCreated datePublished" datetime="2021-03-10T11:21:16+08:00">2021-03-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-28 13:59:41" itemprop="dateModified" datetime="2021-03-28T13:59:41+08:00">2021-03-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
                 </span>
             </span>
 
@@ -289,17 +382,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-10 11:17:27 / 修改时间：14:52:52" itemprop="dateCreated datePublished" datetime="2021-03-10T11:17:27+08:00">2021-03-10</time>
+              <time title="创建时间：2021-03-10 11:17:27" itemprop="dateCreated datePublished" datetime="2021-03-10T11:17:27+08:00">2021-03-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-28 13:59:36" itemprop="dateModified" datetime="2021-03-28T13:59:36+08:00">2021-03-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
                 </span>
             </span>
 
@@ -382,17 +481,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-08 10:52:23 / 修改时间：11:09:48" itemprop="dateCreated datePublished" datetime="2021-03-08T10:52:23+08:00">2021-03-08</time>
+              <time title="创建时间：2021-03-08 10:52:23" itemprop="dateCreated datePublished" datetime="2021-03-08T10:52:23+08:00">2021-03-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-28 14:00:17" itemprop="dateModified" datetime="2021-03-28T14:00:17+08:00">2021-03-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/C-C-%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">C/C++语言学习</span></a>
                 </span>
             </span>
 
@@ -461,7 +566,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 10:59:48" itemprop="dateModified" datetime="2021-03-08T10:59:48+08:00">2021-03-08</time>
+                <time title="修改时间：2021-03-28 13:59:33" itemprop="dateModified" datetime="2021-03-28T13:59:33+08:00">2021-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -469,7 +574,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
                 </span>
             </span>
 
@@ -501,11 +606,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; abs(-1)</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; abs(1)</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
 <p>divmod：返回两个数值的商和余数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; divmod(5,2)</span><br><span class="line">(2, 1)</span><br><span class="line">&gt;&gt; divmod(5.5,2)</span><br><span class="line">(2.0, 1.5)</span><br></pre></td></tr></table></figure>
-<p>max：返回可迭代对象中的元素中的最大值或者所有参数的最大值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; max(1,2) # 传入参数 取较大者</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; max(&#39;123&#39;) # 传入1个可迭代对象，取其最大元素值</span><br><span class="line">&#39;3&#39;</span><br><span class="line">&gt;&gt;&gt; max(-1,0) # 数值默认取数值较大者</span><br><span class="line">0</span><br><span class="line">&gt;&gt;&gt; max(-1,0,key &#x3D; abs) # 传入了求绝对值函数，则参数都会进行求绝对值后再取较大者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure><br>min：返回可迭代对象中的元素中的最小值或者所有参数的最小值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; min(1,2) # 传入3个参数 取3个中较小者</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; min(&#39;123&#39;) # 传入1个可迭代对象，取其最小元素值</span><br><span class="line">&#39;1&#39;</span><br><span class="line">&gt;&gt;&gt; min(-1,-2) # 数值默认去数值较小者</span><br><span class="line">-2</span><br><span class="line">&gt;&gt;&gt; min(-1,-2,key &#x3D; abs)  # 传入了求绝对值函数，则参数都会进行求绝对值后再取较小者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure><br>pow：返回两个数值的幂运算值或其与指定整数的模值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; pow(2,3)</span><br><span class="line">&gt;&gt;&gt; 2**3</span><br><span class="line"> </span><br><span class="line">&gt;&gt;&gt; pow(2,3,4)</span><br><span class="line">&gt;&gt;&gt; pow(2,3)%4</span><br></pre></td></tr></table></figure>
+<p>max：返回可迭代对象中的元素中的最大值或者所有参数的最大值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; max(1,2) # 传入参数 取较大者</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; max(&#39;123&#39;) # 传入1个可迭代对象，取其最大元素值</span><br><span class="line">&#39;3&#39;</span><br><span class="line">&gt;&gt;&gt; max(-1,0) # 数值默认取数值较大者</span><br><span class="line">0</span><br><span class="line">&gt;&gt;&gt; max(-1,0,key &#x3D; abs) # 传入了求绝对值函数，则参数都会进行求绝对值后再取较大者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure><br>min：返回可迭代对象中的元素中的最小值或者所有参数的最小值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; min(1,2) # 传入3个参数 取3个中较小者</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; min(&#39;123&#39;) # 传入1个可迭代对象，取其最小元素值</span><br><span class="line">&#39;1&#39;</span><br><span class="line">&gt;&gt;&gt; min(-1,-2) # 数值默认去数值较小者</span><br><span class="line">-2</span><br><span class="line">&gt;&gt;&gt; min(-1,-2,key &#x3D; abs)  # 传入了求绝对值函数，则参数都会进行求绝对值后再取较小者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure>
+<p>pow：返回两个数值的幂运算值或其与指定整数的模值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; pow(2,3)</span><br><span class="line">&gt;&gt;&gt; 2**3</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; pow(2,3,4)</span><br><span class="line">&gt;&gt;&gt; pow(2,3)%4</span><br></pre></td></tr></table></figure>
 <p>round：对浮点数进行四舍五入求值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; round(1.16,1)</span><br><span class="line">1.1</span><br></pre></td></tr></table></figure>
-<p>sum：对元素类型是数值的可迭代对象中的每个元素求和<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 传入可迭代对象，要求是数字</span><br><span class="line">&gt;&gt;&gt; sum((1,2,3))</span><br><span class="line">6</span><br></pre></td></tr></table></figure><br>————————————————<br>本文转载自CSDN大佬「Holidaylovesam」的博客<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/alice_tl/article/details/80867196">点这里</a></p>
+<p>sum：对元素类型是数值的可迭代对象中的每个元素求和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 传入可迭代对象，要求是数字</span><br><span class="line">&gt;&gt;&gt; sum((1,2,3))</span><br><span class="line">6</span><br></pre></td></tr></table></figure>
+<p>————————————————<br>本文转载自CSDN大佬「Holidaylovesam」的博客<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/alice_tl/article/details/80867196">点这里</a><br>```</p>
 
       
     </div>
@@ -556,7 +665,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:11:50" itemprop="dateModified" datetime="2021-03-08T11:11:50+08:00">2021-03-08</time>
+                <time title="修改时间：2021-03-28 13:59:28" itemprop="dateModified" datetime="2021-03-28T13:59:28+08:00">2021-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -564,7 +673,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
                 </span>
             </span>
 
@@ -665,7 +774,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:02:25" itemprop="dateModified" datetime="2021-03-08T11:02:25+08:00">2021-03-08</time>
+                <time title="修改时间：2021-03-28 13:59:21" itemprop="dateModified" datetime="2021-03-28T13:59:21+08:00">2021-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -673,7 +782,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
                 </span>
             </span>
 
@@ -757,7 +866,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-18 15:45:08" itemprop="dateModified" datetime="2021-03-18T15:45:08+08:00">2021-03-18</time>
+                <time title="修改时间：2021-03-28 14:00:12" itemprop="dateModified" datetime="2021-03-28T14:00:12+08:00">2021-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -765,7 +874,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/C-C-%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">C/C++语言学习</span></a>
                 </span>
             </span>
 
@@ -846,7 +955,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:02:01" itemprop="dateModified" datetime="2021-03-08T11:02:01+08:00">2021-03-08</time>
+                <time title="修改时间：2021-03-28 13:59:10" itemprop="dateModified" datetime="2021-03-28T13:59:10+08:00">2021-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -854,7 +963,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
                 </span>
             </span>
 
@@ -929,7 +1038,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:01:41" itemprop="dateModified" datetime="2021-03-08T11:01:41+08:00">2021-03-08</time>
+                <time title="修改时间：2021-03-28 13:58:56" itemprop="dateModified" datetime="2021-03-28T13:58:56+08:00">2021-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -937,7 +1046,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
                 </span>
             </span>
 
@@ -979,90 +1088,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name &#x3D; &#39;hello world!&#39;</span><br><span class="line">D &#x3D; &#123;&#39;id&#39;:&#39;1&#39;,&#39;page&#39;:&#39;2&#39;&#125;</span><br><span class="line">Print(f&#39;print &#123;name&#125;&#39;)</span><br><span class="line">Print(f&#39;print &#123;name.upper()&#125;)</span><br><span class="line">Print(f&#39;turn to &#123;d[&quot;page&quot;]&#125;)</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Print hello world</span><br><span class="line">Print HELLO WORLD</span><br><span class="line">Turn to 2</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/51641b53/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/51641b53/" class="post-title-link" itemprop="url">Python中的交叉排序问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-22 11:12:17" itemprop="dateCreated datePublished" datetime="2021-02-22T11:12:17+08:00">2021-02-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 11:01:23" itemprop="dateModified" datetime="2021-03-08T11:01:23+08:00">2021-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在计蒜客中学习Python时，遇到了一个很有趣的排序问题：</p>
-<p>输入一行 kk 个用空格分隔开的整数，依次为 n_1, n_2 … n_kn 1    ,n 2…n k。<br>请将所有下标不能被 3 但可以被 2 整除的数在这些数字原有的位置上进行升序排列，此外，将余下下标能被 3 整除的数在这些数字原有的位置上进行降序排列。<br>输出包括一行，与输入相对应的若干个整数，为排序后的结果，整数之间用空格分隔。</p>
-<p>自己琢磨了很长时间，其中也发现了各种各样的问题，下面分享一下：</p>
-<p>输入例：<br>1 5 4 3 10 7 19<br>输出例：<br>1 3 7 5 10 4 19</p>
-<h2 id="程序样例"><a href="#程序样例" class="headerlink" title="程序样例"></a>程序样例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">n = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().split(<span class="string">&#x27; &#x27;</span>)]</span><br><span class="line">n1 = []</span><br><span class="line">n2 = []</span><br><span class="line">n3 = []</span><br><span class="line">nc= []</span><br><span class="line"><span class="comment"># 将满足下标不同条件的列表中的数放入不同的空列表中</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="keyword">if</span> ((index+1) % 3 != 0) and ((index+1) % 2 == 0):</span><br><span class="line">        n1.append(n[index])</span><br><span class="line">    <span class="keyword">elif</span> ((index+1) % 3 ==0):</span><br><span class="line">        n2.append(n[index])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        n3.append(n[index])</span><br><span class="line"><span class="comment"># 列表排序</span></span><br><span class="line">n1.sort()</span><br><span class="line">n2.sort(reverse = True)</span><br><span class="line"><span class="comment"># 再将列表元素按照原序依次放回</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="keyword">if</span> ((index+1) % 3 != 0) and ((index+1) % 2 == 0) and n1:</span><br><span class="line">        nc.append(n1.pop(0))</span><br><span class="line">    <span class="keyword">elif</span> ((index+1) % 3 ==0) and n2:</span><br><span class="line">        nc.append(n2.pop(0))</span><br><span class="line">    <span class="keyword">elif</span> n3:</span><br><span class="line">        nc.append(n3.pop(0))</span><br><span class="line"><span class="comment"># 按照格式输出</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(n)):</span><br><span class="line">    <span class="built_in">print</span>(nc[i],end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-<h3 id="格式化输入"><a href="#格式化输入" class="headerlink" title="格式化输入"></a>格式化输入</h3><p>比如以空格相间隔的数据的输入：100 200 300<br>可以用下面的方式读取</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># example 1</span></span><br><span class="line"></span><br><span class="line">x = [int(i) <span class="keyword">for</span> i <span class="keyword">in</span> input().split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># exapmle 2</span></span><br><span class="line"></span><br><span class="line">x = map(int,input().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>其中，input().split(‘ ‘)是将输入的数据以split函数传入的参数为标志进行分割并返回分割后的列表<br>(注：split函数返回的列表为字符串列表！！！）<br>example 2是一种比较巧妙的方法</p>
-<h3 id="判断列表是否为空"><a href="#判断列表是否为空" class="headerlink" title="判断列表是否为空"></a>判断列表是否为空</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">if</span> a:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;YES&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;NO&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>以上只是个例子，是为了说明若一个列表为空，则其对应布尔值为False<br>可以利用这个来判断一个列表是否为空<br>程序例子中使用这个判断来防止列表空时pop()函数对空列表使用报错</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u011501388/article/details/101788381">点这里</a><br>      [点这里](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43113241/article/details/109965485%EF%BC%89">https://blog.csdn.net/weixin_43113241/article/details/109965485）</a></p>
-
       
     </div>
 
@@ -1146,20 +1171,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

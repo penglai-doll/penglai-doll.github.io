@@ -28,7 +28,7 @@
 <meta property="og:description" content="Python内置的函数及其用法。 分类为了方便记忆，已经有很多开发者将这些内置函数进行了如下分类： 数学运算(7个)类型转换(24个)序列操作(8个)对象操作(7个)反射操作(8个)变量操作(2个)交互操作(2个)文件操作(1个)编译执行(4个)装饰器(3个) 汇总数学运算abs    求数值的绝对值divmod    返回两个数值的商和余数max    返回可迭代对象中的元素中的最大值或者所有参">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-04T01:08:21.000Z">
-<meta property="article:modified_time" content="2021-03-08T02:59:48.837Z">
+<meta property="article:modified_time" content="2021-03-28T05:59:33.052Z">
 <meta property="article:author" content="PengLaiDoll">
 <meta property="article:tag" content="Python学习">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-08 10:59:48" itemprop="dateModified" datetime="2021-03-08T10:59:48+08:00">2021-03-08</time>
+                <time title="修改时间：2021-03-28 13:59:33" itemprop="dateModified" datetime="2021-03-28T13:59:33+08:00">2021-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +232,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
                 </span>
             </span>
 
@@ -264,11 +264,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; abs(-1)</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; abs(1)</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
 <p>divmod：返回两个数值的商和余数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; divmod(5,2)</span><br><span class="line">(2, 1)</span><br><span class="line">&gt;&gt; divmod(5.5,2)</span><br><span class="line">(2.0, 1.5)</span><br></pre></td></tr></table></figure>
-<p>max：返回可迭代对象中的元素中的最大值或者所有参数的最大值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; max(1,2) # 传入参数 取较大者</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; max(&#39;123&#39;) # 传入1个可迭代对象，取其最大元素值</span><br><span class="line">&#39;3&#39;</span><br><span class="line">&gt;&gt;&gt; max(-1,0) # 数值默认取数值较大者</span><br><span class="line">0</span><br><span class="line">&gt;&gt;&gt; max(-1,0,key &#x3D; abs) # 传入了求绝对值函数，则参数都会进行求绝对值后再取较大者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure><br>min：返回可迭代对象中的元素中的最小值或者所有参数的最小值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; min(1,2) # 传入3个参数 取3个中较小者</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; min(&#39;123&#39;) # 传入1个可迭代对象，取其最小元素值</span><br><span class="line">&#39;1&#39;</span><br><span class="line">&gt;&gt;&gt; min(-1,-2) # 数值默认去数值较小者</span><br><span class="line">-2</span><br><span class="line">&gt;&gt;&gt; min(-1,-2,key &#x3D; abs)  # 传入了求绝对值函数，则参数都会进行求绝对值后再取较小者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure><br>pow：返回两个数值的幂运算值或其与指定整数的模值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; pow(2,3)</span><br><span class="line">&gt;&gt;&gt; 2**3</span><br><span class="line"> </span><br><span class="line">&gt;&gt;&gt; pow(2,3,4)</span><br><span class="line">&gt;&gt;&gt; pow(2,3)%4</span><br></pre></td></tr></table></figure>
+<p>max：返回可迭代对象中的元素中的最大值或者所有参数的最大值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; max(1,2) # 传入参数 取较大者</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; max(&#39;123&#39;) # 传入1个可迭代对象，取其最大元素值</span><br><span class="line">&#39;3&#39;</span><br><span class="line">&gt;&gt;&gt; max(-1,0) # 数值默认取数值较大者</span><br><span class="line">0</span><br><span class="line">&gt;&gt;&gt; max(-1,0,key &#x3D; abs) # 传入了求绝对值函数，则参数都会进行求绝对值后再取较大者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure><br>min：返回可迭代对象中的元素中的最小值或者所有参数的最小值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; min(1,2) # 传入3个参数 取3个中较小者</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; min(&#39;123&#39;) # 传入1个可迭代对象，取其最小元素值</span><br><span class="line">&#39;1&#39;</span><br><span class="line">&gt;&gt;&gt; min(-1,-2) # 数值默认去数值较小者</span><br><span class="line">-2</span><br><span class="line">&gt;&gt;&gt; min(-1,-2,key &#x3D; abs)  # 传入了求绝对值函数，则参数都会进行求绝对值后再取较小者</span><br><span class="line">-1</span><br></pre></td></tr></table></figure>
+<p>pow：返回两个数值的幂运算值或其与指定整数的模值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; pow(2,3)</span><br><span class="line">&gt;&gt;&gt; 2**3</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; pow(2,3,4)</span><br><span class="line">&gt;&gt;&gt; pow(2,3)%4</span><br></pre></td></tr></table></figure>
 <p>round：对浮点数进行四舍五入求值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; round(1.16,1)</span><br><span class="line">1.1</span><br></pre></td></tr></table></figure>
-<p>sum：对元素类型是数值的可迭代对象中的每个元素求和<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 传入可迭代对象，要求是数字</span><br><span class="line">&gt;&gt;&gt; sum((1,2,3))</span><br><span class="line">6</span><br></pre></td></tr></table></figure><br>————————————————<br>本文转载自CSDN大佬「Holidaylovesam」的博客<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/alice_tl/article/details/80867196">点这里</a></p>
+<p>sum：对元素类型是数值的可迭代对象中的每个元素求和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 传入可迭代对象，要求是数字</span><br><span class="line">&gt;&gt;&gt; sum((1,2,3))</span><br><span class="line">6</span><br></pre></td></tr></table></figure>
+<p>————————————————<br>本文转载自CSDN大佬「Holidaylovesam」的博客<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/alice_tl/article/details/80867196">点这里</a><br>```</p>
 
     </div>
 
@@ -366,20 +370,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
