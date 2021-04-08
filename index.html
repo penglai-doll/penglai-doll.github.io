@@ -188,6 +188,241 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/88ccd4cd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/88ccd4cd/" class="post-title-link" itemprop="url">MIPS指令集初学</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-08 16:00:56 / 修改时间：16:22:04" itemprop="dateCreated datePublished" datetime="2021-04-08T16:00:56+08:00">2021-04-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="寄存器："><a href="#寄存器：" class="headerlink" title="寄存器："></a>寄存器：</h2><p>MIPS包含32个通用寄存器($0-$31),这些通用寄存器均为32位，硬件没有强制规定这些寄存器的作用，但实际使用中我们按照约定引入了一系列用法，使用过程中尽量使用约定名和助记符，而不直接使用寄存器编号</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>助记符</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>zero</td>
+<td>永远为0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>at</td>
+<td>用作汇编器的暂时变量</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>v0,v1</td>
+<td>子函数调用返回结果</td>
+</tr>
+<tr>
+<td>4-7</td>
+<td>a0-a3</td>
+<td>子函数调用的参数</td>
+</tr>
+<tr>
+<td>8-15</td>
+<td>t0-t7</td>
+<td>暂时变量，子函数使用时不需要保存与恢复</td>
+</tr>
+<tr>
+<td>16-23</td>
+<td>s0-s7</td>
+<td>子函数寄存器变量。在返回之前子函数必须保存和恢复使用过的变量，从而调用函数知道这些寄存器的值没有变化</td>
+</tr>
+<tr>
+<td>24-25</td>
+<td>t8,t9</td>
+<td>暂时变量，子函数使用时不需要保存和恢复</td>
+</tr>
+<tr>
+<td>26-27</td>
+<td>k0,k1</td>
+<td>通常被中断或异常处理程序使用保存一些系统参数</td>
+</tr>
+<tr>
+<td>28</td>
+<td>gp</td>
+<td>全局指针。一些运行系统维护这个指针来更方便的存取static和extern变量</td>
+</tr>
+<tr>
+<td>29</td>
+<td>sp</td>
+<td>堆栈指针</td>
+</tr>
+<tr>
+<td>30</td>
+<td>s8/fp</td>
+<td>框架指针/第九个寄存器变量</td>
+</tr>
+<tr>
+<td>31</td>
+<td>ra</td>
+<td>子函数的返回地址</td>
+</tr>
+</tbody></table>
+<p>两个特殊的寄存器：</p>
+<h3 id="0"><a href="#0" class="headerlink" title="$0"></a>$0</h3><p>不管我们存放什么值,其返回值永远为0</p>
+<h3 id="31"><a href="#31" class="headerlink" title="$31"></a>$31</h3><p>永远存放着正常函数调用指令(jal)的返回地址</p>
+<h3 id="at"><a href="#at" class="headerlink" title="$at"></a>$at</h3><p>由编译器生成复合指令时使用</p>
+<h3 id="v0-v1"><a href="#v0-v1" class="headerlink" title="$v0,$v1"></a>$v0,$v1</h3><p>用来存放一个子程序(函数)的非浮点运算的结果或返回值。若这两个寄存器的大小不足够存放结果，系统将通过内存来完成存储</p>
+<h3 id="a0-a3"><a href="#a0-a3" class="headerlink" title="$a0-a3"></a>$a0-a3</h3><p>用来传递子函数调用时前四个非浮点参数</p>
+<h3 id="t0-t9"><a href="#t0-t9" class="headerlink" title="$t0-t9"></a>$t0-t9</h3><p>依照约定，这些寄存器在被子程序调用时可以不用被保存并随便使用，适合存储暂时变量，但因为可以被随便调用，因此不被推荐用来存储不变量，因为子程序有可能会调用这些寄存器将其中的值破坏掉</p>
+<p>换句话说，这些寄存器谁都能用，而且不必保存里面原有的数据</p>
+<h3 id="s0-s8"><a href="#s0-s8" class="headerlink" title="$s0-s8"></a>$s0-s8</h3><p>依照约定，子函数在函数返回时必须保证调用完这些寄存器之后要恢复这些寄存器中的值为函数调用之前的值，这样的约定使得这几个寄存器通常被用来存放常量</p>
+<p>换句话说，这些寄存器若想使用，必须先保证能恢复其中原来的数</p>
+<h3 id="k0-k1"><a href="#k0-k1" class="headerlink" title="$k0,k1"></a>$k0,k1</h3><p>被OS的异常或中断处理程序使用，被使用后将不会恢复原来的值，因此通常不会被使用</p>
+<h3 id="gp"><a href="#gp" class="headerlink" title="$gp"></a>$gp</h3><p>如果存放一个全局指针，它将指向程序运行时所决定的静态数据区(static date)的一个位置，这意味着，利用gp做基指针，在基指针32k左右的数据存取，系统只需要一条指令即可完成</p>
+<p>补充(之所以出现这个，是因为RISC结构CPU一条指令为32位，而地址总线也为32位，也就是说，正常条件下不可能通过一条指令完成对于内存的访问)</p>
+<h3 id="sp"><a href="#sp" class="headerlink" title="$sp"></a>$sp</h3><p>堆栈指针的上下需要显示的 通过指令来实现，因此MIPS通常只在子函数进入和退出时调整栈堆的指针。当SP被函数调用时，通常指向被调用栈的底部，利用其相对偏移来存取堆栈上面的堆栈变量</p>
+<h3 id="fp-s8"><a href="#fp-s8" class="headerlink" title="$fp/s8"></a>$fp/s8</h3><p>fp作为框架指针通常被函数用来记录堆栈的情况</p>
+<p>(注：说白了fp,sp和ss,sp关系差不多)</p>
+<p>(关于pushl和popl：在mips中pushl是按照从右往左顺序入栈，popl则是从左往右，举个栗子：</p>
+<p>popl {$eax,$ebx}//先是ebx入栈，再是eax</p>
+<p>)</p>
+<h3 id="ra"><a href="#ra" class="headerlink" title="$ra"></a>$ra</h3><p>当我们调用任何一个子函数时，返回地址存放在ra寄存器中，因此，子程序中最后一个指令往往是jr ra,如果子函数嵌套调用函数,往往通过栈堆来保存ra中的值</p>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>hi 和 lo是乘法运算器相关的两个寄存器，一般除了乘法运算，不存放任何值</p>
+<p>若浮点运算协处理器存在的话。则有32个浮点寄存器$f0到$f31</p>
+<h2 id="整数乘法单元和寄存器"><a href="#整数乘法单元和寄存器" class="headerlink" title="整数乘法单元和寄存器"></a>整数乘法单元和寄存器</h2><p>在MIPS中，只有在整数乘法运算完成得到完整的结果后，才能读取结果寄存器</p>
+<h2 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h2><p>基址－偏移 寻址</p>
+<h2 id="指令格式：-所有指令都是32位长"><a href="#指令格式：-所有指令都是32位长" class="headerlink" title="指令格式：(所有指令都是32位长)"></a>指令格式：(所有指令都是32位长)</h2><h3 id="R格式"><a href="#R格式" class="headerlink" title="R格式"></a>R格式</h3><p>(操作码、第一个源操作数、第二个源操作数、目标寄存器(放结果)、偏移量、函数码)</p>
+<p>举个栗子：</p>
+<p>add $8,$17,$18</p>
+<p>#$8 = $17 + $18</p>
+<h3 id="I格式"><a href="#I格式" class="headerlink" title="I格式"></a>I格式</h3><p>(带有立即数，target的指令)</p>
+<p>(操作码、第一个源操作数寄存器、目标寄存器、地址相对基址偏移量)</p>
+<p>(分类：装入/存储指令、分支指令、立即数运算指令)</p>
+<h3 id="J格式"><a href="#J格式" class="headerlink" title="J格式"></a>J格式</h3><h2 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h2><p>小结：i结尾代表可用执行数immediate</p>
+<p>u结尾代表无符号unsigned</p>
+<h3 id="加载-保存-指令集"><a href="#加载-保存-指令集" class="headerlink" title="加载/保存 指令集"></a>加载/保存 指令集</h3><h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>lw(load word)</p>
+<p>lw reg,ram  #从对应的ram中复制内容到reg中</p>
+<p>lb(load byte)</p>
+<p>用法同上</p>
+<h4 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h4><p>sw(store word)</p>
+<p>sw reg,ram  #将指定寄存器中的数据写入特定内存中</p>
+<p>sb(store byte)</p>
+<p>用法同上</p>
+<p>load immediate</p>
+<p>li reg,value  #加载立即数</p>
+<h3 id="立即与间接寻址"><a href="#立即与间接寻址" class="headerlink" title="立即与间接寻址"></a>立即与间接寻址</h3><h4 id="直接寻址"><a href="#直接寻址" class="headerlink" title="直接寻址"></a>直接寻址</h4><p>la(load address)</p>
+<p>la reg,var1  #表示将var1段的内存地址塞入reg寄存器中</p>
+<h4 id="间接寻址"><a href="#间接寻址" class="headerlink" title="间接寻址"></a>间接寻址</h4><p>lw reg1,(reg2)  #将reg2中的ram地址加载进reg1中</p>
+<p>sw reg1,(reg2)</p>
+<h4 id="加偏移量"><a href="#加偏移量" class="headerlink" title="加偏移量"></a>加偏移量</h4><p>lw reg1,4(reg2)</p>
+<p>sw reg1,-12(reg2)</p>
+<h3 id="算数指令集"><a href="#算数指令集" class="headerlink" title="算数指令集"></a>算数指令集</h3><p>注：</p>
+<p>最多三个操作数</p>
+<p>操作数只能是寄存器，不可为地址</p>
+<p>所有指令统一为32位</p>
+<p>add reg,reg1,reg2</p>
+<p>sub reg,reg1,reg2</p>
+<p>addi reg,reg1,value(带立即数的加)</p>
+<p>addu reg,reg1,reg2(不带符号的数加)</p>
+<p>subi reg,reg1,reg2</p>
+<p>subu reg,reg1,reg2</p>
+<p>mult reg1,reg2(两个32位数分别存在于reg1、reg2,然后相乘得到一个64位数放在hi,lo中，hi高位，lo低位)</p>
+<p>div reg1,reg2(reg1/reg2,商数存储在lo，余数放在hi)</p>
+<p>or reg,reg1,reg2</p>
+<p>xor reg,reg1,reg2</p>
+<p>nor reg,reg1,reg2</p>
+<p>mfhi reg(将hi的值传给reg)</p>
+<p>mflo reg(将lo的值传给reg)</p>
+<p>move reg1,reg2(reg1 = reg2)</p>
+<p>slt reg,reg1,reg2(if reg1&lt;reg2 reg=1 else reg=0)</p>
+<p>sltu reg,reg1,reg2(同上，只不过是无符号数)</p>
+<p>slti reg,reg1,value</p>
+<p>sltiu reg,reg1,value</p>
+<p>#按位移动</p>
+<p>sll reg1,reg2,value(reg1=reg2按位左移value)</p>
+<p>srl reg1,reg2,value(reg1=reg2按位右移value)</p>
+<p>sra reg1,reg2,value(同上右移，注意符号位保留)</p>
+<p>#末尾带v可以让立即数在寄存器中</p>
+<p>sllv reg1,reg2,reg3(作用同上，按位移动，只不过立即数保存在了reg3中)</p>
+<p>srlv reg1,reg2,reg3</p>
+<p>srav reg1,reg2,reg3</p>
+<h3 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h3><p>分支</p>
+<p>beq reg1,reg2,target (equal)</p>
+<p>blt reg1,reg2,target (lower than)</p>
+<p>ble reg1,reg2,target (low equal)</p>
+<p>bgt reg1,reg2,target (bigger than)</p>
+<p>bge reg1,reg2,target (big equal)</p>
+<p>bne reg1,reg2,target (not equal)</p>
+<h3 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h3><p>j target  #直接跳转</p>
+<p>jr reg  #跳到该寄存器给的地址处</p>
+<h3 id="子程序调用"><a href="#子程序调用" class="headerlink" title="子程序调用"></a>子程序调用</h3><p>jal (name)  #将当前的程序计数器(PC)保存在$ra中，调用子程序，返回值设为PC+8</p>
+<p>如果多次嵌套调用子程序，那么返回地址的标记就用栈来存储</p>
+<p>至于为什么+8，因为是流水线技术，在真正执行这一条指令之前jal下一条指令已经进入流水线了，因此一定会执行完下一句，所以pc指向的是jal指令的下下条指令</p>
+<p>补：关于PC寄存器</p>
+<p>每一个线程启动时，都会建立一个PC寄存器(程序计数器),该寄存器指向下一条命令执行的地址(类似于x86的cs:ip)</p>
+<h2 id="MIPS的5阶段流水线："><a href="#MIPS的5阶段流水线：" class="headerlink" title="MIPS的5阶段流水线："></a>MIPS的5阶段流水线：</h2><p>IF(fetch):取指令，PC值发生变化，指向当前指令</p>
+<p>ID(decode):指令译码，读寄存器</p>
+<p>EX：执行运算，对于Load/Store，计算地址；对于其他指令，执行运算操作</p>
+<p>MEM：访问内存，Load/Store的执行</p>
+<p>WB：数据写回寄存器</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/af3cdccb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -213,7 +448,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-04 11:34:00 / 修改时间：11:39:00" itemprop="dateCreated datePublished" datetime="2021-04-04T11:34:00+08:00">2021-04-04</time>
+              <time title="创建时间：2021-04-04 11:34:00 / 修改时间：11:39:38" itemprop="dateCreated datePublished" datetime="2021-04-04T11:34:00+08:00">2021-04-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -331,7 +566,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-01 20:13:39" itemprop="dateModified" datetime="2021-04-01T20:13:39+08:00">2021-04-01</time>
+                <time title="修改时间：2021-04-04 11:39:38" itemprop="dateModified" datetime="2021-04-04T11:39:38+08:00">2021-04-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -697,95 +932,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/2a1f355e/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/2a1f355e/" class="post-title-link" itemprop="url">常见OPE</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-27 23:32:00" itemprop="dateCreated datePublished" datetime="2021-03-27T23:32:00+08:00">2021-03-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-28 13:26:19" itemprop="dateModified" datetime="2021-03-28T13:26:19+08:00">2021-03-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94OD/" itemprop="url" rel="index"><span itemprop="name">逆向学习——OD</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="五种常见语言的OEP特征："><a href="#五种常见语言的OEP特征：" class="headerlink" title="五种常见语言的OEP特征："></a>五种常见语言的OEP特征：</h2><h3 id="C-（Microsoft-Visual-C-6-0）"><a href="#C-（Microsoft-Visual-C-6-0）" class="headerlink" title="C++ （Microsoft Visual C++ 6.0）"></a>C++ （Microsoft Visual C++ 6.0）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">0040577C &gt;&#x2F;$ 55        PUSH EBP          (C的入口)</span><br><span class="line"></span><br><span class="line">0040577D |. 8BEC      MOV EBP,ESP</span><br><span class="line"></span><br><span class="line">0040577F |. 6A FF      PUSH -1</span><br><span class="line"></span><br><span class="line">00405781 |. 68 30B24000  PUSH EasyClea.0040B230</span><br><span class="line"></span><br><span class="line">00405786 |. 68 84704000  PUSH EasyClea.00407084         ; SE 句柄安装</span><br><span class="line"></span><br><span class="line">0040578B |. 64:A1 0000000&gt;MOV EAX,DWORD PTR FS:[0]</span><br><span class="line"></span><br><span class="line">00405791 |. 50        PUSH EAX</span><br><span class="line"></span><br><span class="line">00405792 |. 64:8925 00000&gt;MOV DWORD PTR FS:[0],ESP</span><br><span class="line"></span><br><span class="line">00405799 |. 83EC 58    SUB ESP,58</span><br><span class="line"></span><br><span class="line">0040579C |. 53        PUSH EBX</span><br><span class="line"></span><br><span class="line">0040579D |. 56        PUSH ESI</span><br><span class="line"></span><br><span class="line">0040579E |. 57        PUSH EDI</span><br><span class="line"></span><br><span class="line">0040579F |. 8965 E8    MOV [LOCAL.6],ESP</span><br><span class="line"></span><br><span class="line">004057A2 |. FF15 ECB04000 CALL DWORD PTR DS:[&lt;&amp;KERNEL32.GetVersion&gt;; kernel32.GetVersion</span><br></pre></td></tr></table></figure>
-<p>-——————————————————————————————————————————–</p>
-<h3 id="E语言"><a href="#E语言" class="headerlink" title="E语言"></a>E语言</h3><p>这个和C极度像,要分清</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">0040389F &gt;&#x2F;$ 55        PUSH EBP</span><br><span class="line"></span><br><span class="line">004038A0 |. 8BEC      MOV EBP,ESP</span><br><span class="line"></span><br><span class="line">004038A2 |. 6A FF      PUSH -1</span><br><span class="line"></span><br><span class="line">004038A4 |. 68 F8724000  PUSH CrackMe.004072F8</span><br><span class="line"></span><br><span class="line">004038A9 |. 68 04554000  PUSH CrackMe.00405504            ; SE 处理程序安装</span><br><span class="line"></span><br><span class="line">004038AE |. 64:A1 0000000&gt;MOV EAX,DWORD PTR FS:[0]</span><br><span class="line"></span><br><span class="line">004038B4 |. 50        PUSH EAX</span><br><span class="line"></span><br><span class="line">004038B5 |. 64:8925 00000&gt;MOV DWORD PTR FS:[0],ESP</span><br><span class="line"></span><br><span class="line">004038BC |. 83EC 58    SUB ESP,58</span><br><span class="line"></span><br><span class="line">004038BF |. 53        PUSH EBX</span><br><span class="line"></span><br><span class="line">004038C0 |. 56        PUSH ESI</span><br><span class="line"></span><br><span class="line">004038C1 |. 57        PUSH EDI</span><br><span class="line"></span><br><span class="line">004038C2 |. 8965 E8    MOV DWORD PTR SS:[EBP-18],ESP</span><br><span class="line"></span><br><span class="line">004038C5 |. FF15 48704000 CALL DWORD PTR DS:[&lt;&amp;KERNEL32.GetVersion&gt;; kernel32.GetVersion</span><br><span class="line"></span><br><span class="line">004038CB |. 33D2      XOR EDX,EDX</span><br><span class="line"></span><br><span class="line">004038CD |. 8AD4      MOV DL,AH</span><br><span class="line"></span><br><span class="line">004038CF |. 8915 94BA4000 MOV DWORD PTR DS:[40BA94],EDX</span><br><span class="line"></span><br><span class="line">004038D5 |. 8BC8      MOV ECX,EAX</span><br><span class="line"></span><br><span class="line">004038D7 |. 81E1 FF000000 AND ECX,0FF</span><br><span class="line"></span><br><span class="line">004038DD |. 890D 90BA4000 MOV DWORD PTR DS:[40BA90],ECX</span><br><span class="line"></span><br><span class="line">004038E3 |. C1E1 08    SHL ECX,8</span><br><span class="line"></span><br><span class="line">004038E6 |. 03CA      ADD ECX,EDX</span><br><span class="line"></span><br><span class="line">004038E8 |. 890D 8CBA4000 MOV DWORD PTR DS:[40BA8C],ECX</span><br><span class="line"></span><br><span class="line">004038EE |. C1E8 10    SHR EAX,10</span><br><span class="line"></span><br><span class="line">004038F1 |. A3 88BA4000  MOV DWORD PTR DS:[40BA88],EAX</span><br><span class="line"></span><br><span class="line">004038F6 |. 33F6      XOR ESI,ESI</span><br><span class="line"></span><br><span class="line">004038F8 |. 56        PUSH ESI</span><br><span class="line"></span><br><span class="line">004038F9 |. E8 7A030000  CALL CrackMe.00403C78</span><br><span class="line"></span><br><span class="line">004038FE |. 59        POP ECX</span><br><span class="line"></span><br><span class="line">004038FF |. 85C0      TEST EAX,EAX</span><br><span class="line"></span><br><span class="line">00403901 |. 75 08      JNZ SHORT CrackMe.0040390B</span><br><span class="line"></span><br><span class="line">00403903 |. 6A 1C      PUSH 1C</span><br></pre></td></tr></table></figure>
-<p>-——————————————————————————————————————————–</p>
-<h3 id="Delphi-（Borland-Delphi-6-0-7-0）"><a href="#Delphi-（Borland-Delphi-6-0-7-0）" class="headerlink" title="Delphi （Borland Delphi 6.0 - 7.0）"></a>Delphi （Borland Delphi 6.0 - 7.0）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">004F2F68 &gt; $ 55        PUSH EBP</span><br><span class="line"></span><br><span class="line">004F2F69  . 8BEC      MOV EBP,ESP</span><br><span class="line"></span><br><span class="line">004F2F6B  . 83C4 F0    ADD ESP,-10</span><br><span class="line"></span><br><span class="line">004F2F6E  . 53        PUSH EBX</span><br><span class="line"></span><br><span class="line">004F2F6F  . B8 102B4F00  MOV EAX,Unpacked.004F2B10</span><br><span class="line"></span><br><span class="line">004F2F74  . E8 EF3BF1FF  CALL Unpacked.00406B68</span><br><span class="line"></span><br><span class="line">004F2F79  . 8B1D F4505000 MOV EBX,DWORD PTR DS:[5050F4]        ; Unpacked.00506C14</span><br><span class="line"></span><br><span class="line">004F2F7F  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2F81  . E8 56ACF8FF  CALL Unpacked.0047DBDC</span><br><span class="line"></span><br><span class="line">004F2F86  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2F88  . BA F42F4F00  MOV EDX,Unpacked.004F2FF4          ; ASCII &quot; Hide Private File Pro&quot;</span><br><span class="line"></span><br><span class="line">004F2F8D  . E8 32A8F8FF  CALL Unpacked.0047D7C4</span><br><span class="line"></span><br><span class="line">004F2F92  . 8B0D 904E5000 MOV ECX,DWORD PTR DS:[504E90]        ; Unpacked.00509144</span><br><span class="line"></span><br><span class="line">004F2F98  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2F9A  . 8B15 70E44E00 MOV EDX,DWORD PTR DS:[4EE470]        ; Unpacked.004EE4BC</span><br><span class="line"></span><br><span class="line">004F2FA0  . E8 4FACF8FF  CALL Unpacked.0047DBF4</span><br><span class="line"></span><br><span class="line">004F2FA5  . 8B0D 3C525000 MOV ECX,DWORD PTR DS:[50523C]        ; Unpacked.0050909C</span><br><span class="line"></span><br><span class="line">004F2FAB  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2FAD  . 8B15 48B14E00 MOV EDX,DWORD PTR DS:[4EB148]        ; Unpacked.004EB194</span><br><span class="line"></span><br><span class="line">004F2FB3  . E8 3CACF8FF  CALL Unpacked.0047DBF4</span><br><span class="line"></span><br><span class="line">004F2FB8  . 8B0D 0C535000 MOV ECX,DWORD PTR DS:[50530C]        ; Unpacked.005090A4</span><br><span class="line"></span><br><span class="line">004F2FBE  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2FC0  . 8B15 7CB34E00 MOV EDX,DWORD PTR DS:[4EB37C]        ; Unpacked.004EB3C8</span><br><span class="line"></span><br><span class="line">004F2FC6  . E8 29ACF8FF  CALL Unpacked.0047DBF4</span><br><span class="line"></span><br><span class="line">004F2FCB  . 8B0D 30505000 MOV ECX,DWORD PTR DS:[505030]        ; Unpacked.005090D4</span><br><span class="line"></span><br><span class="line">004F2FD1  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2FD3  . 8B15 B0BF4E00 MOV EDX,DWORD PTR DS:[4EBFB0]        ; Unpacked.004EBFFC</span><br><span class="line"></span><br><span class="line">004F2FD9  . E8 16ACF8FF  CALL Unpacked.0047DBF4</span><br><span class="line"></span><br><span class="line">004F2FDE  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2FE0  . E8 8FACF8FF  CALL Unpacked.0047DC74</span><br><span class="line"></span><br><span class="line">004F2FE5  . 5B        POP EBX</span><br><span class="line"></span><br><span class="line">004F2FE6  . E8 7115F1FF  CALL Unpacked.0040455C</span><br><span class="line"></span><br><span class="line">004F2FEB  . 00FF      ADD BH,BH</span><br><span class="line"></span><br><span class="line">004F2FED    FF        DB FF</span><br></pre></td></tr></table></figure>
-<p>-——————————————————————————————————————————–</p>
-<h3 id="VB-（Microsoft-Visual-Basic-5-0-6-0）"><a href="#VB-（Microsoft-Visual-Basic-5-0-6-0）" class="headerlink" title="VB （Microsoft Visual Basic 5.0 / 6.0）"></a>VB （Microsoft Visual Basic 5.0 / 6.0）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">00410400 &gt; 68 4C744100   PUSH Unpack_.0041744C      ; ASCII &quot;VB5!6&amp;*&quot;</span><br><span class="line"></span><br><span class="line">00410405  E8 EEFFFFFF   CALL &lt;JMP.&amp;msvbvm60.ThunRTMain&gt;</span><br><span class="line"></span><br><span class="line">0041040A  16         PUSH SS</span><br><span class="line"></span><br><span class="line">0041040B  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">0041040D  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">0041040F  0030        ADD BYTE PTR DS:[EAX],DH</span><br><span class="line"></span><br><span class="line">00410411  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410413  0038        ADD BYTE PTR DS:[EAX],BH</span><br><span class="line"></span><br><span class="line">00410415  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410417  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410419  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">0041041B  0060 9C      ADD BYTE PTR DS:[EAX-64],AH</span><br><span class="line"></span><br><span class="line">0041041E  F0:E2 CF     LOCK LOOPD SHORT Unpack_.004103F0     ; 不允许锁定前缀</span><br><span class="line"></span><br><span class="line">00410421  BE 3D439505   MOV ESI,595433D</span><br><span class="line"></span><br><span class="line">00410426  E1 06       LOOPDE SHORT Unpack_.0041042E</span><br><span class="line"></span><br><span class="line">00410428  18A5 05D40000  SBB BYTE PTR SS:[EBP+D405],AH</span><br><span class="line"></span><br><span class="line">0041042E  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410430  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410432  0100        ADD DWORD PTR DS:[EAX],EAX</span><br><span class="line"></span><br><span class="line">00410434  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410436  9E         SAHF</span><br></pre></td></tr></table></figure>
-<p>-——————————————————————————————————————————–</p>
-<h3 id="BC-（Borland-C-1999）"><a href="#BC-（Borland-C-1999）" class="headerlink" title="BC++ （Borland C++ 1999）"></a>BC++ （Borland C++ 1999）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">00401000 &gt; &#x2F;EB 10       JMP SHORTXXXXXXX.00401012</span><br><span class="line"></span><br><span class="line">00401002  |66:623A      BOUND DI,DWORD PTR DS:[EDX]</span><br><span class="line"></span><br><span class="line">00401005  |43         INC EBX</span><br><span class="line"></span><br><span class="line">00401006  |2B2B        SUB EBP,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">00401008  |48         DEC EAX</span><br><span class="line"></span><br><span class="line">00401009  |4F         DEC EDI</span><br><span class="line"></span><br><span class="line">0040100A  |4F         DEC EDI</span><br><span class="line"></span><br><span class="line">0040100B  |4B         DEC EBX</span><br><span class="line"></span><br><span class="line">0040100C  |90         NOP</span><br><span class="line"></span><br><span class="line">0040100D -|E9 AC334800   JMP 008843BE</span><br><span class="line"></span><br><span class="line">00401012  \A1 9F334800   MOV EAX,DWORD PTR DS:[48339F]</span><br><span class="line"></span><br><span class="line">00401017  C1E0 02      SHL EAX,2</span><br><span class="line"></span><br><span class="line">0040101A  A3 A3334800   MOV DWORD PTR DS:[4833A3],EAX</span><br><span class="line"></span><br><span class="line">0040101F  52         PUSH EDX</span><br><span class="line"></span><br><span class="line">00401020  6A 00       PUSH 0</span><br><span class="line"></span><br><span class="line">00401022  E8 11110800   CALL &lt;JMP.&amp;KERNEL32.GetModuleHandleA&gt;</span><br><span class="line"></span><br><span class="line">00401027  8BD0        MOV EDX,EAX</span><br><span class="line"></span><br><span class="line">00401029  E8 3A1B0600   CALLXXXXXXX.00462B68</span><br><span class="line"></span><br><span class="line">0040102E  5A         POP EDX</span><br><span class="line"></span><br><span class="line">0040102F  E8 981A0600   CALLXXXXXXX.00462ACC</span><br><span class="line"></span><br><span class="line">00401034  E8 6F1B0600   CALLXXXXXXX.00462BA8</span><br><span class="line"></span><br><span class="line">00401039  6A 00       PUSH 0</span><br><span class="line"></span><br><span class="line">0040103B  E8 782E0600   CALLXXXXXXX.00463EB8</span><br><span class="line"></span><br><span class="line">00401040  59         POP ECX</span><br><span class="line"></span><br><span class="line">00401041  68 48334800   PUSHXXXXXXX.00483348</span><br><span class="line"></span><br><span class="line">00401046  6A 00       PUSH 0</span><br><span class="line"></span><br><span class="line">00401048  E8 EB100800   CALL &lt;JMP.&amp;KERNEL32.GetModuleHandleA&gt;</span><br><span class="line"></span><br><span class="line">0040104D  A3 A7334800   MOV DWORD PTR DS:[4833A7],EAX</span><br><span class="line"></span><br><span class="line">00401052  6A 00       PUSH 0</span><br><span class="line"></span><br><span class="line">00401054  E9 6B900600   JMPXXXXXXX.0046A0C4</span><br><span class="line"></span><br><span class="line">00401059 &gt; E9 A62E0600   JMPXXXXXXX.00463F04</span><br></pre></td></tr></table></figure>
-<p>-——————————————————————————————————————————–</p>
-<h3 id="Dasm-汇编"><a href="#Dasm-汇编" class="headerlink" title="Dasm:汇编"></a>Dasm:汇编</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">00401000 &gt;&#x2F;$ 6A 00      PUSH 0                      ; &#x2F;pModule &#x3D; NULL</span><br><span class="line"></span><br><span class="line">00401002 |. E8 C50A0000  CALL &lt;JMP.&amp;KERNEL32.GetModuleHandleA&gt;  ; \GetModuleHandleA</span><br><span class="line"></span><br><span class="line">00401007 |. A3 0C354000  MOV DWORD PTR DS:[40350C],EAX</span><br><span class="line"></span><br><span class="line">0040100C |. E8 B50A0000  CALL &lt;JMP.&amp;KERNEL32.GetCommandLineA&gt;   ; [GetCommandLineA</span><br><span class="line"></span><br><span class="line">00401011 |. A3 10354000  MOV DWORD PTR DS:[403510],EAX</span><br><span class="line"></span><br><span class="line">00401016 |. 6A 0A      PUSH 0A                    ; &#x2F;Arg4 &#x3D; 0000000A</span><br><span class="line"></span><br><span class="line">00401018 |. FF35 10354000 PUSH DWORD PTR DS:[403510]         ; |Arg3 &#x3D; 00000000</span><br><span class="line"></span><br><span class="line">0040101E |. 6A 00      PUSH 0                     ; |Arg2 &#x3D; 00000000</span><br><span class="line"></span><br><span class="line">00401020 |. FF35 0C354000 PUSH DWORD PTR DS:[40350C]         ; |Arg1 &#x3D; 00000000</span><br></pre></td></tr></table></figure>
-<p>另一种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">00401025 &gt;&#x2F;$ 6A F6       PUSH -0A                    </span><br><span class="line"></span><br><span class="line">00401027 |. E8 A0000000   CALL &lt;JMP.&amp;kernel32.GetStdHandle&gt;     </span><br><span class="line"></span><br><span class="line">0040102C |. A3 00304000   MOV DWORD PTR DS:[403000],EAX</span><br><span class="line"></span><br><span class="line">00401031 |. 6A F5          PUSH -0B                    </span><br><span class="line"></span><br><span class="line">00401033 |. E8 94000000   CALL &lt;JMP.&amp;kernel32.GetStdHandle&gt;    </span><br><span class="line"></span><br><span class="line">00401038 |. A3 04304000   MOV DWORD PTR DS:[403004],EAX</span><br><span class="line"></span><br><span class="line">0040103D |. 6A 01          PUSH 1                      </span><br><span class="line"></span><br><span class="line">0040103F |. 68 00104000   PUSH EchoLine.00401000           </span><br><span class="line"></span><br><span class="line">00401044 |. E8 8F000000   CALL &lt;JMP.&amp;kernel32.SetConsoleCtrlHandle&gt;</span><br><span class="line"></span><br><span class="line">00401049 |. 6A 07          PUSH 7                      </span><br><span class="line"></span><br><span class="line">0040104B |. FF35 00304000 PUSH DWORD PTR DS:[403000] </span><br></pre></td></tr></table></figure>
-<h3 id="Vc-8-0"><a href="#Vc-8-0" class="headerlink" title="Vc++8.0"></a>Vc++8.0</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">00403A30 &gt; $ E8 6E270000  call VC8.004061A3</span><br><span class="line"></span><br><span class="line">00403A35  .^ E9 79FEFFFF  jmp VC8.004038B3</span><br><span class="line"></span><br><span class="line">00403A3A &#x2F;$ 55      push ebp</span><br><span class="line"></span><br><span class="line">00403A3B |. 8BEC     mov ebp,esp</span><br><span class="line"></span><br><span class="line">00403A3D |. 83EC 08    sub esp,0x8</span><br><span class="line"></span><br><span class="line">00403A40 |. 897D FC    mov [local.1],edi            ; ntdll.7C930228</span><br><span class="line"></span><br><span class="line">00403A43 |. 8975 F8    mov [local.2],esi</span><br><span class="line"></span><br><span class="line">00403A46 |. 8B75 0C    mov esi,[arg.2]</span><br><span class="line"></span><br><span class="line">00403A49 |. 8B7D 08    mov edi,[arg.1]             ; VC8.&lt;ModuleEntryPoint&gt;</span><br><span class="line"></span><br><span class="line">00403A4C |. 8B4D 10    mov ecx,[arg.3]</span><br><span class="line"></span><br><span class="line">00403A4F |. C1E9 07    shr ecx,0x7</span><br></pre></td></tr></table></figure>
-<p>转载自52论坛<a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-139728-1-1.html">https://www.52pojie.cn/thread-139728-1-1.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/b3843843/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -863,6 +1009,95 @@
 <p>打开调试设置，找到SFX，利用OD自动找到oep</p>
 </li>
 </ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/2a1f355e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/2a1f355e/" class="post-title-link" itemprop="url">常见OPE</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-27 23:32:00" itemprop="dateCreated datePublished" datetime="2021-03-27T23:32:00+08:00">2021-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-28 13:26:19" itemprop="dateModified" datetime="2021-03-28T13:26:19+08:00">2021-03-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94OD/" itemprop="url" rel="index"><span itemprop="name">逆向学习——OD</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="五种常见语言的OEP特征："><a href="#五种常见语言的OEP特征：" class="headerlink" title="五种常见语言的OEP特征："></a>五种常见语言的OEP特征：</h2><h3 id="C-（Microsoft-Visual-C-6-0）"><a href="#C-（Microsoft-Visual-C-6-0）" class="headerlink" title="C++ （Microsoft Visual C++ 6.0）"></a>C++ （Microsoft Visual C++ 6.0）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">0040577C &gt;&#x2F;$ 55        PUSH EBP          (C的入口)</span><br><span class="line"></span><br><span class="line">0040577D |. 8BEC      MOV EBP,ESP</span><br><span class="line"></span><br><span class="line">0040577F |. 6A FF      PUSH -1</span><br><span class="line"></span><br><span class="line">00405781 |. 68 30B24000  PUSH EasyClea.0040B230</span><br><span class="line"></span><br><span class="line">00405786 |. 68 84704000  PUSH EasyClea.00407084         ; SE 句柄安装</span><br><span class="line"></span><br><span class="line">0040578B |. 64:A1 0000000&gt;MOV EAX,DWORD PTR FS:[0]</span><br><span class="line"></span><br><span class="line">00405791 |. 50        PUSH EAX</span><br><span class="line"></span><br><span class="line">00405792 |. 64:8925 00000&gt;MOV DWORD PTR FS:[0],ESP</span><br><span class="line"></span><br><span class="line">00405799 |. 83EC 58    SUB ESP,58</span><br><span class="line"></span><br><span class="line">0040579C |. 53        PUSH EBX</span><br><span class="line"></span><br><span class="line">0040579D |. 56        PUSH ESI</span><br><span class="line"></span><br><span class="line">0040579E |. 57        PUSH EDI</span><br><span class="line"></span><br><span class="line">0040579F |. 8965 E8    MOV [LOCAL.6],ESP</span><br><span class="line"></span><br><span class="line">004057A2 |. FF15 ECB04000 CALL DWORD PTR DS:[&lt;&amp;KERNEL32.GetVersion&gt;; kernel32.GetVersion</span><br></pre></td></tr></table></figure>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="E语言"><a href="#E语言" class="headerlink" title="E语言"></a>E语言</h3><p>这个和C极度像,要分清</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">0040389F &gt;&#x2F;$ 55        PUSH EBP</span><br><span class="line"></span><br><span class="line">004038A0 |. 8BEC      MOV EBP,ESP</span><br><span class="line"></span><br><span class="line">004038A2 |. 6A FF      PUSH -1</span><br><span class="line"></span><br><span class="line">004038A4 |. 68 F8724000  PUSH CrackMe.004072F8</span><br><span class="line"></span><br><span class="line">004038A9 |. 68 04554000  PUSH CrackMe.00405504            ; SE 处理程序安装</span><br><span class="line"></span><br><span class="line">004038AE |. 64:A1 0000000&gt;MOV EAX,DWORD PTR FS:[0]</span><br><span class="line"></span><br><span class="line">004038B4 |. 50        PUSH EAX</span><br><span class="line"></span><br><span class="line">004038B5 |. 64:8925 00000&gt;MOV DWORD PTR FS:[0],ESP</span><br><span class="line"></span><br><span class="line">004038BC |. 83EC 58    SUB ESP,58</span><br><span class="line"></span><br><span class="line">004038BF |. 53        PUSH EBX</span><br><span class="line"></span><br><span class="line">004038C0 |. 56        PUSH ESI</span><br><span class="line"></span><br><span class="line">004038C1 |. 57        PUSH EDI</span><br><span class="line"></span><br><span class="line">004038C2 |. 8965 E8    MOV DWORD PTR SS:[EBP-18],ESP</span><br><span class="line"></span><br><span class="line">004038C5 |. FF15 48704000 CALL DWORD PTR DS:[&lt;&amp;KERNEL32.GetVersion&gt;; kernel32.GetVersion</span><br><span class="line"></span><br><span class="line">004038CB |. 33D2      XOR EDX,EDX</span><br><span class="line"></span><br><span class="line">004038CD |. 8AD4      MOV DL,AH</span><br><span class="line"></span><br><span class="line">004038CF |. 8915 94BA4000 MOV DWORD PTR DS:[40BA94],EDX</span><br><span class="line"></span><br><span class="line">004038D5 |. 8BC8      MOV ECX,EAX</span><br><span class="line"></span><br><span class="line">004038D7 |. 81E1 FF000000 AND ECX,0FF</span><br><span class="line"></span><br><span class="line">004038DD |. 890D 90BA4000 MOV DWORD PTR DS:[40BA90],ECX</span><br><span class="line"></span><br><span class="line">004038E3 |. C1E1 08    SHL ECX,8</span><br><span class="line"></span><br><span class="line">004038E6 |. 03CA      ADD ECX,EDX</span><br><span class="line"></span><br><span class="line">004038E8 |. 890D 8CBA4000 MOV DWORD PTR DS:[40BA8C],ECX</span><br><span class="line"></span><br><span class="line">004038EE |. C1E8 10    SHR EAX,10</span><br><span class="line"></span><br><span class="line">004038F1 |. A3 88BA4000  MOV DWORD PTR DS:[40BA88],EAX</span><br><span class="line"></span><br><span class="line">004038F6 |. 33F6      XOR ESI,ESI</span><br><span class="line"></span><br><span class="line">004038F8 |. 56        PUSH ESI</span><br><span class="line"></span><br><span class="line">004038F9 |. E8 7A030000  CALL CrackMe.00403C78</span><br><span class="line"></span><br><span class="line">004038FE |. 59        POP ECX</span><br><span class="line"></span><br><span class="line">004038FF |. 85C0      TEST EAX,EAX</span><br><span class="line"></span><br><span class="line">00403901 |. 75 08      JNZ SHORT CrackMe.0040390B</span><br><span class="line"></span><br><span class="line">00403903 |. 6A 1C      PUSH 1C</span><br></pre></td></tr></table></figure>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="Delphi-（Borland-Delphi-6-0-7-0）"><a href="#Delphi-（Borland-Delphi-6-0-7-0）" class="headerlink" title="Delphi （Borland Delphi 6.0 - 7.0）"></a>Delphi （Borland Delphi 6.0 - 7.0）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">004F2F68 &gt; $ 55        PUSH EBP</span><br><span class="line"></span><br><span class="line">004F2F69  . 8BEC      MOV EBP,ESP</span><br><span class="line"></span><br><span class="line">004F2F6B  . 83C4 F0    ADD ESP,-10</span><br><span class="line"></span><br><span class="line">004F2F6E  . 53        PUSH EBX</span><br><span class="line"></span><br><span class="line">004F2F6F  . B8 102B4F00  MOV EAX,Unpacked.004F2B10</span><br><span class="line"></span><br><span class="line">004F2F74  . E8 EF3BF1FF  CALL Unpacked.00406B68</span><br><span class="line"></span><br><span class="line">004F2F79  . 8B1D F4505000 MOV EBX,DWORD PTR DS:[5050F4]        ; Unpacked.00506C14</span><br><span class="line"></span><br><span class="line">004F2F7F  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2F81  . E8 56ACF8FF  CALL Unpacked.0047DBDC</span><br><span class="line"></span><br><span class="line">004F2F86  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2F88  . BA F42F4F00  MOV EDX,Unpacked.004F2FF4          ; ASCII &quot; Hide Private File Pro&quot;</span><br><span class="line"></span><br><span class="line">004F2F8D  . E8 32A8F8FF  CALL Unpacked.0047D7C4</span><br><span class="line"></span><br><span class="line">004F2F92  . 8B0D 904E5000 MOV ECX,DWORD PTR DS:[504E90]        ; Unpacked.00509144</span><br><span class="line"></span><br><span class="line">004F2F98  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2F9A  . 8B15 70E44E00 MOV EDX,DWORD PTR DS:[4EE470]        ; Unpacked.004EE4BC</span><br><span class="line"></span><br><span class="line">004F2FA0  . E8 4FACF8FF  CALL Unpacked.0047DBF4</span><br><span class="line"></span><br><span class="line">004F2FA5  . 8B0D 3C525000 MOV ECX,DWORD PTR DS:[50523C]        ; Unpacked.0050909C</span><br><span class="line"></span><br><span class="line">004F2FAB  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2FAD  . 8B15 48B14E00 MOV EDX,DWORD PTR DS:[4EB148]        ; Unpacked.004EB194</span><br><span class="line"></span><br><span class="line">004F2FB3  . E8 3CACF8FF  CALL Unpacked.0047DBF4</span><br><span class="line"></span><br><span class="line">004F2FB8  . 8B0D 0C535000 MOV ECX,DWORD PTR DS:[50530C]        ; Unpacked.005090A4</span><br><span class="line"></span><br><span class="line">004F2FBE  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2FC0  . 8B15 7CB34E00 MOV EDX,DWORD PTR DS:[4EB37C]        ; Unpacked.004EB3C8</span><br><span class="line"></span><br><span class="line">004F2FC6  . E8 29ACF8FF  CALL Unpacked.0047DBF4</span><br><span class="line"></span><br><span class="line">004F2FCB  . 8B0D 30505000 MOV ECX,DWORD PTR DS:[505030]        ; Unpacked.005090D4</span><br><span class="line"></span><br><span class="line">004F2FD1  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2FD3  . 8B15 B0BF4E00 MOV EDX,DWORD PTR DS:[4EBFB0]        ; Unpacked.004EBFFC</span><br><span class="line"></span><br><span class="line">004F2FD9  . E8 16ACF8FF  CALL Unpacked.0047DBF4</span><br><span class="line"></span><br><span class="line">004F2FDE  . 8B03      MOV EAX,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">004F2FE0  . E8 8FACF8FF  CALL Unpacked.0047DC74</span><br><span class="line"></span><br><span class="line">004F2FE5  . 5B        POP EBX</span><br><span class="line"></span><br><span class="line">004F2FE6  . E8 7115F1FF  CALL Unpacked.0040455C</span><br><span class="line"></span><br><span class="line">004F2FEB  . 00FF      ADD BH,BH</span><br><span class="line"></span><br><span class="line">004F2FED    FF        DB FF</span><br></pre></td></tr></table></figure>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="VB-（Microsoft-Visual-Basic-5-0-6-0）"><a href="#VB-（Microsoft-Visual-Basic-5-0-6-0）" class="headerlink" title="VB （Microsoft Visual Basic 5.0 / 6.0）"></a>VB （Microsoft Visual Basic 5.0 / 6.0）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">00410400 &gt; 68 4C744100   PUSH Unpack_.0041744C      ; ASCII &quot;VB5!6&amp;*&quot;</span><br><span class="line"></span><br><span class="line">00410405  E8 EEFFFFFF   CALL &lt;JMP.&amp;msvbvm60.ThunRTMain&gt;</span><br><span class="line"></span><br><span class="line">0041040A  16         PUSH SS</span><br><span class="line"></span><br><span class="line">0041040B  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">0041040D  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">0041040F  0030        ADD BYTE PTR DS:[EAX],DH</span><br><span class="line"></span><br><span class="line">00410411  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410413  0038        ADD BYTE PTR DS:[EAX],BH</span><br><span class="line"></span><br><span class="line">00410415  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410417  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410419  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">0041041B  0060 9C      ADD BYTE PTR DS:[EAX-64],AH</span><br><span class="line"></span><br><span class="line">0041041E  F0:E2 CF     LOCK LOOPD SHORT Unpack_.004103F0     ; 不允许锁定前缀</span><br><span class="line"></span><br><span class="line">00410421  BE 3D439505   MOV ESI,595433D</span><br><span class="line"></span><br><span class="line">00410426  E1 06       LOOPDE SHORT Unpack_.0041042E</span><br><span class="line"></span><br><span class="line">00410428  18A5 05D40000  SBB BYTE PTR SS:[EBP+D405],AH</span><br><span class="line"></span><br><span class="line">0041042E  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410430  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410432  0100        ADD DWORD PTR DS:[EAX],EAX</span><br><span class="line"></span><br><span class="line">00410434  0000        ADD BYTE PTR DS:[EAX],AL</span><br><span class="line"></span><br><span class="line">00410436  9E         SAHF</span><br></pre></td></tr></table></figure>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="BC-（Borland-C-1999）"><a href="#BC-（Borland-C-1999）" class="headerlink" title="BC++ （Borland C++ 1999）"></a>BC++ （Borland C++ 1999）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">00401000 &gt; &#x2F;EB 10       JMP SHORTXXXXXXX.00401012</span><br><span class="line"></span><br><span class="line">00401002  |66:623A      BOUND DI,DWORD PTR DS:[EDX]</span><br><span class="line"></span><br><span class="line">00401005  |43         INC EBX</span><br><span class="line"></span><br><span class="line">00401006  |2B2B        SUB EBP,DWORD PTR DS:[EBX]</span><br><span class="line"></span><br><span class="line">00401008  |48         DEC EAX</span><br><span class="line"></span><br><span class="line">00401009  |4F         DEC EDI</span><br><span class="line"></span><br><span class="line">0040100A  |4F         DEC EDI</span><br><span class="line"></span><br><span class="line">0040100B  |4B         DEC EBX</span><br><span class="line"></span><br><span class="line">0040100C  |90         NOP</span><br><span class="line"></span><br><span class="line">0040100D -|E9 AC334800   JMP 008843BE</span><br><span class="line"></span><br><span class="line">00401012  \A1 9F334800   MOV EAX,DWORD PTR DS:[48339F]</span><br><span class="line"></span><br><span class="line">00401017  C1E0 02      SHL EAX,2</span><br><span class="line"></span><br><span class="line">0040101A  A3 A3334800   MOV DWORD PTR DS:[4833A3],EAX</span><br><span class="line"></span><br><span class="line">0040101F  52         PUSH EDX</span><br><span class="line"></span><br><span class="line">00401020  6A 00       PUSH 0</span><br><span class="line"></span><br><span class="line">00401022  E8 11110800   CALL &lt;JMP.&amp;KERNEL32.GetModuleHandleA&gt;</span><br><span class="line"></span><br><span class="line">00401027  8BD0        MOV EDX,EAX</span><br><span class="line"></span><br><span class="line">00401029  E8 3A1B0600   CALLXXXXXXX.00462B68</span><br><span class="line"></span><br><span class="line">0040102E  5A         POP EDX</span><br><span class="line"></span><br><span class="line">0040102F  E8 981A0600   CALLXXXXXXX.00462ACC</span><br><span class="line"></span><br><span class="line">00401034  E8 6F1B0600   CALLXXXXXXX.00462BA8</span><br><span class="line"></span><br><span class="line">00401039  6A 00       PUSH 0</span><br><span class="line"></span><br><span class="line">0040103B  E8 782E0600   CALLXXXXXXX.00463EB8</span><br><span class="line"></span><br><span class="line">00401040  59         POP ECX</span><br><span class="line"></span><br><span class="line">00401041  68 48334800   PUSHXXXXXXX.00483348</span><br><span class="line"></span><br><span class="line">00401046  6A 00       PUSH 0</span><br><span class="line"></span><br><span class="line">00401048  E8 EB100800   CALL &lt;JMP.&amp;KERNEL32.GetModuleHandleA&gt;</span><br><span class="line"></span><br><span class="line">0040104D  A3 A7334800   MOV DWORD PTR DS:[4833A7],EAX</span><br><span class="line"></span><br><span class="line">00401052  6A 00       PUSH 0</span><br><span class="line"></span><br><span class="line">00401054  E9 6B900600   JMPXXXXXXX.0046A0C4</span><br><span class="line"></span><br><span class="line">00401059 &gt; E9 A62E0600   JMPXXXXXXX.00463F04</span><br></pre></td></tr></table></figure>
+<p>-——————————————————————————————————————————–</p>
+<h3 id="Dasm-汇编"><a href="#Dasm-汇编" class="headerlink" title="Dasm:汇编"></a>Dasm:汇编</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">00401000 &gt;&#x2F;$ 6A 00      PUSH 0                      ; &#x2F;pModule &#x3D; NULL</span><br><span class="line"></span><br><span class="line">00401002 |. E8 C50A0000  CALL &lt;JMP.&amp;KERNEL32.GetModuleHandleA&gt;  ; \GetModuleHandleA</span><br><span class="line"></span><br><span class="line">00401007 |. A3 0C354000  MOV DWORD PTR DS:[40350C],EAX</span><br><span class="line"></span><br><span class="line">0040100C |. E8 B50A0000  CALL &lt;JMP.&amp;KERNEL32.GetCommandLineA&gt;   ; [GetCommandLineA</span><br><span class="line"></span><br><span class="line">00401011 |. A3 10354000  MOV DWORD PTR DS:[403510],EAX</span><br><span class="line"></span><br><span class="line">00401016 |. 6A 0A      PUSH 0A                    ; &#x2F;Arg4 &#x3D; 0000000A</span><br><span class="line"></span><br><span class="line">00401018 |. FF35 10354000 PUSH DWORD PTR DS:[403510]         ; |Arg3 &#x3D; 00000000</span><br><span class="line"></span><br><span class="line">0040101E |. 6A 00      PUSH 0                     ; |Arg2 &#x3D; 00000000</span><br><span class="line"></span><br><span class="line">00401020 |. FF35 0C354000 PUSH DWORD PTR DS:[40350C]         ; |Arg1 &#x3D; 00000000</span><br></pre></td></tr></table></figure>
+<p>另一种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">00401025 &gt;&#x2F;$ 6A F6       PUSH -0A                    </span><br><span class="line"></span><br><span class="line">00401027 |. E8 A0000000   CALL &lt;JMP.&amp;kernel32.GetStdHandle&gt;     </span><br><span class="line"></span><br><span class="line">0040102C |. A3 00304000   MOV DWORD PTR DS:[403000],EAX</span><br><span class="line"></span><br><span class="line">00401031 |. 6A F5          PUSH -0B                    </span><br><span class="line"></span><br><span class="line">00401033 |. E8 94000000   CALL &lt;JMP.&amp;kernel32.GetStdHandle&gt;    </span><br><span class="line"></span><br><span class="line">00401038 |. A3 04304000   MOV DWORD PTR DS:[403004],EAX</span><br><span class="line"></span><br><span class="line">0040103D |. 6A 01          PUSH 1                      </span><br><span class="line"></span><br><span class="line">0040103F |. 68 00104000   PUSH EchoLine.00401000           </span><br><span class="line"></span><br><span class="line">00401044 |. E8 8F000000   CALL &lt;JMP.&amp;kernel32.SetConsoleCtrlHandle&gt;</span><br><span class="line"></span><br><span class="line">00401049 |. 6A 07          PUSH 7                      </span><br><span class="line"></span><br><span class="line">0040104B |. FF35 00304000 PUSH DWORD PTR DS:[403000] </span><br></pre></td></tr></table></figure>
+<h3 id="Vc-8-0"><a href="#Vc-8-0" class="headerlink" title="Vc++8.0"></a>Vc++8.0</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">00403A30 &gt; $ E8 6E270000  call VC8.004061A3</span><br><span class="line"></span><br><span class="line">00403A35  .^ E9 79FEFFFF  jmp VC8.004038B3</span><br><span class="line"></span><br><span class="line">00403A3A &#x2F;$ 55      push ebp</span><br><span class="line"></span><br><span class="line">00403A3B |. 8BEC     mov ebp,esp</span><br><span class="line"></span><br><span class="line">00403A3D |. 83EC 08    sub esp,0x8</span><br><span class="line"></span><br><span class="line">00403A40 |. 897D FC    mov [local.1],edi            ; ntdll.7C930228</span><br><span class="line"></span><br><span class="line">00403A43 |. 8975 F8    mov [local.2],esi</span><br><span class="line"></span><br><span class="line">00403A46 |. 8B75 0C    mov esi,[arg.2]</span><br><span class="line"></span><br><span class="line">00403A49 |. 8B7D 08    mov edi,[arg.1]             ; VC8.&lt;ModuleEntryPoint&gt;</span><br><span class="line"></span><br><span class="line">00403A4C |. 8B4D 10    mov ecx,[arg.3]</span><br><span class="line"></span><br><span class="line">00403A4F |. C1E9 07    shr ecx,0x7</span><br></pre></td></tr></table></figure>
+<p>转载自52论坛<a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-139728-1-1.html">https://www.52pojie.cn/thread-139728-1-1.html</a></p>
 
       
     </div>
@@ -1215,85 +1450,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/994d2d1d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/994d2d1d/" class="post-title-link" itemprop="url">巧用异或交换数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-18 16:46:46" itemprop="dateCreated datePublished" datetime="2021-03-18T16:46:46+08:00">2021-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-28 14:00:28" itemprop="dateModified" datetime="2021-03-28T14:00:28+08:00">2021-03-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C-%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">C/C++语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="利用异或交换两个变量中存储的数"><a href="#利用异或交换两个变量中存储的数" class="headerlink" title="利用异或交换两个变量中存储的数"></a>利用异或交换两个变量中存储的数</h2><p>正常情况下，我们通常定义swap利用地址交换两个变量中的值<br>但如果我们只是交换两个整型变量的值呐？<br>这里可以用到异或的小性质了</p>
-<p>假设两个整形8bit的2进制数a,b<br>交换的原理为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a&#96;&#x3D;(a^b)^b</span><br><span class="line">b&#96;&#x3D;(a^b)^a&#96;</span><br></pre></td></tr></table></figure>
-<p>说说第一个的原理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a b a^b a&#96;</span><br><span class="line">1 1 0     1</span><br><span class="line">1 0 1     1</span><br><span class="line">0 1 1     0</span><br><span class="line">0 0 0     0</span><br></pre></td></tr></table></figure>
-<p>由上推出，一个数，被同一个数异或两遍，数的大小不变</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1363,7 +1519,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1376,7 +1532,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
