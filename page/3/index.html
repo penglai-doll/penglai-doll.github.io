@@ -188,6 +188,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/3d4ca4e0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/3d4ca4e0/" class="post-title-link" itemprop="url">生成器与迭代器基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-01 22:25:20" itemprop="dateCreated datePublished" datetime="2021-03-01T22:25:20+08:00">2021-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-28 13:59:21" itemprop="dateModified" datetime="2021-03-28T13:59:21+08:00">2021-03-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="列表生成式："><a href="#列表生成式：" class="headerlink" title="列表生成式："></a>列表生成式：</h2><p>当我们在用for循环来输出列表时，会很麻烦，特别是生成一些复杂的列表，除此之外，我们可以利用列表生成式<br>如：要生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1&#x3D;1,2&#x3D;2,3&#x3D;3.....]</span><br></pre></td></tr></table></figure>
+<p>可以用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[x&#x3D;x for x in range(1,...)]</span><br></pre></td></tr></table></figure>
+<p>这样的式子我们称之为列表生成式<br>还可以在第一个for后面跟上更多的循环来生成更复杂的全排列<br>灵活运用列表生成式可以简化代码<br>列表生成式的if：<br>如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[x for x in range(1,11) if x%2&#x3D;&#x3D;0]</span><br></pre></td></tr></table></figure>
+<p>可以输出1到11的偶数<br>这里if起的是筛选作用<br>注意后面不可跟else，否则会报错<br>如果在for前面放if则必须跟else<br>表示条件不同，就一以不同的形式输出</p>
+<h2 id="生成器："><a href="#生成器：" class="headerlink" title="生成器："></a>生成器：</h2><p>上面我们解释了列表生成式，是把for循环放在列表标识符中的([]),<br>如果我们把列表标识符改成()并且讲其赋值到一个变量中去，像是生成了一个元组一样，但实际上是创建了一个生成器(generator)并将其赋值到了变量之中<br>生成器，顾名思义，可以将一种算法赋值到一个变量之中，根据算法来取到所需要的值。<br>与列表生成器不同，不需要将所有元素都计算出来，而只在需要的时候才算出对应的元素，省去不必要的元素以节省空间<br>使用next(generator)函数来求出下一个元素<br>最好使用for循环来求出所需的元素<br>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g &#x3D; (x for x in range(1,10000))</span><br><span class="line">for i in g:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<p>在这里，刚刚生成1到10000时，并不是直接占用了所有的内存，二十后面一步一步推算出来的<br>这里之所以能用for，是因为生成器也是可迭代对象<br>生成器的作用非常强大，可以实现算法的迭代<br>当一个算法过于复杂而for列表生成器无法应对的时候<br>比如生成斐波那契数列<br>常规写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def fib(max):</span><br><span class="line">    n,a,b&#x3D;0,0,1</span><br><span class="line">    while n&lt;max:</span><br><span class="line">        print(a)</span><br><span class="line">        a,b &#x3D; b,a+b</span><br><span class="line">        n&#x3D;n+1</span><br><span class="line">return &#39;done&#39;</span><br></pre></td></tr></table></figure>
+<p>由此观察a,b=b,a+b逻辑和生成器相近，都是走一步算一步（雾<br>生成器写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def fib(max):</span><br><span class="line">    n,a,b&#x3D;0,0,1</span><br><span class="line">    while n&lt;max:</span><br><span class="line">        yield b</span><br><span class="line">        a,b&#x3D;b,a+b</span><br><span class="line">        n&#x3D;n+1</span><br><span class="line">return &#39;done&#39;</span><br></pre></td></tr></table></figure>
+<p>解释：在函数定义过程中，只要加上了yield，就可以将函数变成生成器，正常函数为顺序执行，<br>而生成器则会一直执行到首次遇见yield语句，并输出yield语句后面的参数，<br>使用next()语句使其从当前的yield语句执行到下一条yield语句<br>举个简单栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def odd():</span><br><span class="line">    print &#39;step1&#39;</span><br><span class="line">    yield 1</span><br><span class="line">    print &#39;step2&#39;</span><br><span class="line">    yield(3)</span><br></pre></td></tr></table></figure>
+<p>调用时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;o &#x3D; odd()</span><br><span class="line">&gt;&gt;next(o)</span><br><span class="line">step1</span><br><span class="line">1</span><br><span class="line">&gt;&gt;next(o)</span><br><span class="line">step2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<p>如上</p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>调用一个生成器时，会返回一个generate对象<br>就像map一样，生成的是迭代器<br>迭代器和可迭代对象：<br>能被for循环直接作用的，我们称为可迭代对象<br>而像生成器那样的，可以用next()函数调用并返回下一个值的我们称为迭代器，如map,generator。(迭代器也是可迭代对象)<br>可以利用isinstance()来判断一个变量是否为迭代器<br>迭代器对象表示的是一个数据流，我们不知道其有多长，知道数据全部输出完毕就会报错，而不是迭代器的可迭代对象我们往往知道其长度</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/34311c5c/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -687,14 +779,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
