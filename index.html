@@ -188,6 +188,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/1790681d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="PengLaiDoll">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/1790681d/" class="post-title-link" itemprop="url">C++学习日记①</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-22 21:43:19 / 修改时间：21:58:25" itemprop="dateCreated datePublished" datetime="2021-04-22T21:43:19+08:00">2021-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C-%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">C/C++语言学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="类型标识符"><a href="#类型标识符" class="headerlink" title="类型标识符"></a>类型标识符</h2><p>今天在C语言课上划水，偷偷把C++看了一下，果真就是C的全集，基本上除了面向对象部分，别的都和C差不多，就稍微整理了一下，多学习学习，为以后在师弟师妹面前装13打下良好基础(笑)</p>
+<h2 id="栗子代码："><a href="#栗子代码：" class="headerlink" title="栗子代码："></a>栗子代码：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//空间命名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> *<span class="keyword">namespace</span>* <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//宏定义</span></span><br><span class="line"></span><br><span class="line">\<span class="meta">#<span class="meta-keyword">define</span> monster 114514</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//变量声明</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> *<span class="keyword">int</span>* a,b;</span><br><span class="line"></span><br><span class="line"><span class="comment">//全局变量声明</span></span><br><span class="line"></span><br><span class="line">*<span class="keyword">int</span>* g = <span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数定义</span></span><br><span class="line"></span><br><span class="line">*<span class="function"><span class="keyword">int</span>* <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//局部变量定义————只可在局部内使用</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//局部变量可以覆盖全局变量</span></span><br><span class="line"></span><br><span class="line">  *<span class="keyword">int</span>* a=<span class="number">0</span>,b=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  *<span class="keyword">int</span>* g=<span class="number">99</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//修饰只读属性</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> *<span class="keyword">int</span>* xb = monster;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="comment">//输出为99</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; g &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//输出宏</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; monster &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// &lt;&lt; 允许输出多个字符  endl代表输出完换行</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Hello, world!&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类型限定符："><a href="#类型限定符：" class="headerlink" title="类型限定符："></a>类型限定符：</h2><table>
+<thead>
+<tr>
+<th>const</th>
+<th>const类型的对象在执行期间无法被修改或改变</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>volatile</td>
+<td>修饰符 volatile 告诉编译器不需要优化volatile声明的变量，让程序可以直接从内存中读取变量。对于一般的变量编译器会对变量进行优化，将内存中的变量值放在寄存器中以加快读写效率。</td>
+</tr>
+<tr>
+<td>restrict</td>
+<td>由 restrict 修饰的指针是唯一一种访问它所指向的对象的方式。只有 C99 增加了新的类型限定符 restrict。</td>
+</tr>
+</tbody></table>
+<h2 id="存储类："><a href="#存储类：" class="headerlink" title="存储类："></a>存储类：</h2><h3 id="auto类："><a href="#auto类：" class="headerlink" title="auto类："></a>auto类：</h3><p>两种用法，一是用于声明变量并初始化时自动根据初始化的值来判断变量的类型；二是用于作为函数定义的返回值的占位符</p>
+<h3 id="static存储类："><a href="#static存储类：" class="headerlink" title="static存储类："></a>static存储类：</h3><p>保证被修饰的变量在程序运行的全生命周期内保持局部变量的存在</p>
+<p>即相当于声明了静态变量</p>
+<h3 id="extern存储类"><a href="#extern存储类" class="headerlink" title="extern存储类:"></a>extern存储类:</h3><p>用于提供全局变量的声明</p>
+<h2 id="Lambda函数与表达式"><a href="#Lambda函数与表达式" class="headerlink" title="Lambda函数与表达式"></a>Lambda函数与表达式</h2><p>定义如下：</p>
+<p>**[capture]**：(parameters) mutable -&gt;return-type{statement}</p>
+<p>解释：</p>
+<p>**[capture]**：捕获列表。其总是出现在lambda表达式的开始处,是lambda的引出符，编译器根据此判断接下来的代码是否是lambda函数</p>
+<p>(parameters):参数列表，和普通的参数列表一致，如果不需要参数列表</p>
+<p>则可省略</p>
+<p>mutable:默认情况下，lambda函数总是一个const函数，使用mutable修饰符可以取消其常量性,但使用时参数列表不可省略(即使为空)</p>
+<p>-&gt;return_type：返回类型，如果不需要可以连同-&gt;一起省略</p>
+<p>{statement}:函数体内容与普通函数一样，不仅可以使用参数，还可以使用捕获的变量</p>
+<h2 id="C-的伪随机："><a href="#C-的伪随机：" class="headerlink" title="C++的伪随机："></a>C++的伪随机：</h2><p>在C++中，利用srand(unsigned seed)进行伪随机的初始化</p>
+<p>再调用rand()函数返回一个伪随机数</p>
+<p>通常来讲，为了使rand()产生的数相对没有规律，传入的参数往往是time系统时间，也就是说，当srand()传入的参数seed相同时,后面的rand()函数产生的伪随机数是一样的，在逆向中有时会见到，要注意.</p>
+<h2 id="引用："><a href="#引用：" class="headerlink" title="引用："></a>引用：</h2><p>定义：</p>
+<p>type&amp;  name = name0;</p>
+<p>相当于给变量起个小名，必须在声明时就初始化</p>
+<p>实际上用的都是同一块内存空间，地址和对应的值都一样</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/6bd8bc66/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -211,10 +316,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-19 23:29:10 / 修改时间：23:32:04" itemprop="dateCreated datePublished" datetime="2021-04-19T23:29:10+08:00">2021-04-19</time>
+              <time title="创建时间：2021-04-19 23:29:10" itemprop="dateCreated datePublished" datetime="2021-04-19T23:29:10+08:00">2021-04-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-22 21:44:34" itemprop="dateModified" datetime="2021-04-22T21:44:34+08:00">2021-04-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -222,14 +333,6 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Django%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Django学习</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django%E5%AD%A6%E4%B9%A0/MongoDB%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">MongoDB学习</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django%E5%AD%A6%E4%B9%A0/MongoDB%E5%AD%A6%E4%B9%A0/Python%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python学习</span></a>
                 </span>
             </span>
 
@@ -1566,89 +1669,6 @@ nMaxCount：指定了要拷贝到lpStr的字符串的最大长度（以字节为
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/140ab620/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="PengLaiDoll">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengLaiDoll网安学习心得">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/140ab620/" class="post-title-link" itemprop="url">Python中对于文件的操作</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-19 23:57:01" itemprop="dateCreated datePublished" datetime="2021-03-19T23:57:01+08:00">2021-03-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-28 13:59:51" itemprop="dateModified" datetime="2021-03-28T13:59:51+08:00">2021-03-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Python语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="对于文件的更改："><a href="#对于文件的更改：" class="headerlink" title="对于文件的更改："></a>对于文件的更改：</h2><h3 id="Open函数："><a href="#Open函数：" class="headerlink" title="Open函数："></a>Open函数：</h3><p>python中利用open函数来实现对文件的读取和更改<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">    a &#x3D; open(&#39;a.txt&#39;,&#39;w&#39;,encoding&#x3D;utf-8)</span><br><span class="line">    printf(a.read())</span><br><span class="line">       a.close()</span><br></pre></td></tr></table></figure>
-<p>这里我们用open()函数打开一个文件，注意open函数的返回值为一个对象，之后，我们对这个对象使用read方法来实现对文档的读取<br>下面是对于传入的第二个参数的解释，其决定了open的操作模式<br>| 操作模式 | 具体含义                         |<br>| ——– | ——————————– |<br>| <code>&#39;r&#39;</code>    | 读取 （默认）                    |<br>| <code>&#39;w&#39;</code>    | 写入（会先截断之前的内容）       |<br>| <code>&#39;x&#39;</code>    | 写入，如果文件已经存在会产生异常 |<br>| <code>&#39;a&#39;</code>    | 追加，将内容写入到已有文件的末尾 |<br>| <code>&#39;b&#39;</code>    | 二进制模式                       |<br>| <code>&#39;t&#39;</code>    | 文本模式（默认）                 |<br>| <code>&#39;+&#39;</code>    | 更新（既可以读又可以写）         |</p>
-<h3 id="With-open-as"><a href="#With-open-as" class="headerlink" title="With open as:"></a>With open as:</h3><p>当我们使用Open函数以后，我们不得不用close方法来对文件进行关闭，我们更常用的是这个</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">    with open(&#39;a.txt&#39;,&#39;w&#39;,encoding&#x3D;utf-8) as a:</span><br><span class="line">        printf(a.read())</span><br></pre></td></tr></table></figure>
-<p>With open as 可以根据我们的使用情况(上下文环境)而适时关闭文件</p>
-<h3 id="Try"><a href="#Try" class="headerlink" title="Try:"></a>Try:</h3><p>继续上面的代码，当我们当前目录的文件夹中无a.txt文件时，程序会报错，那么怎么避免这种情况呐</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">    try:</span><br><span class="line">        with open(&#39;a.txt&#39;,&#39;w&#39;,encoding&#x3D;utf-8) as a:</span><br><span class="line">            printf(a.read())</span><br><span class="line">    except FileNotFoundError:</span><br><span class="line">        print(&#39;无法打开指定的文件!&#39;)</span><br><span class="line">    except LookupError:</span><br><span class="line">        print(&#39;指定了未知的编码!&#39;)</span><br><span class="line">    except UnicodeDecodeError:</span><br><span class="line">        print(&#39;读取文件时解码错误!&#39;)</span><br><span class="line">    finally:</span><br><span class="line">        if a:</span><br><span class="line">            print(&#39;Complete!&#39;)</span><br></pre></td></tr></table></figure>
-<p>这里引入了try except finally函数，这个函数可以根据不同的报错情况来选择性输出，属于选择结构，最后的finally又叫做“总要执行”，无论上述出现什么情况，这一语句总要执行，多用这个语句来保证程序的正确执行</p>
-<h3 id="For-I-in-a-readlines"><a href="#For-I-in-a-readlines" class="headerlink" title="For I in a.readlines():"></a>For I in a.readlines():</h3><p>这一语句是用来整行遍历要读取的文件的内容</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1718,14 +1738,14 @@ nMaxCount：指定了要拷贝到lpStr的字符串的最大长度（以字节为
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
