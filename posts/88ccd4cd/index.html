@@ -1,37 +1,936 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MIPS,汇编语言,计算机基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="寄存器：MIPS包含32个通用寄存器($0-$31),这些通用寄存器均为32位，硬件没有强制规定这些寄存器的作用，但实际使用中我们按照约定引入了一系列用法，使用过程中尽量使用约定名和助记符，而不直接使用寄存器编号    编号 助记符 用法    0 zero 永远为0   1 at 用作汇编器的暂时变量   2-3 v0,v1 子函数调用返回结果   4-7 a0-a3 子函数调用的参数   8-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIPS指令集初学">
+<meta property="og:url" content="http://penglaidoll.xyz/posts/88ccd4cd/index.html">
+<meta property="og:site_name" content="PengLaiDoll网安学习心得">
+<meta property="og:description" content="寄存器：MIPS包含32个通用寄存器($0-$31),这些通用寄存器均为32位，硬件没有强制规定这些寄存器的作用，但实际使用中我们按照约定引入了一系列用法，使用过程中尽量使用约定名和助记符，而不直接使用寄存器编号    编号 助记符 用法    0 zero 永远为0   1 at 用作汇编器的暂时变量   2-3 v0,v1 子函数调用返回结果   4-7 a0-a3 子函数调用的参数   8-">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-08T08:00:56.000Z">
+<meta property="article:modified_time" content="2021-04-08T08:22:55.110Z">
+<meta property="article:author" content="PengLaiDoll">
+<meta property="article:tag" content="MIPS">
+<meta property="article:tag" content="汇编语言">
+<meta property="article:tag" content="计算机基础">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://penglaidoll.xyz/posts/88ccd4cd/"/>
+
+
+
+
+
+  <title>MIPS指令集初学 | PengLaiDoll网安学习心得</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PengLaiDoll网安学习心得</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/88ccd4cd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MIPS指令集初学</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-08T16:00:56+08:00">
+                2021-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="寄存器："><a href="#寄存器：" class="headerlink" title="寄存器："></a>寄存器：</h2><p>MIPS包含32个通用寄存器($0-$31),这些通用寄存器均为32位，硬件没有强制规定这些寄存器的作用，但实际使用中我们按照约定引入了一系列用法，使用过程中尽量使用约定名和助记符，而不直接使用寄存器编号</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>助记符</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>zero</td>
+<td>永远为0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>at</td>
+<td>用作汇编器的暂时变量</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>v0,v1</td>
+<td>子函数调用返回结果</td>
+</tr>
+<tr>
+<td>4-7</td>
+<td>a0-a3</td>
+<td>子函数调用的参数</td>
+</tr>
+<tr>
+<td>8-15</td>
+<td>t0-t7</td>
+<td>暂时变量，子函数使用时不需要保存与恢复</td>
+</tr>
+<tr>
+<td>16-23</td>
+<td>s0-s7</td>
+<td>子函数寄存器变量。在返回之前子函数必须保存和恢复使用过的变量，从而调用函数知道这些寄存器的值没有变化</td>
+</tr>
+<tr>
+<td>24-25</td>
+<td>t8,t9</td>
+<td>暂时变量，子函数使用时不需要保存和恢复</td>
+</tr>
+<tr>
+<td>26-27</td>
+<td>k0,k1</td>
+<td>通常被中断或异常处理程序使用保存一些系统参数</td>
+</tr>
+<tr>
+<td>28</td>
+<td>gp</td>
+<td>全局指针。一些运行系统维护这个指针来更方便的存取static和extern变量</td>
+</tr>
+<tr>
+<td>29</td>
+<td>sp</td>
+<td>堆栈指针</td>
+</tr>
+<tr>
+<td>30</td>
+<td>s8/fp</td>
+<td>框架指针/第九个寄存器变量</td>
+</tr>
+<tr>
+<td>31</td>
+<td>ra</td>
+<td>子函数的返回地址</td>
+</tr>
+</tbody></table>
+<p>两个特殊的寄存器：</p>
+<h3 id="0"><a href="#0" class="headerlink" title="$0"></a>$0</h3><p>不管我们存放什么值,其返回值永远为0</p>
+<h3 id="31"><a href="#31" class="headerlink" title="$31"></a>$31</h3><p>永远存放着正常函数调用指令(jal)的返回地址</p>
+<h3 id="at"><a href="#at" class="headerlink" title="$at"></a>$at</h3><p>由编译器生成复合指令时使用</p>
+<h3 id="v0-v1"><a href="#v0-v1" class="headerlink" title="$v0,$v1"></a>$v0,$v1</h3><p>用来存放一个子程序(函数)的非浮点运算的结果或返回值。若这两个寄存器的大小不足够存放结果，系统将通过内存来完成存储</p>
+<h3 id="a0-a3"><a href="#a0-a3" class="headerlink" title="$a0-a3"></a>$a0-a3</h3><p>用来传递子函数调用时前四个非浮点参数</p>
+<h3 id="t0-t9"><a href="#t0-t9" class="headerlink" title="$t0-t9"></a>$t0-t9</h3><p>依照约定，这些寄存器在被子程序调用时可以不用被保存并随便使用，适合存储暂时变量，但因为可以被随便调用，因此不被推荐用来存储不变量，因为子程序有可能会调用这些寄存器将其中的值破坏掉</p>
+<p>换句话说，这些寄存器谁都能用，而且不必保存里面原有的数据</p>
+<h3 id="s0-s8"><a href="#s0-s8" class="headerlink" title="$s0-s8"></a>$s0-s8</h3><p>依照约定，子函数在函数返回时必须保证调用完这些寄存器之后要恢复这些寄存器中的值为函数调用之前的值，这样的约定使得这几个寄存器通常被用来存放常量</p>
+<p>换句话说，这些寄存器若想使用，必须先保证能恢复其中原来的数</p>
+<h3 id="k0-k1"><a href="#k0-k1" class="headerlink" title="$k0,k1"></a>$k0,k1</h3><p>被OS的异常或中断处理程序使用，被使用后将不会恢复原来的值，因此通常不会被使用</p>
+<h3 id="gp"><a href="#gp" class="headerlink" title="$gp"></a>$gp</h3><p>如果存放一个全局指针，它将指向程序运行时所决定的静态数据区(static date)的一个位置，这意味着，利用gp做基指针，在基指针32k左右的数据存取，系统只需要一条指令即可完成</p>
+<p>补充(之所以出现这个，是因为RISC结构CPU一条指令为32位，而地址总线也为32位，也就是说，正常条件下不可能通过一条指令完成对于内存的访问)</p>
+<h3 id="sp"><a href="#sp" class="headerlink" title="$sp"></a>$sp</h3><p>堆栈指针的上下需要显示的 通过指令来实现，因此MIPS通常只在子函数进入和退出时调整栈堆的指针。当SP被函数调用时，通常指向被调用栈的底部，利用其相对偏移来存取堆栈上面的堆栈变量</p>
+<h3 id="fp-s8"><a href="#fp-s8" class="headerlink" title="$fp/s8"></a>$fp/s8</h3><p>fp作为框架指针通常被函数用来记录堆栈的情况</p>
+<p>(注：说白了fp,sp和ss,sp关系差不多)</p>
+<p>(关于pushl和popl：在mips中pushl是按照从右往左顺序入栈，popl则是从左往右，举个栗子：</p>
+<p>popl {$eax,$ebx}//先是ebx入栈，再是eax</p>
+<p>)</p>
+<h3 id="ra"><a href="#ra" class="headerlink" title="$ra"></a>$ra</h3><p>当我们调用任何一个子函数时，返回地址存放在ra寄存器中，因此，子程序中最后一个指令往往是jr ra,如果子函数嵌套调用函数,往往通过栈堆来保存ra中的值</p>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>hi 和 lo是乘法运算器相关的两个寄存器，一般除了乘法运算，不存放任何值</p>
+<p>若浮点运算协处理器存在的话。则有32个浮点寄存器$f0到$f31</p>
+<h2 id="整数乘法单元和寄存器"><a href="#整数乘法单元和寄存器" class="headerlink" title="整数乘法单元和寄存器"></a>整数乘法单元和寄存器</h2><p>在MIPS中，只有在整数乘法运算完成得到完整的结果后，才能读取结果寄存器</p>
+<h2 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h2><p>基址－偏移 寻址</p>
+<h2 id="指令格式：-所有指令都是32位长"><a href="#指令格式：-所有指令都是32位长" class="headerlink" title="指令格式：(所有指令都是32位长)"></a>指令格式：(所有指令都是32位长)</h2><h3 id="R格式"><a href="#R格式" class="headerlink" title="R格式"></a>R格式</h3><p>(操作码、第一个源操作数、第二个源操作数、目标寄存器(放结果)、偏移量、函数码)</p>
+<p>举个栗子：</p>
+<p>add $8,$17,$18</p>
+<p>#$8 = $17 + $18</p>
+<h3 id="I格式"><a href="#I格式" class="headerlink" title="I格式"></a>I格式</h3><p>(带有立即数，target的指令)</p>
+<p>(操作码、第一个源操作数寄存器、目标寄存器、地址相对基址偏移量)</p>
+<p>(分类：装入/存储指令、分支指令、立即数运算指令)</p>
+<h3 id="J格式"><a href="#J格式" class="headerlink" title="J格式"></a>J格式</h3><h2 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h2><p>小结：i结尾代表可用执行数immediate</p>
+<p>u结尾代表无符号unsigned</p>
+<h3 id="加载-保存-指令集"><a href="#加载-保存-指令集" class="headerlink" title="加载/保存 指令集"></a>加载/保存 指令集</h3><h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>lw(load word)</p>
+<p>lw reg,ram  #从对应的ram中复制内容到reg中</p>
+<p>lb(load byte)</p>
+<p>用法同上</p>
+<h4 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h4><p>sw(store word)</p>
+<p>sw reg,ram  #将指定寄存器中的数据写入特定内存中</p>
+<p>sb(store byte)</p>
+<p>用法同上</p>
+<p>load immediate</p>
+<p>li reg,value  #加载立即数</p>
+<h3 id="立即与间接寻址"><a href="#立即与间接寻址" class="headerlink" title="立即与间接寻址"></a>立即与间接寻址</h3><h4 id="直接寻址"><a href="#直接寻址" class="headerlink" title="直接寻址"></a>直接寻址</h4><p>la(load address)</p>
+<p>la reg,var1  #表示将var1段的内存地址塞入reg寄存器中</p>
+<h4 id="间接寻址"><a href="#间接寻址" class="headerlink" title="间接寻址"></a>间接寻址</h4><p>lw reg1,(reg2)  #将reg2中的ram地址加载进reg1中</p>
+<p>sw reg1,(reg2)</p>
+<h4 id="加偏移量"><a href="#加偏移量" class="headerlink" title="加偏移量"></a>加偏移量</h4><p>lw reg1,4(reg2)</p>
+<p>sw reg1,-12(reg2)</p>
+<h3 id="算数指令集"><a href="#算数指令集" class="headerlink" title="算数指令集"></a>算数指令集</h3><p>注：</p>
+<p>最多三个操作数</p>
+<p>操作数只能是寄存器，不可为地址</p>
+<p>所有指令统一为32位</p>
+<p>add reg,reg1,reg2</p>
+<p>sub reg,reg1,reg2</p>
+<p>addi reg,reg1,value(带立即数的加)</p>
+<p>addu reg,reg1,reg2(不带符号的数加)</p>
+<p>subi reg,reg1,reg2</p>
+<p>subu reg,reg1,reg2</p>
+<p>mult reg1,reg2(两个32位数分别存在于reg1、reg2,然后相乘得到一个64位数放在hi,lo中，hi高位，lo低位)</p>
+<p>div reg1,reg2(reg1/reg2,商数存储在lo，余数放在hi)</p>
+<p>or reg,reg1,reg2</p>
+<p>xor reg,reg1,reg2</p>
+<p>nor reg,reg1,reg2</p>
+<p>mfhi reg(将hi的值传给reg)</p>
+<p>mflo reg(将lo的值传给reg)</p>
+<p>move reg1,reg2(reg1 = reg2)</p>
+<p>slt reg,reg1,reg2(if reg1&lt;reg2 reg=1 else reg=0)</p>
+<p>sltu reg,reg1,reg2(同上，只不过是无符号数)</p>
+<p>slti reg,reg1,value</p>
+<p>sltiu reg,reg1,value</p>
+<p>#按位移动</p>
+<p>sll reg1,reg2,value(reg1=reg2按位左移value)</p>
+<p>srl reg1,reg2,value(reg1=reg2按位右移value)</p>
+<p>sra reg1,reg2,value(同上右移，注意符号位保留)</p>
+<p>#末尾带v可以让立即数在寄存器中</p>
+<p>sllv reg1,reg2,reg3(作用同上，按位移动，只不过立即数保存在了reg3中)</p>
+<p>srlv reg1,reg2,reg3</p>
+<p>srav reg1,reg2,reg3</p>
+<h3 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h3><p>分支</p>
+<p>beq reg1,reg2,target (equal)</p>
+<p>blt reg1,reg2,target (lower than)</p>
+<p>ble reg1,reg2,target (low equal)</p>
+<p>bgt reg1,reg2,target (bigger than)</p>
+<p>bge reg1,reg2,target (big equal)</p>
+<p>bne reg1,reg2,target (not equal)</p>
+<h3 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h3><p>j target  #直接跳转</p>
+<p>jr reg  #跳到该寄存器给的地址处</p>
+<h3 id="子程序调用"><a href="#子程序调用" class="headerlink" title="子程序调用"></a>子程序调用</h3><p>jal (name)  #将当前的程序计数器(PC)保存在$ra中，调用子程序，返回值设为PC+8</p>
+<p>如果多次嵌套调用子程序，那么返回地址的标记就用栈来存储</p>
+<p>至于为什么+8，因为是流水线技术，在真正执行这一条指令之前jal下一条指令已经进入流水线了，因此一定会执行完下一句，所以pc指向的是jal指令的下下条指令</p>
+<p>补：关于PC寄存器</p>
+<p>每一个线程启动时，都会建立一个PC寄存器(程序计数器),该寄存器指向下一条命令执行的地址(类似于x86的cs:ip)</p>
+<h2 id="MIPS的5阶段流水线："><a href="#MIPS的5阶段流水线：" class="headerlink" title="MIPS的5阶段流水线："></a>MIPS的5阶段流水线：</h2><p>IF(fetch):取指令，PC值发生变化，指向当前指令</p>
+<p>ID(decode):指令译码，读寄存器</p>
+<p>EX：执行运算，对于Load/Store，计算地址；对于其他指令，执行运算操作</p>
+<p>MEM：访问内存，Load/Store的执行</p>
+<p>WB：数据写回寄存器</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MIPS/" rel="tag"># MIPS</a>
+          
+            <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" rel="tag"># 汇编语言</a>
+          
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" rel="tag"># 计算机基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/af3cdccb/" rel="next" title="AT&T汇编语法">
+                <i class="fa fa-chevron-left"></i> AT&T汇编语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/193d94a/" rel="prev" title="Reverse知识总结">
+                Reverse知识总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">寄存器：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0"><span class="nav-number">1.1.</span> <span class="nav-text">$0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31"><span class="nav-number">1.2.</span> <span class="nav-text">$31</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#at"><span class="nav-number">1.3.</span> <span class="nav-text">$at</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v0-v1"><span class="nav-number">1.4.</span> <span class="nav-text">$v0,$v1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a0-a3"><span class="nav-number">1.5.</span> <span class="nav-text">$a0-a3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t0-t9"><span class="nav-number">1.6.</span> <span class="nav-text">$t0-t9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#s0-s8"><span class="nav-number">1.7.</span> <span class="nav-text">$s0-s8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k0-k1"><span class="nav-number">1.8.</span> <span class="nav-text">$k0,k1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gp"><span class="nav-number">1.9.</span> <span class="nav-text">$gp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sp"><span class="nav-number">1.10.</span> <span class="nav-text">$sp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fp-s8"><span class="nav-number">1.11.</span> <span class="nav-text">$fp&#x2F;s8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ra"><span class="nav-number">1.12.</span> <span class="nav-text">$ra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="nav-number">1.13.</span> <span class="nav-text">补充：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95%E5%8D%95%E5%85%83%E5%92%8C%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">整数乘法单元和寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">寻址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F%EF%BC%9A-%E6%89%80%E6%9C%89%E6%8C%87%E4%BB%A4%E9%83%BD%E6%98%AF32%E4%BD%8D%E9%95%BF"><span class="nav-number">4.</span> <span class="nav-text">指令格式：(所有指令都是32位长)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#R%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">R格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">I格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.3.</span> <span class="nav-text">J格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="nav-number">5.</span> <span class="nav-text">指令集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD-%E4%BF%9D%E5%AD%98-%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="nav-number">5.1.</span> <span class="nav-text">加载&#x2F;保存 指令集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD"><span class="nav-number">5.1.1.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E5%AD%98"><span class="nav-number">5.1.2.</span> <span class="nav-text">保存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E4%B8%8E%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-number">5.2.</span> <span class="nav-text">立即与间接寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-number">5.2.1.</span> <span class="nav-text">直接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-number">5.2.2.</span> <span class="nav-text">间接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E5%81%8F%E7%A7%BB%E9%87%8F"><span class="nav-number">5.2.3.</span> <span class="nav-text">加偏移量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%95%B0%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="nav-number">5.3.</span> <span class="nav-text">算数指令集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="nav-number">5.4.</span> <span class="nav-text">控制流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%B3%E8%BD%AC"><span class="nav-number">5.5.</span> <span class="nav-text">跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8"><span class="nav-number">5.6.</span> <span class="nav-text">子程序调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIPS%E7%9A%845%E9%98%B6%E6%AE%B5%E6%B5%81%E6%B0%B4%E7%BA%BF%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">MIPS的5阶段流水线：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PengLaiDoll</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

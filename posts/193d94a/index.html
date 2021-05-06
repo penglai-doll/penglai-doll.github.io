@@ -1,37 +1,886 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="逆向," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="以下为个人从书中和网上搜集的资料和经验，如有不足之处，敬请指出： 1.X86应用接口（常见）DialogBoxes类型的APIs以下来源于鱼C工作室：  DialogBoxParamA  GetDlgItem  GetDlgItemInt  GetDlgItemTextA  GetWindowTextA  GetWindowLong DialogBoxParamA‘ 函数功能： 该函数根据对话框模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reverse知识总结">
+<meta property="og:url" content="http://penglaidoll.xyz/posts/193d94a/index.html">
+<meta property="og:site_name" content="PengLaiDoll网安学习心得">
+<meta property="og:description" content="以下为个人从书中和网上搜集的资料和经验，如有不足之处，敬请指出： 1.X86应用接口（常见）DialogBoxes类型的APIs以下来源于鱼C工作室：  DialogBoxParamA  GetDlgItem  GetDlgItemInt  GetDlgItemTextA  GetWindowTextA  GetWindowLong DialogBoxParamA‘ 函数功能： 该函数根据对话框模">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-19T13:32:54.000Z">
+<meta property="article:modified_time" content="2021-04-19T15:24:59.565Z">
+<meta property="article:author" content="PengLaiDoll">
+<meta property="article:tag" content="逆向">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://penglaidoll.xyz/posts/193d94a/"/>
+
+
+
+
+
+  <title>Reverse知识总结 | PengLaiDoll网安学习心得</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PengLaiDoll网安学习心得</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/193d94a/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Reverse知识总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-19T21:32:54+08:00">
+                2021-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">逆向学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以下为个人从书中和网上搜集的资料和经验，如有不足之处，敬请指出：</p>
+<h3 id="1-X86应用接口（常见）"><a href="#1-X86应用接口（常见）" class="headerlink" title="1.X86应用接口（常见）"></a>1.X86应用接口（常见）</h3><h4 id="DialogBoxes类型的APIs"><a href="#DialogBoxes类型的APIs" class="headerlink" title="DialogBoxes类型的APIs"></a>DialogBoxes类型的APIs</h4><p>以下来源于鱼C工作室：</p>
+<ul>
+<li><p>DialogBoxParamA</p>
+</li>
+<li><p>GetDlgItem</p>
+</li>
+<li><p>GetDlgItemInt</p>
+</li>
+<li><p>GetDlgItemTextA</p>
+</li>
+<li><p>GetWindowTextA</p>
+</li>
+<li><p>GetWindowLong</p>
+<p><strong>DialogBoxParamA</strong>‘</p>
+<p><strong>函数功能：</strong></p>
+<p>该函数根据对话框模板资源创建一个模态的对话框。在显示对话框之前，函数把一个应用程序定义的值作为WM_INITDIALOG消息的IParam参数传到对话框过程,应用程序可用此值来初始化对话。</p>
+<p><strong>函数原型：</strong></p>
+<ol>
+<li><pre><code>int DialogBoxParam( HINSTANCE hlnstance, LPCTSTR IpTemplateName, HWND hWndParent, DLGPROC IPDialogFunc, LPARAM dwlnitParam );
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   **参数：**</span><br><span class="line">   hlnstance：标识一个模块的事例，该模块的可执行文件含有对话框模板。</span><br><span class="line">   IpTemplateName：标识对话框模板。此参数可以指向一个以NULL结尾的字符串的指针,该字符串指定对话框模扳名，或是指定对话框模板的资源标识符的一个整型值。如果此参数指定了一个资源标识符，则它的高位字一定为零，且低位字一定含有标识符。一定用MAKEINTRESOURCE宏指令创建此值。</span><br><span class="line">   hWndParent：指定拥有对话框的窗口。</span><br><span class="line">   IpDirlogFunc：指向对话框过程的指针。</span><br><span class="line">   dwlnitaram：指定传递到WM_INITDIALOG消息的IParam参数中的对话框过程的值。</span><br><span class="line"></span><br><span class="line">**返回值**</span><br><span class="line">如果函数调用成功则返回值为在对函数EndDialog的调用中的nResult参数，该EndDialog函数用于中止对话框。</span><br><span class="line">如果函数调用失败，则返回值为C1。若想获得错误信息，请调用GetLastError函数。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">**GetDlgItem**</span><br><span class="line"></span><br><span class="line">**函数功能**</span><br><span class="line"></span><br><span class="line">该函数检索指定的对话框中的控件句柄。</span><br><span class="line"></span><br><span class="line">**函数原型**</span><br><span class="line"></span><br><span class="line">1. &#96;&#96;&#96;</span><br><span class="line">   HWND GetDlgItem(HWND hDlg, int nlDDlgltem);</span><br></pre></td></tr></table></figure>
+**参数**
+hDlg：标识含有控件的对话框。
+nlDDlgltem：指定将被检索的控件标识符。y
+</code></pre>
+</li>
+</ol>
+<p><strong>返回值</strong><br>如果函数调用成功则返回值为给定控件的窗口句柄。<br>如果函数调用失败，则返回值为NULL，表示为一个无效的对话框句柄或一个不存在的控件。<br>若想获得更多错误信息，可以调用GetLastError函数。</p>
+<p><strong>GetDlgItemInt</strong><br><strong>函数功能</strong><br>获取控件中里面字符串并转换成int类型返回。</p>
+<p><strong>函数原型</strong></p>
+<ol>
+<li><pre><code>UINT GetDlgItemInt( HWND hDlg, int nIDDlgItem, BOOL *lpTranslated, BOOLbSigned );
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   **参数**</span><br><span class="line">   hDlg：对话框的句柄。</span><br><span class="line">   nIDDlgItem：标识哪个文本将被转换。</span><br><span class="line">   lpTranslated：表示成功或失败（TRUE表示成功，FALSE表示失败）。如果此参数为NULL，则该函数没有返回成功或失败的信息。</span><br><span class="line">   bSigned：TURE表示有符号数，FALSE表示无符号数。</span><br><span class="line"></span><br><span class="line">**返回值**</span><br><span class="line">如果函数成功转换，返回转换的字符个数。</span><br><span class="line"></span><br><span class="line">**小甲鱼备注**</span><br><span class="line">第三个参数，主要是为了接收错误信息的。可能出现的错误信息有: ID无效，并且超过指定大小。</span><br><span class="line">比如说ID为12345677，这个就不行。</span><br><span class="line"></span><br><span class="line">还有就是输入不能解析为一个int类型的，比如输入:&quot;bvbvbvbv&quot;，&quot;3.5666&quot;， 当然后面可以解析为一个浮点型，在这里取得的值为3，但是还是会有错误信息。</span><br><span class="line">如果不指定第二个参数，就不会获得任何错误信息。</span><br><span class="line"></span><br><span class="line">对输入的判断是否可以解析为int类型或者是否有效，很有用的，我们经常有这个参数来判断用户的输入是否合法</span><br><span class="line"></span><br><span class="line">第四个参数，默认的为true，主要是针对&quot;-123&quot;，像这样的字符，它可以把前面的&quot;-&quot;解析为负号，那么就是标准的int类型了，如果设置为false，那么它不可以有负数，因为在这里的&quot;-&quot;号，被认为是不合法的。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">**GetDlgItemTextA**</span><br><span class="line"></span><br><span class="line">**函数功能**</span><br><span class="line">调用这个函数以获得与对话框中的控件相关的标题或文本。GetDlgItemText成员函数将文本拷贝到lpStr指向的位置并返回拷贝的字节的数目。</span><br><span class="line"></span><br><span class="line">**函数原型**</span><br><span class="line"></span><br><span class="line">1. &#96;&#96;&#96;</span><br><span class="line">   int GetDlgItemText( HWND hDlg, int nID, LPTSTR lpStr, int nMaxCount );</span><br></pre></td></tr></table></figure>
+
+**参数**
+hDlg：句柄啊句柄~_~
+nID：指定了要获取其标题的控件的整数标识符。
+lpStr：指向要接收控件的标题或文本的缓冲区。
+nMaxCount：指定了要拷贝到lpStr的字符串的最大长度（以字节为单位）。如果字符串比nMaxCount要长，它将被截断。
+
+**返回值**
+如果函数调用成功，返回值为拷贝到缓冲区中的 TCHAR 字符个数（不包括结束空字符）。
+如果函数调用失败，返回值为 0 。要获取更多错误信息，请调用 GetLastError 函数。
+</code></pre>
+</li>
+</ol>
+<p>*<em>小甲鱼备注**</em><br>如果字符串的长度大于缓冲区的长度，则会被截断，并以空字符结束。</p>
+<p><strong>GetWindowTextA</strong> :</p>
+<p><strong>函数功能</strong><br>该函数将指定窗口的标题条文本（如果存在）拷贝到一个缓存区内。如果指定的窗口是一个控件，则拷贝控件的文本。但是，GetWindowText不能接收其他应用程序中控件的文本。</p>
+<p><strong>函数原型</strong></p>
+<ol>
+<li><pre><code>Int GetWindowText( HWND hWnd, LPTSTR lpString, Int nMaxCount);
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   **参数**</span><br><span class="line">   hWnd：带文本的窗口或控件的句柄。</span><br><span class="line">   IpString：指向接收文本的缓冲区的指针。</span><br><span class="line">   nMaxCount：指定要保存在缓冲区内的字符的最大个数，其中包含NULL字符。如果文本超过界限，它就被截断。</span><br><span class="line"></span><br><span class="line">   **返回值**</span><br><span class="line">   如果函数成功，返回值是拷贝的字符串的字符个数，不包括中断的空字符；如果窗口无标题栏或文本，或标题栏为空，或窗口或控制的句柄无效，则返回值为零。若想获得更多错误信息，请调用GetLastError函数。</span><br><span class="line"></span><br><span class="line">   **小甲鱼备注**</span><br><span class="line">   函数不能返回在其他应用程序中的编辑控件的文本。</span><br><span class="line"></span><br><span class="line">**GetWindowLong** &quot;</span><br><span class="line"></span><br><span class="line">**函数功能**</span><br><span class="line">该函数获得有关指定窗口的信息，函数也获得在额外窗口内存中指定偏移位地址的32位度整型值。</span><br><span class="line"></span><br><span class="line">**函数原型**</span><br><span class="line"></span><br><span class="line">1. &#96;&#96;&#96;</span><br><span class="line">   LONG GetWindowLong( HWND hWnd, int nlndex );</span><br></pre></td></tr></table></figure>
+
+</code></pre>
+</li>
+</ol>
+<p><strong>参数</strong><br>hWnd：窗口句柄及间接给出的窗口所属的窗口类。<br>nlndex：指定要获得值的大于等于0的值的偏移量。有效值的范围从0到额外窗口内存空间的字节数一4例如，若指定了12位或多于12位的额外类存储空间，则应设为第三个32位整数的索引位8。<br>要获得任意其他值，指定下列值之一：<br>　　GWL_EXSTYLE(-20)；获得扩展窗口风格。<br>　　GWL_STYLE(-16)：获得窗口风格。<br>　　GWL_WNDPROC(-4)：获得窗口过程的地址，或代表窗口过程的地址的句柄。必须使用CallWindowProc函数调用窗口过程。<br>　　GWL_HINSTANCE(-6)：获得应用事例的句柄。<br>　　GWL_HWNDPARENT(-8)：如果父窗口存在，获得父窗口句柄。<br>　　GWL_ID(-12):获得窗口标识。<br>　　GWL_USERDATA(-21)：获得与窗口有关的32位值。每一个窗口均有一个由创建该窗口的应用程序使用的32位值。<br>　　在hWnd参数标识了一个对话框时也可用下列值：<br>　　DWL_DLGPROC(4)：获得对话框过程的地址，或一个代表对话框过程的地址的句柄。必须使用函数CallWindowProc来调用对话框过程。<br>　　DWL_MSGRESULT(0)：获得在对话框过程中一个消息处理的返回值。<br>　　DWL_USER(8)：获得应用程序私有的额外信息，例如一个句柄或指针。</p>
+<p><strong>返回值</strong><br>如果函数成功，返回值是所需的32位值；如果函数失败，返回值是0。若想获得更多错误信息请调用 GetLastError函数。</p>
+<p><strong>小甲鱼备注</strong><br>通过使用函数RegisterClassEx将结构WNDCLASSEX中的cbWndExtra单元指定为一个非0值来保留额外类的存储空间。</p>
+<h4 id="常见其他API"><a href="#常见其他API" class="headerlink" title="常见其他API"></a>常见其他API</h4><p>1  comctl32.dll<br>Windows应用程序公用GUI图形用户界面模块。</p>
+<p>2  imm32.dll<br>电脑的系统文件，与输入法密切相关。<br>3  SetDispositionInformationFile<br>设置部署信息文件<br>4  LockFile<br>可以锁定文件的一部分, 锁成功返回非0，他只能锁定一个打开的文件，给予锁定者以独占的模式。禁止其他线程访问。UnlockFile()解锁,类似<br>5  ntdll.dll<br>描述了windows本地NTAPI的接口。是重要的Windows NT内核级文件。<br>6  conime.exe<br>7  msimg32.dll<br>是Windows图形设备接口GDI相关模块，用于支持新的API应用程序接口和GDI32相关特性。<br>8  winmm.dll<br>是Windows多媒体相关应用程序接口，用于低档的音频和游戏手柄。<br>9  WindowsShell.Manifest<br>WinXP 样式的配置文件；该文件损坏会导致 XP 变回经典样式的界面。<br>10  GetPrivateProfileString<br>初始化文件中指定的条目取得字串。<br>11  RegCreateKeyEx<br>该函数用来创建注册表键，如果该键已经存在，则打开它（注册表键不区分大小写）<br>12  ShellExecuteHook<br>从最初的第三方EXE加载DLL启动方式开始，到随后的使用rundll32.exe加载运行，再到利用NT服务的宿主程序svchost.exe实现启动，直到使用“ShellExecuteHook”（执行挂钩）技术，如今许多木马和恶意程序都在用户层使用ShellExecuteHook作为启动方式，实现随系统启动。<br>13 CreateToolhelp32Snapshot<br>函数通过获取进程信息为指定的进程、进程使用的堆[HEAP]、模块[MODULE]、线程建立一个快照.说到底，可以获取系统中正在运行的进程信息，线程信息等。<br>14 process32First<br>是一个进程获取函数,当我们利用函数CreateToolhelp32Snapshot()获得当前运行进程的快照后,我们可以利用process32First函数来获得第一个进程的句柄.<br>15 Process32Next<br>是一个进程获取函数,当我们利用函数CreateToolhelp32Snapshot()获得当前运行进程的快照后,我们可以利用Process32Next函数来获得下一个进程的句柄.其原型为<br>16 GetEnvironmentVariable<br>获取系统变量。<br>17 GetModuleHandleA<br>获取一个应用程序或动态链接库的模块句柄<br>18 CreateMutex<br>作用是找出当前系统是否已经存在指定进程的实例。如果没有则创建一个互斥体。<br>19 GetStartupInfo<br>Windows API函数。该函数取得进程在启动时被指定的 STARTUPINFO 结构。<br>20 GetCommandLine<br>获得指向当前命令行缓冲区的一个指针。<br>21 GetEnvironmentStrings<br>函数获取系统环境变量。<br>22 GetModuleFileName<br>获取当前进程已加载模块的文件的完整路径，该模块必须由当前进程加载。<br>23 SystemParametersinfo<br>该函数查询或设置系统级参数。该函数也可以在设置参数中更新用户配置文件。<br>24  rep movs dword ptres:[edi], dword ptr [esi]<br>循环从esi指向的内存区域复制数据到edi处的内存区域，复制ecx次，每次是一个DWORD<br>25 REPNE SCAS BYTE PTR ES:[EDI]<br>扫描 ES:[EDI]字符串中的 AL值.值到找到AL值后停止.<br>25 FindFirstFile:<br>根据文件名查找文件。该函数到一个文件夹(包括子文件夹)去搜索指定文件如果要使用附加属性去搜索文件的话可以使用FindFirstFileEx函数。<br>26 GetEnvironmentStrings<br>该函数为当前进程返回系统环境变量,它取代了DOS模式下的相应函数:GetDOSEnvironment()<br>27 GetUserDefaultLCID:<br>获得默认的用户本地标识符。CHS简体中文<br>28 attrib.exe<br>是DOS下不常用的命令。它是显示、设置，或删除指派给文件或目录的属性。ATTRIB [+R | -R] [+A | -A ] [+S | -S] [+H | -H] [+I | -I]</p>
+<pre><code> [drive:][path][filename][/S [/D] [/L]]
+</code></pre>
+<p>29 setenvironmentvariable<br>函数用于设置指定的环境变量：<br>用法：<br>BOOL WINAPISetEnvironmentVariable(<br>_in     LPCTSTR lpName, //环境变量名，当该值不存在且lpValue不为NULL时，将创建一个新的<br>_in_opt LPCTSTR lpValue //环境变量值);<br>30 LoadLibrary:<br>载入指定的动态链接库，并将它映射到当前进程使用的地址空间。<br>31 ExpandEnvironmentStrings<br>扩充环境字串。具体操作过程与命令行处理的所为差不多。也就是说，将由百分号封闭起来的环境变量名转换成那个变量的内容。比如，“%path%”会扩充成完整路径。在vb里经常用于为新进程创建一个环境块<br>32 GetVersion<br>判断当前运行的Windows和DOS版本<br>33 wsprintf<br>函数wsprintf()将一系列的字符和数值输入到缓冲区。输出缓冲区里的的值取决于格式说明符（即”%”）。如果写入的是文字，此函数给写入的文字的末尾追加一个’\0’。函数的返回值是写入的长度，但不包括最后的’\0’。<br>34 ShellExecute createprocess  winexec：<br>这三者都可以执行可执行文件功能上：createprocess  &gt;  shellexecute   &gt;   winexec  复杂程度也是！winexec() 只用于可执行文件，是一个老函数啦，虽然使用方便，但不推荐！(兼容性也不好);shellexcute()是通过windows外壳打开任意文件，非可执行文件自动通过关联的程序打开对于可执行文件，区别不大，不过shellexcute可以指定运行时的工作路径;winexec() 必须有GetMessage或超时之后才返回！CreateProcess和ShellExecute都是直接返回的！<br>35 writefsdword<br>Write memory to a location specified by an offset relative to thebeginning of the FS segment。用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void__writefsword( </span><br><span class="line">   unsigned long Offset, </span><br><span class="line">   unsigned short Data </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>36 GetLastError<br>该函数返回调用线程最近的错误代码值，错误代码以单线程为基础来维护的，多线程不重写各自的错误代码值。分析过程中常见的返回值类型：(1)当返回值为183—&gt;当文件已存在时，无法创建该文件。(2)当返回值为2的时候找不到指定文件。(3)返回值为3的时候找不到指定路径。<br>37 VirtualAllocEx<br>函数可以用来在其他进程的地址空间内申请内存 。</p>
+<p>38 CreateRemoteThread<br>函数用来在其他进程内创建一个线程，当然创建的线程是运行于目标进程的地址空间内的，它和目标进程自己创建的线程并没有什么区别。</p>
+</li>
+</ul>
+<h3 id="2-X86-32-64位汇编"><a href="#2-X86-32-64位汇编" class="headerlink" title="2.X86 32/64位汇编"></a>2.X86 32/64位汇编</h3><p>函数调用与栈的关系（栈回溯）：</p>
+<p>函数发生调用时，先将传入参数从左往右依次压入栈中，然后通过调用call函数，将函数返回地址压入栈中，并跳转</p>
+<p>以下内容为CSDN大佬的分析：</p>
+<p>假设函数A调用函数B，我们称A函数为”调用者”,B函数为“被调用者”则函数调用过程：</p>
+<p>（1）先将调用者（A）的堆栈的基址（ebp）入栈，以保存之前任务的信息；</p>
+<p>（2）然后将调用者（A）的栈顶指针（esp）的值赋给ebp，作为新的基址（即被调用者B的栈底）；</p>
+<p>（3）然后在这个基址（被调用者B的栈底）上开辟（一般用sub指令）相应的空间用作被调用者B的栈空间；</p>
+<p>（4）函数B返回后，从当前栈帧的ebp即恢复为调用者A的栈顶（esp），使栈顶恢复函数B被调用前的位置；然后调用者A再从恢复后的栈顶可弹出之前的ebp值（可以这么做是因为这个值在函数调用前一步被压入堆栈）。这样，ebp和esp就都恢复了调用函数B前的位置，也就是栈恢复函数B调用前的状态。<br>大致就是</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>“我是一个栈”</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>后来的sp–&gt;</td>
+<td>（1）</td>
+</tr>
+<tr>
+<td></td>
+<td>（2）</td>
+</tr>
+<tr>
+<td></td>
+<td>（3）</td>
+</tr>
+<tr>
+<td></td>
+<td>（4）</td>
+</tr>
+<tr>
+<td>原sp(后来的ebp)–&gt;</td>
+<td>（5）</td>
+</tr>
+<tr>
+<td></td>
+<td>（6）</td>
+</tr>
+<tr>
+<td>原ebp–&gt;</td>
+<td>（7）</td>
+</tr>
+</tbody></table>
+<p>总的来说</p>
+<p>在A函数中调用B函数，先将B函数的传入参数压栈，再将返回地址压栈，再将A函数的ebp压栈，再将ebp调到原sp的位置，最后开拓新的B函数的栈空间，完成对B函数的调用，调用完成之后，再将原值pop出，完成栈回溯。</p>
+<h3 id="3-常规逆向分析流程"><a href="#3-常规逆向分析流程" class="headerlink" title="3.常规逆向分析流程"></a>3.常规逆向分析流程</h3><p>1.API断点法</p>
+<p>窗口类应用程序获取文本输入时，主要通过调用GetWindowText和GetDlgItemText两个API来获取，可以在这两个API函数下断点，通过栈回溯定位到关键代码</p>
+<p>2.字符串检索法</p>
+<p>对于某些简单的程序或有明显有义字符的程序，可通过OD或IDA的字符串查找工具找到关键字符串以减少工序</p>
+<p>3.辅助工具法</p>
+<p>对于某些特殊的文件可利用相关工具如针对MFC程序的xspy，Delphi程序的Dede</p>
+<p>来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zbl116/article/details/49909933">点这里</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013318019/article/details/104040516">点这里</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%80%86%E5%90%91/" rel="tag"># 逆向</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/88ccd4cd/" rel="next" title="MIPS指令集初学">
+                <i class="fa fa-chevron-left"></i> MIPS指令集初学
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/6bd8bc66/" rel="prev" title="Django与MongoDb学习的尝试日记①">
+                Django与MongoDb学习的尝试日记① <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-X86%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%EF%BC%88%E5%B8%B8%E8%A7%81%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1.X86应用接口（常见）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DialogBoxes%E7%B1%BB%E5%9E%8B%E7%9A%84APIs"><span class="nav-number">1.1.</span> <span class="nav-text">DialogBoxes类型的APIs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%85%B6%E4%BB%96API"><span class="nav-number">1.2.</span> <span class="nav-text">常见其他API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-X86-32-64%E4%BD%8D%E6%B1%87%E7%BC%96"><span class="nav-number">2.</span> <span class="nav-text">2.X86 32&#x2F;64位汇编</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B8%B8%E8%A7%84%E9%80%86%E5%90%91%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">3.常规逆向分析流程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PengLaiDoll</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,37 +1,779 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C语言学习,C++学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="学校开了C语言课，老师布置了一个简单的小程序，输入一个三位整数，然后分别输出这个数的个位，十位，百位，为了写出一个比较完善的代码，花了不少心思，也学了不少东西，在此记录一下： 1234567891011121314151617181920212223242526272829303132#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;void mai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录一次作业">
+<meta property="og:url" content="http://penglaidoll.xyz/posts/f5d29790/index.html">
+<meta property="og:site_name" content="PengLaiDoll网安学习心得">
+<meta property="og:description" content="学校开了C语言课，老师布置了一个简单的小程序，输入一个三位整数，然后分别输出这个数的个位，十位，百位，为了写出一个比较完善的代码，花了不少心思，也学了不少东西，在此记录一下： 1234567891011121314151617181920212223242526272829303132#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;void mai">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-14T23:26:54.000Z">
+<meta property="article:modified_time" content="2021-03-28T06:00:21.275Z">
+<meta property="article:author" content="PengLaiDoll">
+<meta property="article:tag" content="C语言学习">
+<meta property="article:tag" content="C++学习">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://penglaidoll.xyz/posts/f5d29790/"/>
+
+
+
+
+
+  <title>记录一次作业 | PengLaiDoll网安学习心得</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PengLaiDoll网安学习心得</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://penglaidoll.xyz/posts/f5d29790/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengLaiDoll网安学习心得">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">记录一次作业</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-15T07:26:54+08:00">
+                2021-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C-%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++语言学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>学校开了C语言课，老师布置了一个简单的小程序，输入一个三位整数，然后分别输出这个数的个位，十位，百位，<br>为了写出一个比较完善的代码，花了不少心思，也学了不少东西，在此记录一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">void main() &#123;</span><br><span class="line">    &#x2F;&#x2F;定义字符数组，以存储输入的数字</span><br><span class="line">    char strin[1024];</span><br><span class="line">    &#x2F;&#x2F;定义一个指针，以确保strlen函数的正常运行</span><br><span class="line">    char *strin_ptr;</span><br><span class="line">    &#x2F;&#x2F;将i初始化为零，以防初始化导致i的随机定义进而导致内存中混进莫名的东西</span><br><span class="line">    &#x2F;&#x2F;其实这里也可以不初始化，因为if的第一个判断条件已经避免这个问题了</span><br><span class="line">    int i&#x3D;0,p;</span><br><span class="line">    strin_ptr &#x3D; strin;</span><br><span class="line">    &#x2F;&#x2F;do while将先执行一遍传入需要的数字，然后进行判断，若符合要求，则不再执行循环</span><br><span class="line">    do</span><br><span class="line">    &#123;    &#x2F;&#x2F;清空缓冲区</span><br><span class="line">         fflush(stdin);</span><br><span class="line">         printf(&quot;Please input 3 integer:\n&quot;);</span><br><span class="line">         scanf(&quot;%d&quot;,&amp;i);</span><br><span class="line">         &#x2F;&#x2F;itoa将整形转换为字符，以便存储和计数</span><br><span class="line">         itoa(i,strin,10);</span><br><span class="line">         &#x2F;&#x2F;利用strlen判断输入数字的位数</span><br><span class="line">         p &#x3D; strlen(strin_ptr);</span><br><span class="line">         &#x2F;&#x2F;判断位数、类型是否符合</span><br><span class="line">         if ((t &#x3D;&#x3D; 0)|| (strin[0]&#x3D;&#x3D;&#39;0&#39;) || (p !&#x3D; 3)) &#123;</span><br><span class="line">             printf(&quot;This is ont a right integer,please input again!\n&quot;);</span><br><span class="line">         &#125;</span><br><span class="line">    &#125; while ((t &#x3D;&#x3D; 0)</span><br><span class="line"> || (strin[0]&#x3D;&#x3D;&#39;0&#39;) || (p !&#x3D; 3));</span><br><span class="line">    printf(&quot;Hundred position &#x3D; %c\n&quot;,strin[0]);</span><br><span class="line">    printf(&quot;Ten position &#x3D; %c\n&quot;,strin[1]);</span><br><span class="line">    printf(&quot;Individual position &#x3D; %c\n&quot;,strin[2]);</span><br><span class="line">    system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="缓冲区问题："><a href="#缓冲区问题：" class="headerlink" title="缓冲区问题："></a>缓冲区问题：</h2><h3 id="fflush-stdin"><a href="#fflush-stdin" class="headerlink" title="fflush(stdin)"></a>fflush(stdin)</h3><p>在此之前，我的代码是直接用的while循环且没有fflush(stdin)这一语句，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while (((int)i!&#x3D;i) || (strin[0]&#x3D;&#x3D;&#39;0&#39;) || (p !&#x3D; 3)) &#123;</span><br><span class="line">        printf(&quot;This is ont a right integer,please input again!\n&quot;);</span><br><span class="line">        scanf(&quot;%d,&amp;i&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>大概就是上面这个样子<br>造成的一个问题就是当第一次输入如abc这样不符合条件的字符类型的东西的时候，缓冲区存入‘abc’三个字符，<br>第一个scanf读入因不符合类型要求而无法读取缓冲区的内容，之后执行while循环语句，输出“请重新输入”并再次执行scanf语句，<br>我原本想着利用第二个scanf语句更改输入，结果scanf“不讲武德”，因为缓冲区已经有东西了(我们输入的不符合类型的内容)，所以scanf默认直接读取缓冲区的东西，导致进入了死循环<br>为了解决上面这个问题，我改用了do while并在第一句直接加上了fflush(stdin)语句来清空标准输入的缓冲区，这样，每一次执行循环的开始，都会清空输入的缓冲区，防止进入死循环</p>
+<h2 id="字符串与字符问题："><a href="#字符串与字符问题：" class="headerlink" title="字符串与字符问题："></a>字符串与字符问题：</h2><h3 id="Gets"><a href="#Gets" class="headerlink" title="Gets():"></a>Gets():</h3><p>C语言中，其实不存在字符串这个东西，只有char类型来存储字符，能勉强算上存储字符的变量只有字符数组了，一个字符数组的名称相当于指向其首字母元素的指针，<br>但很可惜，字符数组并不能作为变量传入scanf，会报错。<br>所以，为了将缓冲区的字符串传入，不能用scanf,要用gets(),并将要传入的字符数组作为参数传入</p>
+<h2 id="判断类型是否正确："><a href="#判断类型是否正确：" class="headerlink" title="判断类型是否正确："></a>判断类型是否正确：</h2><p>刚开始在while中我用了一个强制类型转换(int)i!=i来判断i是不是输入了正确类型，其实意义不大，因为在scanf中也有，只会读取缓冲区中的整型，<br>如果我们输入了错误的类型，scanf压根不会读取，这里我们就要用到scanf的返回值了</p>
+<h3 id="scanf的返回值："><a href="#scanf的返回值：" class="headerlink" title="scanf的返回值："></a>scanf的返回值：</h3><p>scanf函数其实是存在返回值的，他返回读取到的匹配字符数目，<br>比如我们输了3个%d,恰好缓冲区有三个整型的数与之匹配，那么就返回3，<br>如果没有匹配的类型，scanf就不会读取缓冲区的任何内容，并返回0.<br>在这里重新说一下scanf的作用，其读取缓冲区中的内容并将其赋值到传入的后续参数中去，读取的内容与传入的第一个参数中的%+字母有关，其决定了读取内容的类型</p>
+<h2 id="判断字符数组的长度"><a href="#判断字符数组的长度" class="headerlink" title="判断字符数组的长度"></a>判断字符数组的长度</h2><p>我也不知道怎么回事，我试着将字符数组a作为参数传入strlen函数却发现编译器报错，后来查了一下,strlen函数的声明是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unsigned int strlen(char *s);</span><br></pre></td></tr></table></figure>
+<p>其传入的参数是指针，但理应传入数组应该也不会报错，最终我又加了一个指针来防止它报错</p>
+<h3 id="strlen函数和sizeof函数的区别"><a href="#strlen函数和sizeof函数的区别" class="headerlink" title="strlen函数和sizeof函数的区别"></a>strlen函数和sizeof函数的区别</h3><p>sizeof函数和strlen函数一样，传入的参数类型须是指针，<br>当然，当一个字符串被赋值进入一个指针后，该指针就指向了一个字符串，也可以说，字符串就相当于了一个指针的地位，所以可以直接作为参数传入这两个函数中去。<br>strlen读取并返回字符串实际长度,而sizeof返回包括0/在内的所有字符细节，也就是在内存中的长度<br>——————————————————<br>对于上面的后续补充：<br>get()函数有一个大缺点，他会无限读取stdin中的字符串直到遇见/0或换行符，也就是说，如果读取的字符串长度大于字符数组的长度，就会发生内存越界的坏情况<br>为了防止这种情况，我们最好使用fget函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式</span><br><span class="line">fget(char* char,int n,FILE* stream)</span><br><span class="line">栗子</span><br><span class="line">fget(strlist,sizeof(strlist),stdin)</span><br></pre></td></tr></table></figure>
+<p>传入的第一个参数为指向字符串存储的变量的指针，第二个参数为读取字符串的长度，通常用sizeof来限制，传入的第三个参数为文件指针，以stdin使其读取输入缓冲区</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" rel="tag"># C语言学习</a>
+          
+            <a href="/tags/C-%E5%AD%A6%E4%B9%A0/" rel="tag"># C++学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/8a0f52d1/" rel="next" title="Python基础进阶——list与dict">
+                <i class="fa fa-chevron-left"></i> Python基础进阶——list与dict
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/4729e793/" rel="prev" title="数据结构入门">
+                数据结构入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">缓冲区问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fflush-stdin"><span class="nav-number">1.1.</span> <span class="nav-text">fflush(stdin)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E5%AD%97%E7%AC%A6%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">字符串与字符问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gets"><span class="nav-number">2.1.</span> <span class="nav-text">Gets():</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%B1%BB%E5%9E%8B%E6%98%AF%E5%90%A6%E6%AD%A3%E7%A1%AE%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">判断类型是否正确：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#scanf%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">scanf的返回值：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="nav-number">4.</span> <span class="nav-text">判断字符数组的长度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#strlen%E5%87%BD%E6%95%B0%E5%92%8Csizeof%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.1.</span> <span class="nav-text">strlen函数和sizeof函数的区别</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PengLaiDoll</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
